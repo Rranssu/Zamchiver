@@ -24,7 +24,7 @@
         }
         h1, h2, h3 {
             font-weight: 600;
-            color: #e65100;
+            color: #008000; /* Green */
         }
         .register-container {
             max-width: 400px;
@@ -39,6 +39,7 @@
             font-size: 2rem;
             margin-bottom: 1.5rem;
             text-align: center;
+            color: #008000; /* Green */
         }
         .form-group {
             margin-bottom: 1.5rem;
@@ -55,12 +56,12 @@
             transition: border-color 0.3s ease;
         }
         .form-control:focus {
-            border-color: #e65100;
+            border-color: #008000; /* Green */
             outline: none;
-            box-shadow: 0 0 0 3px rgba(230, 81, 0, 0.1);
+            box-shadow: 0 0 0 3px rgba(0, 128, 0, 0.1); /* Light Green focus */
         }
         .btn-primary {
-            background-color: #e65100;
+            background-color: #008000; /* Green */
             color: #fff;
             border: none;
             padding: 0.75rem 1.5rem;
@@ -70,20 +71,20 @@
             transition: background-color 0.3s ease;
         }
         .btn-primary:hover {
-            background-color: #d84315;
+            background-color: #006400; /* Darker Green */
         }
         .register-link {
             text-align: center;
             margin-top: 1.5rem;
         }
         .register-link a {
-            color: #e65100;
+            color: #008000; /* Green */
             text-decoration: none;
             font-weight: 500;
             transition: color 0.3s ease;
         }
         .register-link a:hover {
-            color: #d84315;
+            color: #006400; /* Darker Green */
         }
         .error-message {
             color: #dc3545;
@@ -119,7 +120,7 @@
                 </div>
                 <button type="submit" class="btn btn-primary">Register</button>
                 <div class="register-link">
-                    <a href="#">Already have an account? Log In</a>
+                    <a href="../login/">Already have an account? Log In</a>
                 </div>
             </form>
         </div>
@@ -163,8 +164,7 @@
                 if (isValid) {
                     // Simulate a successful registration (replace with your actual registration logic)
                     console.log('Registering with:', name, email, password);
-                    alert('Registration successful! (Simulated)');
-                    window.location.href = 'index.html';
+                    window.location.href = 'captcha/';
                 }
             });
 

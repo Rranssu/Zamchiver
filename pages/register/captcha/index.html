@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zamchiver - CAPTCHA Verification</title>
+    <meta name="description" content="Verify you are a human. Complete the CAPTCHA.">
+    <meta name="keywords" content="Zamchiver, captcha, verification, human check">
+    <meta name="author" content="Your Name/Organization">
+
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <style>
+        /* Inherit styles from the home page */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+            color: #343a40;
+        }
+        h1, h2, h3 {
+            font-weight: 600;
+            color: #008000; /* Green */
+        }
+        h2 {
+            margin-bottom: 1.5rem;
+        }
+        .lead {
+            color: #495057;
+            font-size: 1.1rem;
+            font-weight: 300;
+        }
+        .navbar {
+            background-color: #008000; /* Green */
+            padding: 0.75rem 1rem;
+        }
+        .navbar-brand {
+            color: #fff;
+            font-weight: 600;
+            font-size: 1.4rem;
+            font-family: 'Poppins', sans-serif;
+        }
+        .navbar-brand:hover {
+            color: #fff;
+        }
+        .navbar-nav .nav-link {
+            color: #fff;
+            margin-left: 1rem;
+            font-weight: 400;
+            transition: color 0.3s ease;
+        }
+        .navbar-nav .nav-link:hover,
+        .navbar-nav .nav-link.active {
+            color: #ffc107; /* Yellow */
+            font-weight: 500;
+        }
+        .navbar-toggler {
+            border-color: #fff;
+        }
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255,255,255,1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'%3e%3c/path%3e%3c/svg%3e");
+        }
+        .navbar-nav .nav-item.auth {
+            margin-left: 0.5rem;
+        }
+        .navbar-nav .nav-item.auth .nav-link {
+            color: #fff;
+            border: 2px solid #fff;
+            border-radius: 0.5rem;
+            padding: 0.5rem 1rem;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .navbar-nav .nav-item.auth .nav-link:hover {
+            background-color: #fff;
+            color: #008000; /* Green */
+            border-color: #fff;
+        }
+        .footer {
+            background-color: #343a40;
+            color: #fff;
+            padding: 1.5rem 0;
+            text-align: center;
+            border-top: 1px solid #495057;
+        }
+        .footer-text {
+            font-size: 1.1rem;
+        }
+        .footer-link {
+            color: #fff;
+            font-weight: 500;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .footer-link:hover {
+            color: #ffb74d;
+        }
+
+        /* CAPTCHA Page Specific Styles */
+        .captcha-section {
+            padding: 5rem 0;
+            text-align: center;
+        }
+        .captcha-container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 2rem;
+            background-color: #fff;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .captcha-image {
+            background-color: #eee;
+            color: #333;
+            font-size: 2rem;
+            font-weight: bold;
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            margin-bottom: 1.5rem;
+            user-select: none; /* Prevent text selection */
+            letter-spacing: 0.5rem; /* Add some spacing for readability */
+        }
+        .captcha-input-group {
+            margin-bottom: 1.5rem;
+        }
+        .captcha-input {
+            padding: 0.75rem 1rem;
+            border: 1px solid #ced4da;
+            border-radius: 0.5rem;
+            font-size: 1.1rem;
+            width: 100%;
+        }
+        .captcha-button {
+            background-color: #008000; /* Green */
+            color: #fff;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .captcha-button:hover {
+            background-color: #006400; /* Darker Green */
+        }
+        .captcha-error {
+            color: red;
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="../">Zamchiver</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../../">Home</a>
+                    </li>
+                    <li class="nav-item auth">
+                        <a class="nav-link" href="../../login/" style="background-color: #ffc107; color: #008000; border-color: #ffc107;">Log Out</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="captcha-section">
+        <div class="container">
+            <h2>CAPTCHA Verification</h2>
+            <div class="captcha-container">
+                <div class="captcha-image" id="captcha-text">LOADING...</div>
+                <div class="captcha-input-group">
+                    <input type="text" class="captcha-input" id="captcha-input" placeholder="Enter the text above">
+                    <div class="captcha-error" id="captcha-error-message" style="display: none;">Incorrect CAPTCHA. Please try again.</div>
+                </div>
+                <button class="captcha-button" onclick="validateCaptcha()">Verify</button>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-text">&copy; <?php echo date("Y"); ?> Zamchiver. All rights reserved. | Developed by <a href="#" class="footer-link">Your Name/Organization</a></p>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        function generateCaptcha() {
+            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            let captcha = '';
+            for (let i = 0; i < 6; i++) {
+                captcha += characters.charAt(Math.floor(Math.random() * characters.length));
+            }
+            document.getElementById('captcha-text').innerText = captcha;
+            return captcha;
+        }
+
+        let currentCaptcha = generateCaptcha(); // Generate initial CAPTCHA
+
+        function validateCaptcha() {
+            const userInput = document.getElementById('captcha-input').value;
+            const errorMessage = document.getElementById('captcha-error-message');
+
+            if (userInput === currentCaptcha) {
+                // CAPTCHA is correct, redirect to the next page (e.g., user profile)
+                window.location.href = '../../homepage/user/home'; // Replace with the actual next page URL
+            } else {
+                // CAPTCHA is incorrect, show error and regenerate
+                errorMessage.style.display = 'block';
+                currentCaptcha = generateCaptcha(); // Regenerate CAPTCHA
+                document.getElementById('captcha-input').value = ''; // Clear the input field
+            }
+        }
+
+        // You would typically redirect to this page after a successful registration
+        // For demonstration purposes, we'll just load the CAPTCHA on page load.
+    </script>
+</body>
+</html>
