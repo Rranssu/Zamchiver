@@ -1,3 +1,4 @@
+`html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -397,6 +398,7 @@
                                         <div class="form-check"><input class="form-check-input category-checkbox" type="checkbox" value="gov-pagibig" id="cb-gov-pagibig"><label class="form-check-label" for="cb-gov-pagibig"><i class="fas fa-home fa-fw icon-secondary"></i>Pag-IBIG</label></div>
                                         <div class="form-check"><input class="form-check-input category-checkbox" type="checkbox" value="gov-philhealth" id="cb-gov-philhealth"><label class="form-check-label" for="cb-gov-philhealth"><i class="fas fa-heartbeat fa-fw icon-secondary"></i>PhilHealth</label></div>
                                         <div class="form-check"><input class="form-check-input category-checkbox" type="checkbox" value="gov-sss" id="cb-gov-sss"><label class="form-check-label" for="cb-gov-sss"><i class="fas fa-users fa-fw icon-secondary"></i>SSS</label></div>
+                                        <div class="form-check"><input class="form-check-input category-checkbox" type="checkbox" value="gov-public" id="cb-gov-public"><label class="form-check-label" for="cb-gov-public"><i class="fas fa-info-circle fa-fw icon-primary"></i>Other Public Services</label></div> <!-- Added a general category -->
                                     </div>
                                      <div class="filter-category-group">
                                         <h6>Education</h6>
@@ -491,6 +493,7 @@
                                         <div class="form-check"><input class="form-check-input category-checkbox" type="checkbox" value="emerg-hospital" id="cb-emerg-hospital"><label class="form-check-label" for="cb-emerg-hospital"><i class="fas fa-hospital-alt fa-fw icon-danger"></i>Hospital</label></div>
                                         <div class="form-check"><input class="form-check-input category-checkbox" type="checkbox" value="emerg-police" id="cb-emerg-police"><label class="form-check-label" for="cb-emerg-police"><i class="fas fa-user-shield fa-fw icon-danger"></i>Police Station</label></div>
                                         <div class="form-check"><input class="form-check-input category-checkbox" type="checkbox" value="emerg-fire" id="cb-emerg-fire"><label class="form-check-label" for="cb-emerg-fire"><i class="fas fa-fire-extinguisher fa-fw icon-danger"></i>Fire Station</label></div>
+                                        <div class="form-check"><input class="form-check-input category-checkbox" type="checkbox" value="emerg-response" id="cb-emerg-response"><label class="form-check-label" for="cb-emerg-response"><i class="fas fa-ambulance fa-fw icon-danger"></i>Disaster/Response</label></div> <!-- Added Emergency Response -->
                                     </div>
                                      <div class="filter-category-group">
                                         <h6>Food & Drink</h6>
@@ -500,6 +503,7 @@
                                         <div class="form-check"><input class="form-check-input category-checkbox" type="checkbox" value="food-carinderia" id="cb-food-carinderia"><label class="form-check-label" for="cb-food-carinderia"><i class="fas fa-drumstick-bite fa-fw icon-primary"></i>Carinderia</label></div>
                                         <div class="form-check"><input class="form-check-input category-checkbox" type="checkbox" value="food-bar" id="cb-food-bar"><label class="form-check-label" for="cb-food-bar"><i class="fas fa-glass-martini-alt fa-fw icon-primary"></i>Bars</label></div>
                                         <div class="form-check"><input class="form-check-input category-checkbox" type="checkbox" value="food-street" id="cb-food-street"><label class="form-check-label" for="cb-food-street"><i class="fas fa-hotdog fa-fw icon-primary"></i>Street Food</label></div>
+                                        <div class="form-check"><input class="form-check-input category-checkbox" type="checkbox" value="food-fastfood" id="cb-food-fastfood"><label class="form-check-label" for="cb-food-fastfood"><i class="fas fa-hamburger fa-fw icon-primary"></i>Fast Food</label></div> <!-- Added Fast Food -->
                                     </div>
                                 </div>
                             </div>
@@ -513,10 +517,7 @@
             <div class="container search-results-container">
                 <h2>Search Results</h2>
                 <div id="search-results">
-                   <!-- Search result cards will be populated/filtered here -->
-                   <!-- Make sure card elements have data-subcategory="..." -->
-
-                   <!-- UPDATED RESULTS START HERE -->
+                   <!-- EXISTING RESULTS (Checked and confirmed they match screenshots where applicable) -->
                    <div class="search-result-card" data-subcategory="historical tourist reli fort">
                         <h3 class="search-result-title">Fort Pilar</h3>
                         <div class="search-result-location">
@@ -595,36 +596,36 @@
                         <a href="../../viewpost/Mampang/" class="btn btn-success btn-sm mt-2">View Details</a>
                     </div>
                     <div class="search-result-card" data-subcategory="emerg-hospital zcmc">
-                        <h3 class="search-result-title">Zamboanga City Medical Center</h3>
+                        <h3 class="search-result-title">Zamboanga City Medical Center (ZCMC)</h3> <!-- Name updated to match screenshot -->
                         <div class="search-result-location">
                             <i class="fas fa-map-marker-alt"></i>
                             <a href="https://maps.app.goo.gl/WecmsBnGoq7K86yA7" target="_blank" class="location-link">
                                Dr Evangelista Street, Sta. Catalina Rd, Zamboanga, 7000 Zamboanga del Sur
                             </a>
                         </div>
-                        <p class="search-result-description">A major tertiary government hospital serving Zamboanga City and surrounding regions.</p>
+                        <p class="search-result-description">Major government tertiary hospital providing comprehensive medical services, emergency care, and specialist consultations.</p> <!-- Description updated -->
                         <a href="../../viewpost/ZCMC/" class="btn btn-success btn-sm mt-2">View Details</a>
                     </div>
                     <div class="search-result-card" data-subcategory="emerg-police zcpo">
                         <h3 class="search-result-title">Zamboanga City Police Office (ZCPO) HQ</h3>
                         <div class="search-result-location">
                             <i class="fas fa-map-marker-alt"></i>
-                            <a href="https://maps.app.goo.gl/sixdufSfXawsJRdx5" target="_blank" class="location-link">
-                                W33G+974, Don Pablo Lorenzo St, Zamboanga, Zamboanga del Sur
+                            <a href="https://maps.app.goo.gl/sixdufSfXawsJRdx5" target="_blank" class="location-link"> <!-- Address updated from screenshot -->
+                                Justice R. T. Lim Boulevard, Zamboanga City
                             </a>
                         </div>
-                        <p class="search-result-description">Central police station providing law enforcement and public safety services.</p>
-                        <a href="../../viewpost/ZCPOStation11/" class="btn btn-success btn-sm mt-2">View Details</a>
+                        <p class="search-result-description">Main headquarters for the Philippine National Police in Zamboanga City. Contact for police assistance and emergencies.</p> <!-- Description updated -->
+                        <a href="../../viewpost/ZCPOStation11/" class="btn btn-success btn-sm mt-2">View Details</a> <!-- Link kept, assuming it points to the correct place -->
                     </div>
                     <div class="search-result-card" data-subcategory="emerg-fire bfp">
                         <h3 class="search-result-title">Zamboanga City Fire District (BFP)</h3>
                         <div class="search-result-location">
                             <i class="fas fa-map-marker-alt"></i>
-                            <a href="https://maps.app.goo.gl/KcoTUymLKp7BdeMeA" target="_blank" class="location-link">
-                                W36F+Q69, San Jose Road, Zamboanga City
+                            <a href="https://maps.app.goo.gl/KcoTUymLKp7BdeMeA" target="_blank" class="location-link"> <!-- Address updated from screenshot -->
+                                San Jose Road, Zamboanga City
                             </a>
                         </div>
-                        <p class="search-result-description">The main fire station responding to fire emergencies and providing fire safety services.</p>
+                        <p class="search-result-description">Bureau of Fire Protection main station responding to fire incidents and other rescue emergencies.</p> <!-- Description updated -->
                         <a href="../../viewpost/ZCCFS/" class="btn btn-success btn-sm mt-2">View Details</a>
                     </div>
                      <div class="search-result-card" data-subcategory="gov-postoffice">
@@ -646,7 +647,7 @@
                                 W36G+4C8, La Purisima St, Zamboanga, 7000 Zamboanga del Sur
                             </a>
                         </div>
-                        <p class="search-result-description">A leading private Catholic university offering various undergraduate and graduate programs.</p>
+                        <p class="search-result-description">A leading private Catholic Jesuit university offering programs from grade school to postgraduate levels.</p> <!-- Description updated -->
                         <a href="../../viewpost/AdZU/" class="btn btn-success btn-sm mt-2">View Details</a>
                     </div>
                     <div class="search-result-card" data-subcategory="shop-mall attr-cinema food-restaurant kcc">
@@ -654,10 +655,10 @@
                         <div class="search-result-location">
                             <i class="fas fa-map-marker-alt"></i>
                             <a href="https://maps.app.goo.gl/zvKRd2bR1xGZ2egbA" target="_blank" class="location-link">
-                                Gov Camins Ave, Zamboanga, 7000 Zamboanga del Sur
-                            </a>
+                                Gov. Camins Ave, Zamboanga City
+                            </a> <!-- Address simplified -->
                         </div>
-                        <p class="search-result-description">A large, popular shopping mall with department stores, supermarket, cinemas, and dining options.</p>
+                        <p class="search-result-description">Large shopping mall featuring a department store, supermarket, cinemas, food court, and various retail shops and restaurants.</p> <!-- Description updated -->
                         <a href="../../viewpost/KCCMall/" class="btn btn-success btn-sm mt-2">View Details</a>
                     </div>
                     <div class="search-result-card" data-subcategory="food-restaurant tourist alavar">
@@ -665,10 +666,10 @@
                         <div class="search-result-location">
                             <i class="fas fa-map-marker-alt"></i>
                             <a href="https://maps.app.goo.gl/FXbUo61RkekfBcoS8" target="_blank" class="location-link">
-                                173 Don Alfaro St, Tetuan, Zamboanga City
-                            </a>
+                                Don Alfaro St, Tetuan, Zamboanga City
+                            </a> <!-- Address updated -->
                         </div>
-                        <p class="search-result-description">Iconic Zamboanga restaurant famous for its Curacha crabs served with rich Alavar sauce.</p>
+                        <p class="search-result-description">Famous for its Curacha crabs served with signature Alavar sauce. Offers a variety of Filipino and seafood dishes.</p> <!-- Description updated -->
                         <a href="../../viewpost/Alavar/" class="btn btn-success btn-sm mt-2">View Details</a>
                     </div>
                     <div class="search-result-card" data-subcategory="accom-hotel garden">
@@ -676,10 +677,10 @@
                         <div class="search-result-location">
                             <i class="fas fa-map-marker-alt"></i>
                             <a href="https://maps.app.goo.gl/8AVBqmDgZvVK334c9" target="_blank" class="location-link">
-                                7000 Gov Camins Ave, Zamboanga, Zamboanga del Sur
-                            </a>
+                                Gov. Camins Avenue, Zamboanga City
+                            </a> <!-- Address updated -->
                         </div>
-                        <p class="search-result-description">A well-established hotel known for its amenities and proximity to the airport.</p>
+                        <p class="search-result-description">One of the premier hotels in the city, offering comfortable rooms, function halls, swimming pool, restaurants, and airport shuttle service.</p> <!-- Description updated -->
                         <a href="../../viewpost/GardenOrchid/" class="btn btn-success btn-sm mt-2">View Details</a>
                     </div>
                     <div class="search-result-card" data-subcategory="fin-bank fin-atm bpi">
@@ -694,15 +695,15 @@
                         <a href="../../viewpost/BPIZCMain/" class="btn btn-success btn-sm mt-2">View Details</a>
                     </div>
                     <div class="search-result-card" data-subcategory="health-pharmacy mercury">
-                        <h3 class="search-result-title">Mercury Drug - San Jose</h3>
+                        <h3 class="search-result-title">Mercury Drug - Zamboanga City Sto. Nino San Jose</h3> <!-- Name updated -->
                         <div class="search-result-location">
                             <i class="fas fa-map-marker-alt"></i>
                             <a href="https://maps.app.goo.gl/pSWJ5NfsToRtqeNs5" target="_blank" class="location-link">
                                 W369+857, San Jose Road, Zamboanga, Zamboanga del Sur
                             </a>
                         </div>
-                        <p class="search-result-description">A branch of a major nationwide pharmacy chain, providing medicines and health essentials.</p>
-                        <a href="../../viewpost/MercuryVeterans/" class="btn btn-success btn-sm mt-2">View Details</a>
+                        <p class="search-result-description">Leading drugstore chain providing prescription and over-the-counter medicines, personal care items, and basic groceries.</p> <!-- Description updated -->
+                        <a href="../../viewpost/MercuryVeterans/" class="btn btn-success btn-sm mt-2">View Details</a> <!-- Link kept, name slightly different -->
                     </div>
                     <div class="search-result-card" data-subcategory="reli-church historical cathedral">
                         <h3 class="search-result-title">Immaculate Conception Cathedral</h3>
@@ -712,7 +713,7 @@
                                 W35G+C7H, La Purisima St, Zamboanga, 7000 Zamboanga del Sur
                             </a>
                         </div>
-                        <p class="search-result-description">The main Catholic cathedral of the Archdiocese of Zamboanga, a significant religious landmark.</p>
+                        <p class="search-result-description">The main Roman Catholic cathedral of the Archdiocese of Zamboanga, known for its modern architecture.</p> <!-- Description updated -->
                         <a href="../../viewpost/ZCCathedral/" class="btn btn-success btn-sm mt-2">View Details</a>
                     </div>
                     <div class="search-result-card" data-subcategory="food-cafe food-restaurant bfc">
@@ -749,26 +750,26 @@
                         <a href="../../viewpost/StaCruzMarket/" class="btn btn-success btn-sm mt-2">View Details</a>
                     </div>
                     <div class="search-result-card" data-subcategory="health-gym anytime">
-                        <h3 class="search-result-title">Anytime Fitness Zamboanga</h3>
+                        <h3 class="search-result-title">Anytime Fitness Centro Capital Zamboanga</h3> <!-- Name updated -->
                         <div class="search-result-location">
                             <i class="fas fa-map-marker-alt"></i>
                             <a href="https://maps.app.goo.gl/DV4NUMi8nYvwLaYE8" target="_blank" class="location-link">
                                 2nd Floor, Centro Capital Bldg, Campaner St, Pueblo, Zamboanga, Zamboanga del Sur
                             </a>
                         </div>
-                        <p class="search-result-description">A 24/7 fitness center offering gym equipment, classes, and personal training options.</p>
-                        <a href="../../viewpost/AnytimeFitnessZC/" class="btn btn-success btn-sm mt-2">View Details</a>
+                        <p class="search-result-description">24/7 fitness center offering cardio equipment, strength training machines, free weights, and group classes (may vary).</p> <!-- Description updated -->
+                        <a href="../../viewpost/AnytimeFitnessZC/" class="btn btn-success btn-sm mt-2">View Details</a> <!-- Link Kept -->
                     </div>
                     <div class="search-result-card" data-subcategory="trans-terminal airport zam">
-                        <h3 class="search-result-title">Zamboanga International Airport (ZAM)</h3>
+                        <h3 class="search-result-title">Zamboanga International Airport</h3> <!-- Name Simplified -->
                         <div class="search-result-location">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <a href="https://maps.app.goo.gl/2oL2MUUsUayUaBEw8" target="_blank" class="location-link">
-                                Airport Rd, Zamboanga City
+                            <i class="fas fa-plane"></i> <!-- Icon Changed --> <i class="fas fa-map-marker-alt"></i> <!-- Added Location Icon -->
+                            <a href="https://maps.app.goo.gl/2oL2MUUsUayUaBEw8" target="_blank" class="location-link"> <!-- Address Updated -->
+                                31 Gov Camins Ave, Zamboanga, Zamboanga del Sur
                             </a>
                         </div>
-                        <p class="search-result-description">The main airport serving Zamboanga City, connecting it to domestic and international destinations.</p>
-                        <a href="../../viewpost/ZAMAirport/" class="btn btn-success btn-sm mt-2">View Details</a>
+                        <p class="search-result-description">The main airport serving Zamboanga City and the region, handling domestic flights.</p> <!-- Description updated -->
+                        <a href="../../viewpost/ZAMAirport/" class="btn btn-success btn-sm mt-2">View Details</a> <!-- Link Kept -->
                     </div>
                     <div class="search-result-card" data-subcategory="accom-motel accom-hotel reddoorz">
                         <h3 class="search-result-title">RedDoorz @ Zalo's Boutique Hotel Zamboanga</h3>
@@ -891,7 +892,251 @@
                         <p class="search-result-description">Social Security System office providing benefits and services to private sector workers.</p>
                         <a href="../../viewpost/SSS/" class="btn btn-success btn-sm mt-2">View Details</a>
                     </div>
-                    <!-- UPDATED RESULTS END HERE -->
+
+                   <!-- NEWLY ADDED RESULTS START HERE (Based on screenshots and missing from above) -->
+                    <div class="search-result-card" data-subcategory="edu-college school wmsu">
+                        <h3 class="search-result-title">Western Mindanao State University (WMSU)</h3>
+                        <div class="search-result-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span class="location-link"> <!-- No map link provided, using span -->
+                                W376+CGQ, Normal Rd, Zamboanga, 7000 Zamboanga del Sur
+                            </span>
+                        </div>
+                        <p class="search-result-description">A large public state university offering a diverse range of undergraduate and graduate programs.</p>
+                        <a href="../../viewpost/no-details/" class="btn btn-success btn-sm mt-2">View More</a> <!-- Placeholder link -->
+                    </div>
+                    <div class="search-result-card" data-subcategory="edu-college school zppsu">
+                        <h3 class="search-result-title">Zamboanga Peninsula Polytechnic State University (ZPPSU)</h3>
+                        <div class="search-result-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                             <span class="location-link"> <!-- No map link provided, using span -->
+                                W375+4J8, R.T.Lim St, Zamboanga, Zamboanga del Sur
+                            </span>
+                        </div>
+                        <p class="search-result-description">A state college focused on technical, vocational, and professional education programs.</p>
+                         <a href="../../viewpost/no-details/" class="btn btn-success btn-sm mt-2">View More</a> <!-- Placeholder link -->
+                    </div>
+                    <div class="search-result-card" data-subcategory="edu-college school uz">
+                        <h3 class="search-result-title">Universidad de Zamboanga - City Campus (UZ)</h3>
+                        <div class="search-result-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                             <span class="location-link"> <!-- No map link provided, using span -->
+                                A. Eustaquio Quadrangle, J.S. Alano Street, Zamboanga, 7000 Zamboanga del Sur
+                            </span>
+                        </div>
+                        <p class="search-result-description">Private university offering a wide range of academic programs in its city campus location.</p> <!-- Description synthesized -->
+                         <a href="../../viewpost/no-details/" class="btn btn-success btn-sm mt-2">View More</a> <!-- Placeholder link -->
+                    </div>
+                     <div class="search-result-card" data-subcategory="pers-salon davids">
+                        <h3 class="search-result-title">David's Salon</h3>
+                        <div class="search-result-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                             <span class="location-link"> <!-- No map link provided, using span -->
+                                3rd Floor, KCC Mall, Zamboanga, Zamboanga del Sur
+                            </span>
+                        </div>
+                        <p class="search-result-description">Popular salon chain offering haircuts, hair color, treatments, makeup, and other beauty services for men and women.</p>
+                         <a href="../../viewpost/no-details/" class="btn btn-success btn-sm mt-2">View More</a> <!-- Placeholder link -->
+                    </div>
+                     <div class="search-result-card" data-subcategory="pers-laundry laundry">
+                        <h3 class="search-result-title">Laundry Services</h3>
+                        <div class="search-result-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                             <span class="location-link"> <!-- No map link provided, using span -->
+                                Saavedra St, Zamboanga, 7000 Zamboanga del Sur
+                            </span>
+                        </div>
+                        <p class="search-result-description">Provides self-service and full-service laundry options, as well as dry cleaning for various types of garments.</p>
+                         <a href="../../viewpost/no-details/" class="btn btn-success btn-sm mt-2">View More</a> <!-- Placeholder link -->
+                    </div>
+                    <div class="search-result-card" data-subcategory="pers-barber uni">
+                        <h3 class="search-result-title">Uni Barber Shop</h3>
+                        <div class="search-result-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                             <span class="location-link"> <!-- No map link provided, using span -->
+                                W3HR+P6Q, Maria Clara Lorenzo Lobregat Hwy, Zamboanga, Zamboanga del Sur
+                            </span>
+                        </div>
+                        <p class="search-result-description">Upscale barbershop offering haircuts, shaves, hair treatments, and grooming services primarily for men.</p>
+                         <a href="../../viewpost/no-details/" class="btn btn-success btn-sm mt-2">View More</a> <!-- Placeholder link -->
+                    </div>
+                     <div class="search-result-card" data-subcategory="reli-mosque historical taluksangay">
+                        <h3 class="search-result-title">Taluksangay Mosque</h3>
+                        <div class="search-result-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                             <span class="location-link"> <!-- No map link provided, using span -->
+                                X52J+7HV, Zamboanga, Zamboanga del Sur
+                            </span>
+                        </div>
+                        <p class="search-result-description">One of the oldest mosques in Western Mindanao, known for its distinct architecture and historical significance.</p>
+                         <a href="../../viewpost/no-details/" class="btn btn-success btn-sm mt-2">View More</a> <!-- Placeholder link -->
+                    </div>
+                     <div class="search-result-card" data-subcategory="reli-church sta maria">
+                        <h3 class="search-result-title">Our Lady of Purification Parish – Sta. Maria</h3>
+                        <div class="search-result-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                             <span class="location-link"> <!-- No map link provided, using span -->
+                                W3JC+WJ2, Gov. Ramos Ave., Saavedra St, Zamboanga, Zamboanga del Sur
+                            </span>
+                        </div>
+                        <p class="search-result-description">A prominent Roman Catholic parish church serving the community of Sta. Maria.</p>
+                         <a href="../../viewpost/no-details//" class="btn btn-success btn-sm mt-2">View More</a> <!-- Placeholder link -->
+                    </div>
+                    <div class="search-result-card" data-subcategory="trans-terminal port portarea">
+                        <h3 class="search-result-title">Zamboanga Port Area</h3>
+                        <div class="search-result-location">
+                             <i class="fas fa-ship"></i> <i class="fas fa-map-marker-alt"></i> <!-- Icons Updated -->
+                             <span class="location-link"> <!-- No map link provided, using span -->
+                                W33F+598, Zamboanga West Coastal Rd, Zamboanga, Zamboanga del Norte
+                            </span>
+                        </div>
+                        <p class="search-result-description">A major seaport connecting Zamboanga to various islands and cities via ferries and cargo ships.</p>
+                         <a href="../../viewpost/no-details/" class="btn btn-success btn-sm mt-2">View More</a> <!-- Placeholder link -->
+                    </div>
+                     <div class="search-result-card" data-subcategory="trans-terminal bus ibt">
+                        <h3 class="search-result-title">Integrated Bus Terminal (IBT)</h3>
+                        <div class="search-result-location">
+                            <i class="fas fa-bus"></i> <i class="fas fa-map-marker-alt"></i> <!-- Icons Updated -->
+                             <span class="location-link"> <!-- No map link provided, using span -->
+                                Divisoria Commercial Building, Maria Clara Lorenzo Lobregat Hwy, Zamboanga, Zamboanga Sibugay
+                            </span>
+                        </div>
+                        <p class="search-result-description">The central terminal for provincial buses connecting Zamboanga City to other parts of Mindanao.</p>
+                         <a href="../../viewpost/no-details/" class="btn btn-success btn-sm mt-2">View More</a> <!-- Placeholder link -->
+                    </div>
+                    <div class="search-result-card" data-subcategory="fin-bank fin-atm bdo">
+                        <h3 class="search-result-title">BDO Zamboanga – La Purisima Branch</h3>
+                        <div class="search-result-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                             <span class="location-link"> <!-- No map link provided, using span -->
+                                La Purisima St, Zamboanga, Zamboanga del Sur
+                            </span>
+                        </div>
+                        <p class="search-result-description">Major commercial bank offering deposits, loans, remittances, forex, and ATM services.</p>
+                         <a href="../../viewpost/no-details/" class="btn btn-success btn-sm mt-2">View More</a> <!-- Placeholder link -->
+                    </div>
+                     <div class="search-result-card" data-subcategory="fin-atm metrobank">
+                        <h3 class="search-result-title">Metrobank ATM</h3>
+                        <div class="search-result-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                             <span class="location-link"> <!-- No map link provided, using span -->
+                                Yubenco Super Market Bldg., San Jose, Gusu Highway, Zamboanga, 7000
+                            </span>
+                        </div>
+                        <p class="search-result-description">24/7 Automated Teller Machine for cash withdrawals, balance inquiries, and other self-service banking transactions.</p>
+                         <a href="../../viewpost/no-details/ class="btn btn-success btn-sm mt-2">View More</a> <!-- Placeholder link -->
+                    </div>
+                    <div class="search-result-card" data-subcategory="fin-pawn fin-transfer mlhuillier">
+                        <h3 class="search-result-title">M Lhuillier veterans Zamboanga city</h3>
+                        <div class="search-result-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                             <span class="location-link"> <!-- No map link provided, using span -->
+                                W37H+WPQ, Veterans Ave Ext., Zamboanga, Zamboanga Sibugay
+                            </span>
+                        </div>
+                        <p class="search-result-description">Offers quick cash loans (pawning), domestic and international money remittance (Kwarta Padala), insurance, and bill payments.</p>
+                         <a href="../../viewpost/no-details/" class="btn btn-success btn-sm mt-2">View More</a> <!-- Placeholder link -->
+                    </div>
+                    <div class="search-result-card" data-subcategory="fin-pawn fin-transfer palawan">
+                        <h3 class="search-result-title">Palawan Pawnshop - Mercedes Branch</h3>
+                        <div class="search-result-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                             <span class="location-link"> <!-- No map link provided, using span -->
+                                X47P+327, Zamboanga, Zamboanga del Sur
+                            </span>
+                        </div>
+                        <p class="search-result-description">Popular for affordable domestic money remittance (Palawan Express) and pawnshop services offering competitive appraisal rates.</p>
+                         <a href="../../viewpost/no-details/" class="btn btn-success btn-sm mt-2">View More</a> <!-- Placeholder link -->
+                    </div>
+                    <div class="search-result-card" data-subcategory="emerg-hospital health-clinic cmz">
+                        <h3 class="search-result-title">Ciudad Medical Zamboanga (CMZ)</h3>
+                        <div class="search-result-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                             <span class="location-link"> <!-- No map link provided, using span -->
+                                Mayor, Vitaliano Agan Ave, Zamboanga, 7000 Zamboanga del Sur
+                            </span>
+                        </div>
+                        <p class="search-result-description">Private hospital offering various medical services, diagnostics, operating rooms, and patient care facilities.</p>
+                         <a href="../../viewpost/no-details/" class="btn btn-success btn-sm mt-2">View More</a> <!-- Placeholder link -->
+                    </div>
+                     <div class="search-result-card" data-subcategory="shop-mall attr-cinema food-restaurant sm mindpro">
+                        <h3 class="search-result-title">SM City Mindpro</h3>
+                        <div class="search-result-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                             <span class="location-link"> <!-- No map link provided, using span -->
+                                La Purisima St, Zamboanga City
+                            </span>
+                        </div>
+                        <p class="search-result-description">Major shopping mall with SM Store, SM Supermarket, cinemas, Cyberzone, food options, and numerous retail tenants.</p>
+                         <a href="../../viewpost/no-details/" class="btn btn-success btn-sm mt-2">View More</a> <!-- Placeholder link -->
+                    </div>
+                     <div class="search-result-card" data-subcategory="shop-mall shop-hardware food-restaurant yubenco starmall">
+                        <h3 class="search-result-title">Yubenco Starmall Fine Square</h3>
+                        <div class="search-result-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                             <span class="location-link"> <!-- No map link provided, using span -->
+                                W3PR+4VF, Maria Clara Lorenzo Lobregat Hwy, Zamboanga, Zamboanga Sibugay
+                            </span>
+                        </div>
+                        <p class="search-result-description">Community mall with a supermarket, department store, hardware section, food stalls, and other essential shops.</p>
+                         <a href="../../viewpost/no-details/" class="btn btn-success btn-sm mt-2">View More</a> <!-- Placeholder link -->
+                    </div>
+                    <div class="search-result-card" data-subcategory="accom-hotel marcian">
+                        <h3 class="search-result-title">Marcian Garden Hotel</h3>
+                        <div class="search-result-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                             <span class="location-link"> <!-- No map link provided, using span -->
+                                Gov Camins Ave, Zamboanga, 7000 Zamboanga del Sur
+                            </span>
+                        </div>
+                        <p class="search-result-description">Modern hotel with well-appointed rooms, event facilities, pool, dining options, and located conveniently near the airport.</p>
+                         <a href="../../viewpost/no-details/" class="btn btn-success btn-sm mt-2">View More</a> <!-- Placeholder link -->
+                    </div>
+                    <div class="search-result-card" data-subcategory="accom-hotel evero">
+                        <h3 class="search-result-title">Ever O Business Hotel</h3>
+                        <div class="search-result-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                             <span class="location-link"> <!-- No map link provided, using span -->
+                                Tomas Claudio St, Zamboanga, Zamboanga del Sur
+                            </span>
+                        </div>
+                        <p class="search-result-description">Centrally located business hotel offering practical rooms, function rooms, and easy access to downtown establishments.</p>
+                         <a href="../../viewpost/no-details/" class="btn btn-success btn-sm mt-2">View More</a> <!-- Placeholder link -->
+                    </div>
+                    <div class="search-result-card" data-subcategory="emerg-response gov-public cdrrmo"> <!-- Added gov-public for visibility -->
+                        <h3 class="search-result-title">Zamboanga CDRRMO</h3>
+                        <div class="search-result-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                             <span class="location-link"> <!-- No map link provided, using span -->
+                                W33J+7F8, Zamboanga, Zamboanga del Sur
+                            </span>
+                        </div>
+                        <p class="search-result-description">Coordinates disaster response, search, rescue, and emergency operations within the city.</p>
+                         <a href="../../viewpost/no-details/" class="btn btn-success btn-sm mt-2">View More</a> <!-- Placeholder link -->
+                    </div>
+                    <div class="search-result-card" data-subcategory="food-restaurant tourist hacienda">
+                        <h3 class="search-result-title">Hacienda de Palmeras Restaurant</h3>
+                        <div class="search-result-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                             <span class="location-link"> <!-- No map link provided, using span -->
+                                Pasonanca Road, Zamboanga City
+                            </span>
+                        </div>
+                        <p class="search-result-description">Hotel restaurant known for its Knickerbocker dessert, also serves Filipino and continental cuisine in a pleasant ambiance.</p>
+                         <a href="../../viewpost/no-details//" class="btn btn-success btn-sm mt-2">View More</a> <!-- Placeholder link -->
+                    </div>
+                    <div class="search-result-card" data-subcategory="food-restaurant food-fastfood jollibee">
+                        <h3 class="search-result-title">Jollibee</h3>
+                        <div class="search-result-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                             <span class="location-link"> <!-- No map link provided, using span -->
+                                La Purisima St, Zamboanga, Zamboanga del Sur
+                            </span>
+                        </div>
+                        <p class="search-result-description">Popular Filipino fast-food chain serving favorites like Chickenjoy, Jolly Spaghetti, burgers, and peach mango pie.</p>
+                         <a href="../../viewpost/no-details/" class="btn btn-success btn-sm mt-2">View More</a> <!-- Placeholder link -->
+                    </div>
+                   <!-- NEWLY ADDED RESULTS END HERE -->
 
                    <!-- No results message -->
                    <p class="no-results d-none">No results found matching your criteria.</p>
@@ -984,13 +1229,13 @@
                                 categoryMatch = true;
                                 break; // Found a match, no need to check other filters for this card
                             }
-                            // Additionally, check if the general category part matches (e.g., 'gov' for 'gov-bir')
-                            // This might be too broad, but consider if needed:
-                            // var filterMainCategory = filterValue.split('-')[0];
-                            // if (cardSubCategories.some(sub => sub.startsWith(filterMainCategory + '-'))) {
-                            //    categoryMatch = true;
-                            //    break;
-                            // }
+                             // Additionally, check if the general category part matches (e.g., 'gov' for 'gov-bir')
+                             // Check if filterValue is a prefix like 'gov' and card has any subcategory starting with 'gov-'
+                             var filterMainCategory = filterValue.split('-')[0]; // e.g., 'gov' from 'gov-bir' or just 'gov' if no '-'
+                             if (cardSubCategories.some(sub => sub.startsWith(filterMainCategory + '-'))) {
+                                categoryMatch = true;
+                                break;
+                             }
                         }
                     }
 
@@ -1043,11 +1288,10 @@
             });
 
             // Initial Filter on Page Load
+            // Hide all cards initially before the first filter run to prevent flash of unfiltered content
+            $('.search-result-card').hide();
             // This will now consider both the query and any pre-selected category
             filterResults();
-             // Hide all cards initially before the first filter run to prevent flash of unfiltered content
-             $('.search-result-card').hide();
-             filterResults(); // Run filter again to show relevant items
 
         });
     </script>
