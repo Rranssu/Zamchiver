@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Account Dashboard - Zamchiver</title>
+    <meta name="description" content="Manage your account details, view your posts, and edit your profile on Zamchiver.">
+    <meta name="keywords" content="Zamboanga City, my account, dashboard, profile, posts, edit profile, settings, account management, Philippines">
+    <meta name="author" content="Your Name/Organization">
+
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* Custom styles for My Account Dashboard */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #ffffff;
+            color: #343a40;
+        }
+        h1, h2 {
+            font-weight: 600;
+            color: #008000; /* Green */
+        }
+        .lead {
+            color: #495057;
+            font-size: 1.1rem;
+            font-weight: 300;
+        }
+        /* Navbar Styles */
+        .navbar {
+            background-color: #008000; /* Green */
+            padding: 0.75rem 1rem;
+        }
+        .navbar-brand {
+            color: #fff;
+            font-weight: 600;
+            font-size: 1.4rem;
+            font-family: 'Poppins', sans-serif;
+        }
+        .navbar-brand:hover {
+            color: #fff;
+        }
+        .navbar-nav .nav-link {
+            color: #fff;
+            margin-left: 1rem;
+            font-weight: 400;
+            transition: color 0.3s ease;
+        }
+        .navbar-nav .nav-link:hover,
+        .navbar-nav .nav-link.active {
+            color: #ffc107; /* Yellow */
+            font-weight: 500;
+        }
+        .navbar-toggler {
+            border-color: #fff;
+        }
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255,255,255,1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'%3e%3c/path%3e%3c/svg%3e");
+        }
+        .navbar-nav .nav-item.auth {
+            margin-left: 0.5rem;
+        }
+        .navbar-nav .nav-item.auth .nav-link {
+            color: #fff;
+            border: 2px solid #fff;
+            border-radius: 0.5rem;
+            padding: 0.5rem 1rem;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .navbar-nav .nav-item.auth .nav-link:hover {
+            background-color: #fff;
+            color: #008000; /* Green */
+            border-color: #fff;
+        }
+
+        /* My Account Dashboard Styles */
+        .my-account-section {
+            padding: 5rem 0;
+            background-color: #ffffff; /* Light Yellow - Vinta Accent */
+        }
+        .dashboard-container {
+            display: grid;
+            grid-template-columns: 1fr; /* Sidebar and Content */
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .content-area {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+            border: 1px solid #ddd;
+        }
+        .content-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 1rem;
+        }
+        .content-header h2 {
+            color: #008000; /* Green */
+            margin: 0;
+            font-size: 2rem;
+        }
+        .account-details-container {
+            margin-bottom: 2.5rem;
+        }
+        .account-details-container h2{
+             font-size: 1.5rem;
+        }
+
+        .form-group label {
+            font-weight: 500;
+            color: #008000; /* Green */
+        }
+        .form-control {
+            border-radius: 0.5rem;
+            border-color: #ddd;
+        }
+        .form-control:focus {
+            border-color: #008000; /* Green */
+            box-shadow: 0 0 0 0.2rem rgba(0, 128, 0, 0.25); /* Green */
+        }
+        .btn-primary {
+            background-color: #008000; /* Green */
+            border-color: #008000;
+            color: #fff;
+            padding: 0.75rem 1.5rem;
+            font-weight: 500;
+            transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+            border-radius: 0.5rem;
+        }
+        .btn-primary:hover {
+            background-color: #006400; /* Darker Green */
+            border-color: #006400;
+        }
+        .btn-secondary {
+            background-color: #e0e0e0; /* Light Gray */
+            border-color: #e0e0e0;
+            color: #343a40;
+            padding: 0.75rem 1.5rem;
+            font-weight: 500;
+            transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+            border-radius: 0.5rem;
+        }
+        .btn-secondary:hover {
+            background-color: #c0c0c0; /* Darker Gray */
+            border-color: #c0c0c0;
+        }
+        .post-card {
+            background-color: #fff;
+            border-radius: 0.75rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border: 1px solid #ddd;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .post-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+        .post-card-image {
+            height: 200px;
+            object-fit: cover;
+            border-top-left-radius: 0.75rem;
+            border-top-right-radius: 0.75rem;
+            width: 100%;
+        }
+        .post-card-content {
+            padding: 1.5rem;
+        }
+        .post-card-title {
+            font-size: 1.2rem;
+            color: #008000; /* Green */
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        .post-card-category {
+            font-size: 1rem;
+            color: #6c757d;
+            margin-bottom: 1rem;
+        }
+        .post-card-actions {
+            display: flex;
+            gap: 10px; /* Adjust the gap as needed */
+            margin-top: 1rem;
+        }
+        .btn-sm {
+            padding: 0.25rem 0.5rem;
+            font-size: 0.8rem;
+            border-radius: 0.3rem;
+        }
+        .btn-warning {
+            background-color: #ffc107; /* Yellow */
+            border-color: #ffc107;
+            color: #343a40;
+        }
+        .btn-warning:hover {
+            background-color: #e0a800; /* Darker Yellow */
+            border-color: #e0a800;
+        }
+        .btn-danger {
+            background-color: #dc3545; /* Red */
+            border-color: #dc3545;
+            color: #fff;
+        }
+        .btn-danger:hover {
+            background-color: #c82333; /* Darker Red */
+            border-color: #c82333;
+        }
+
+        .footer {
+            background-color: #343a40;
+            color: #fff;
+            padding: 1.5rem 0;
+            text-align: center;
+            border-top: 1px solid #495057;
+        }
+        .footer-text {
+            font-size: 1.1rem;
+        }
+        .footer-link {
+            color: #fff;
+            font-weight: 500;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .footer-link:hover {
+            color: #ffb74d;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 992px) {
+            .navbar-nav .nav-link {
+                margin-left: 0;
+                margin-top: 0.5rem;
+            }
+            .dashboard-container {
+                grid-template-columns: 1fr; /* Stack on smaller screens */
+            }
+        }
+        @media (max-width: 768px) {
+            .my-account-section {
+                padding: 3rem 0;
+            }
+            .content-area {
+                padding: 1.5rem;
+            }
+        }
+        @media (max-width: 576px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            .hero-tagline {
+                font-size: 1.2rem;
+            }
+            .content-header h2 {
+                font-size: 1.5rem;
+            }
+             .account-details-container h2{
+                font-size: 1.25rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">Zamchiver</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../home/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../add/">Add Post</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="">My Account</a>
+                    </li>
+                    <li class="nav-item auth">
+                        <a class="nav-link" href="../../../login/" style="background-color: #ffc107; color: #008000; border-color: #ffc107;">Log Out</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="my-account-section">
+        <div class="container">
+            <h1 class="text-center mb-4">My Account</h1>
+            <div class="dashboard-container">
+                <main class="content-area">
+                    <div id="account-details" class="account-details-container">
+                        <div class="content-header">
+                            <h2>Account Details</h2>
+                            <button id="edit-profile-btn" class="btn btn-primary">Edit Profile</button>
+                        </div>
+                        <form id="edit-profile-form" style="display: none;">
+                            <div class="form-group">
+                                <label for="name">Name <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="name" name="name" value="John Doe" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email <span class="text-danger">*</span></label>
+                                <input type="email" class="form-control" id="email" name="email" value="john.doe@example.com" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="new-password">New Password</label>
+                                <input type="password" class="form-control" id="new-password" name="new-password" placeholder="Enter new password">
+                                <small class="form-text text-muted">Leave blank to keep your current password.</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="confirm-password">Confirm New Password</label>
+                                <input type="password" class="form-control" id="confirm-password" name="confirm-password" placeholder="Confirm new password">
+                            </div>
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary mr-2">Update Profile</button>
+                                <button type="button" class="btn btn-secondary" id="cancel-edit-btn">Cancel</button>
+                            </div>
+                        </form>
+                        <div id="profile-display">
+                            <p><strong>Name:</strong> <span id="display-name">John Doe</span></p>
+                            <p><strong>Email:</strong> <span id="display-email">john.doe@example.com</span></p>
+                        </div>
+                    </div>
+
+                    <div id="my-posts" class="my-posts-container">
+                        <div class="content-header">
+                            <h2>My Posts</h2>
+                        </div>
+                        <div id="my-posts-list">
+                            </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-text">&copy; <?php echo date("Y"); ?> Zamchiver. All rights reserved. | Developed by <a href="#" class="footer-link">Your Name/Organization</a></p>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Function to fetch and display user's posts (replace with your actual data fetching logic)
+            function fetchUserPosts() {
+                // Simulate fetching posts from a server
+                const mockPosts = [
+                    { id: 1, title: "Fort Pilar", category: "Attractions", image: "../../../../img/fortpilar.webp" },
+                    { id: 2, title: "Paseo del Mar", category: "Attractions", image: "../../../../img/paseo.webp" },
+                    { id: 3, title: "Merloquet Falls", category: "Attractions", image: "../../../../img/mel.webp" },
+                ];
+
+                const postsContainer = $('#my-posts-list');
+                postsContainer.empty(); // Clear previous posts
+
+                if (mockPosts.length === 0) {
+                    postsContainer.append('<p class="text-muted">No posts found.</p>');
+                    return;
+                }
+
+                mockPosts.forEach(post => {
+                    const postCard = `
+                        <div class="post-card">
+                            <img src="${post.image}" alt="${post.title}" class="post-card-image">
+                            <div class="post-card-content">
+                                <h3 class="post-card-title">${post.title}</h3>
+                                <p class="post-card-category">${post.category}</p>
+                                 <div class="post-card-actions">
+                                    <button class="btn btn-sm btn-warning">Edit</button>
+                                    <button class="btn btn-sm btn-danger">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    postsContainer.append(postCard);
+                });
+            }
+
+            fetchUserPosts(); // Call the function to display posts
+
+            // Add smooth scrolling for anchor links
+            $('a[href^="#"]').on('click', function(event) {
+                var target = $(this.getAttribute('href'));
+                if (target.length) {
+                    event.preventDefault();
+                    $('html, body').animate({
+                        scrollTop: target.offset().top - 70
+                    }, 1000);
+                }
+            });
+
+            // Highlight active nav link on scroll
+            $(window).scroll(function() {
+                var scrollDistance = $(window).scrollTop();
+                $('.navbar-nav .nav-item .nav-link').each(function() {
+                    var sectionId = $(this).attr('href');
+                    var section = $(sectionId);
+                    if (section.length && section.offset().top - 80 <= scrollDistance && section.offset().top + section.height() - 80 > scrollDistance) {
+                        $(this).addClass('active');
+                    } else {
+                        $(this).removeClass('active');
+                    }
+                });
+            });
+
+            // Edit profile functionality
+            $("#edit-profile-btn").click(function() {
+                $("#profile-display").hide();
+                $("#edit-profile-form").show();
+                $(this).hide();
+            });
+
+            $("#cancel-edit-btn").click(function() {
+                $("#profile-display").show();
+                $("#edit-profile-form").hide();
+                $("#edit-profile-btn").show();
+            });
+
+            // Form validation for Edit Profile
+            $("#edit-profile-form").validate({
+                rules: {
+                    name: {
+                        required: true,
+                        minlength: 2
+                    },
+                    email: {
+                        required: true,
+                        email: true
+                    },
+                    "new-password": {
+                        minlength: 6
+                    },
+                    "confirm-password": {
+                        equalTo: "#new-password"
+                    }
+                },
+                messages: {
+                    name: {
+                        required: "Please enter your name",
+                        minlength: "Name must be at least 2 characters long"
+                    },
+                    email: {
+                        required: "Please enter your email address",
+                        email: "Please enter a valid email address"
+                    },
+                    "new-password": {
+                        minlength: "Password must be at least 6 characters long"
+                    },
+                    "confirm-password": {
+                        equalTo: "Please enter the same password as above"
+                    }
+                },
+                errorElement: "small",
+                errorPlacement: function(error, element) {
+                    error.addClass("text-danger");
+                    error.insertAfter(element.parent());
+                },
+                submitHandler: function(form) {
+                    // Handle form submission here (e.g., using AJAX)
+                    // You can access form data using $(form).serialize()
+                    $.ajax({
+                        url: 'your-update-profile-endpoint.php', // Replace with your server-side script
+                        type: 'POST',
+                        data: $(form).serialize(),
+                        success: function(response) {
+                            // Handle success response
+                            console.log(response);
+                            alert("Profile updated successfully!"); // Replace with a better UI notification
+
+                            // Update displayed profile information
+                            $("#display-name").text($("#name").val());
+                            $("#display-email").text($("#email").val());
+
+                            // Hide form and show display
+                            $("#profile-display").show();
+                            $("#edit-profile-form").hide();
+                            $("#edit-profile-btn").show();
+
+                            form.reset();
+
+                        },
+                        error: function(xhr, status, error) {
+                            // Handle error response
+                            console.error(xhr.responseText);
+                            alert("Error updating profile. Please try again."); // Replace with a better UI notification
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

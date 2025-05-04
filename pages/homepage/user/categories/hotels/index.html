@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotels in Zamboanga City - Zamchiver</title>
+    <meta name="description" content="Discover the best hotels in Zamboanga City. Find listings, reviews, and information on accommodations for your stay.">
+    <meta name="keywords" content="Zamboanga City, hotels, accommodations, lodging, places to stay, reviews, tourism, Philippines">
+    <meta name="author" content="Your Name/Organization">
+
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* Custom styles for Hotels Category Page */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+            color: #343a40;
+        }
+        h1, h2 {
+            font-weight: 600;
+            color: #008000; /* Green */
+        }
+        .lead {
+            color: #495057;
+            font-size: 1.1rem;
+            font-weight: 300;
+        }
+        /* Navbar Styles */
+        .navbar {
+            background-color: #008000; /* Green */
+            padding: 0.75rem 1rem;
+        }
+        .navbar-brand {
+            color: #fff;
+            font-weight: 600;
+            font-size: 1.4rem;
+            font-family: 'Poppins', sans-serif;
+        }
+        .navbar-brand:hover {
+            color: #fff;
+        }
+        .navbar-nav .nav-link {
+            color: #fff;
+            margin-left: 1rem;
+            font-weight: 400;
+            transition: color 0.3s ease;
+        }
+        .navbar-nav .nav-link:hover,
+        .navbar-nav .nav-link.active {
+            color: #ffc107; /* Yellow */
+            font-weight: 500;
+        }
+        .navbar-toggler {
+            border-color: #fff;
+        }
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255,255,255,1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'%3e%3c/path%3e%3c/svg%3e");
+        }
+        .navbar-nav .nav-item.auth {
+            margin-left: 0.5rem;
+        }
+        .navbar-nav .nav-item.auth .nav-link {
+            color: #fff;
+            border: 2px solid #fff;
+            border-radius: 0.5rem;
+            padding: 0.5rem 1rem;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .navbar-nav .nav-item.auth .nav-link:hover {
+            background-color: #fff;
+            color: #008000; /* Green */
+            border-color: #fff;
+        }
+
+        /* Hotels Category Page Styles */
+        .category-banner {
+            background-color: #fff8e1; /* Light Yellow - Vinta Accent */
+            padding: 4rem 0;
+            text-align: center;
+        }
+        .category-banner h1 {
+            color: #008000; /* Green */
+            font-size: 3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        .category-banner p {
+            font-size: 1.2rem;
+            color: #495057;
+        }
+        .hotel-listings-section {
+            padding: 5rem 0;
+        }
+        .hotel-card {
+            background-color: #fff;
+            border-radius: 0.75rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #ddd;
+        }
+        .hotel-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+        .hotel-card-image {
+            height: 250px;
+            object-fit: cover;
+            border-top-left-radius: 0.75rem;
+            border-top-right-radius: 0.75rem;
+            width: 100%;
+        }
+        .hotel-card-content {
+            padding: 1.5rem;
+        }
+        .hotel-card-title {
+            font-size: 1.5rem;
+            color: #008000; /* Green */
+            margin-bottom: 1rem;
+        }
+        .hotel-card-location {
+            font-size: 1.1rem;
+            color: #6c757d;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        .hotel-card-location i {
+            margin-right: 0.5rem;
+            font-size: 1.2rem;
+        }
+        .hotel-card-description {
+            font-size: 1rem;
+            color: #495057;
+            margin-bottom: 1.5rem;
+        }
+        .hotel-card-amenities {
+            font-size: 1rem;
+            color: #343a40;
+            margin-bottom: 1rem;
+        }
+        .hotel-card-amenities span {
+            margin-right: 0.5rem;
+        }
+        .hotel-card-button {
+            text-align: center;
+        }
+        .btn-primary {
+            background-color: #008000; /* Green */
+            border-color: #008000;
+            color: #fff;
+            padding: 0.75rem 1.5rem;
+            font-weight: 500;
+            transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+            border-radius: 0.5rem;
+        }
+        .btn-primary:hover {
+            background-color: #006400; /* Darker Green */
+            border-color: #006400;
+        }
+        .footer {
+            background-color: #343a40;
+            color: #fff;
+            padding: 1.5rem 0;
+            text-align: center;
+            border-top: 1px solid #495057;
+        }
+        .footer-text {
+            font-size: 1.1rem;
+        }
+        .footer-link {
+            color: #fff;
+            font-weight: 500;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .footer-link:hover {
+            color: #ffb74d;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 992px) {
+            .navbar-nav .nav-link {
+                margin-left: 0;
+                margin-top: 0.5rem;
+            }
+        }
+        @media (max-width: 768px) {
+            .category-banner {
+                padding: 3rem 0;
+            }
+            .hotel-listings-section {
+                padding: 3rem 0;
+            }
+        }
+        @media (max-width: 576px) {
+            .category-banner h1 {
+                font-size: 2.5rem;
+            }
+            .category-banner p {
+                font-size: 1rem;
+            }
+            .hotel-card-title {
+                font-size: 1.2rem;
+            }
+            .hotel-card-image{
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">Zamchiver</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="add-post.html">Add Post</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#my-account">My Account</a>
+                    </li>
+                    <li class="nav-item auth">
+                        <a class="nav-link" href="../../../login/" style="background-color: #ffc107; color: #008000; border-color: #ffc107;">Log Out</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="category-banner">
+        <div class="container">
+            <h1>Hotels in Zamboanga City</h1>
+            <p>Discover the best places to stay in Zamboanga City for a comfortable and memorable experience.</p>
+        </div>
+    </section>
+
+    <section class="hotel-listings-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="hotel-card">
+                        <img src="https://via.placeholder.com/400x300?text=Hotel+1" alt="Hotel 1" class="hotel-card-image">
+                        <div class="hotel-card-content">
+                            <h2 class="hotel-card-title">Hotel Primera Zamboanga</h2>
+                            <div class="hotel-card-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                Gov. Camins Ave., Zamboanga City
+                            </div>
+                            <p class="hotel-card-description">
+                                A luxurious hotel with modern amenities and stunning city views.
+                            </p>
+                            <div class="hotel-card-amenities">
+                                <strong>Amenities:</strong>
+                                <span><i class="fas fa-wifi"></i></span>
+                                <span><i class="fas fa-swimming-pool"></i></span>
+                                <span><i class="fas fa-utensils"></i></span>
+                            </div>
+                            <div class="hotel-card-button">
+                                <a href="#" class="btn btn-primary">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="hotel-card">
+                        <img src="https://via.placeholder.com/400x300?text=Hotel+2" alt="Hotel 2" class="hotel-card-image">
+                        <div class="hotel-card-content">
+                            <h2 class="hotel-card-title">Grand Astoria Hotel</h2>
+                            <div class="hotel-card-location">
+                                 <i class="fas fa-map-marker-alt"></i>
+                                 Chavez St, Zamboanga City
+                            </div>
+                            <p class="hotel-card-description">
+                                Elegant accommodations in the heart of the city, perfect for business and leisure.
+                            </p>
+                            <div class="hotel-card-amenities">
+                                 <strong>Amenities:</strong>
+                                <span><i class="fas fa-wifi"></i></span>
+                                <span><i class="fas fa-tv"></i></span>
+                                <span><i class="fas fa-dumbbell"></i></span>
+                            </div>
+                            <div class="hotel-card-button">
+                                <a href="#" class="btn btn-primary">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="hotel-card">
+                        <img src="https://via.placeholder.com/400x300?text=Hotel+3" alt="Hotel 3" class="hotel-card-image">
+                        <div class="hotel-card-content">
+                            <h2 class="hotel-card-title">Marcian Garden Hotel</h2>
+                            <div class="hotel-card-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                 Km. 4, Calarian, Zamboanga City
+                            </div>
+                            <p class="hotel-card-description">
+                                A tranquil retreat with lush gardens and a relaxing atmosphere.
+                            </p>
+                            <div class="hotel-card-amenities">
+                                <strong>Amenities:</strong>
+                                <span><i class="fas fa-swimming-pool"></i></span>
+                                <span><i class="fas fa-spa"></i></span>
+                                <span><i class="fas fa-tree"></i></span>
+                            </div>
+                            <div class="hotel-card-button">
+                                <a href="#" class="btn btn-primary">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="hotel-card">
+                        <img src="https://via.placeholder.com/400x300?text=Hotel+4" alt="Hotel 4" class="hotel-card-image">
+                        <div class="hotel-card-content">
+                            <h2 class="hotel-card-title">The Manila Hotel Zamboanga</h2>
+                            <div class="hotel-card-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                 Pasonanca Rd, Zamboanga City
+                            </div>
+                            <p class="hotel-card-description">
+                                 Offers a blend of comfort and convenience, with easy access to city attractions.
+                            </p>
+                            <div class="hotel-card-amenities">
+                                <strong>Amenities:</strong>
+                                <span><i class="fas fa-wifi"></i></span>
+                                <span><i class="fas fa-parking"></i></span>
+                                <span><i class="fas fa-concierge"></i></span>
+                            </div>
+                            <div class="hotel-card-button">
+                                <a href="#" class="btn btn-primary">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="hotel-card">
+                        <img src="https://via.placeholder.com/400x300?text=Hotel+5" alt="Hotel 5" class="hotel-card-image">
+                        <div class="hotel-card-content">
+                            <h2 class="hotel-card-title">Two Seasons Executive Hotel</h2>
+                            <div class="hotel-card-location">
+                                 <i class="fas fa-map-marker-alt"></i>
+                                 Brgy. Canelar, Zamboanga City
+                            </div>
+                            <p class="hotel-card-description">
+                                 Provides modern, and stylish accommodations.
+                            </p>
+                            <div class="hotel-card-amenities">
+                                <strong>Amenities:</strong>
+                                <span><i class="fas fa-wifi"></i></span>
+                                <span><i class="fas fa-air-conditioner"></i></span>
+                                 <span><i class="fas fa-coffee"></i></span>
+                            </div>
+                            <div class="hotel-card-button">
+                                <a href="#" class="btn btn-primary">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-text">&copy; <?php echo date("Y"); ?> Zamchiver. All rights reserved. | Developed by <a href="#" class="footer-link">Your Name/Organization</a></p>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function() {
+             // Add smooth scrolling for anchor links
+            $('a[href^="#"]').on('click', function(event) {
+                var target = $(this.getAttribute('href'));
+                if (target.length) {
+                    event.preventDefault();
+                    $('html, body').animate({
+                        scrollTop: target.offset().top - 70
+                    }, 1000);
+                }
+            });
+
+            // Highlight active nav link on scroll
+            $(window).scroll(function() {
+                var scrollDistance = $(window).scrollTop();
+                $('.navbar-nav .nav-item .nav-link').each(function() {
+                    var sectionId = $(this).attr('href');
+                    var section = $(sectionId);
+                    if (section.length && section.offset().top - 80 <= scrollDistance && section.offset().top + section.height() - 80 > scrollDistance) {
+                        $(this).addClass('active');
+                    } else {
+                        $(this).removeClass('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

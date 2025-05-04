@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zamchiver - Register</title>
+    <meta name="description" content="Create a Zamchiver account to access exclusive features and content.">
+    <meta name="keywords" content="Zamboanga City, tourism, travel, hotels, restaurants, attractions, culture, Philippines, register, account, signup">
+    <meta name="author" content="Your Name/Organization">
+
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <style>
+        /* Custom styles for Zamchiver Registration Page */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+            color: #343a40;
+        }
+        h1, h2, h3 {
+            font-weight: 600;
+            color: #e65100;
+        }
+        .register-container {
+            max-width: 400px;
+            margin: auto;
+            margin-top: 5rem;
+            padding: 2rem;
+            background-color: #fff;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .register-title {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .form-label {
+            font-weight: 500;
+            color: #495057;
+        }
+        .form-control {
+            border: 2px solid #e0e0e0;
+            border-radius: 0.5rem;
+            padding: 0.75rem;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        .form-control:focus {
+            border-color: #e65100;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(230, 81, 0, 0.1);
+        }
+        .btn-primary {
+            background-color: #e65100;
+            color: #fff;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-size: 1.1rem;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: #d84315;
+        }
+        .register-link {
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+        .register-link a {
+            color: #e65100;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        .register-link a:hover {
+            color: #d84315;
+        }
+        .error-message {
+            color: #dc3545;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="register-container">
+            <h2 class="register-title">Register for Zamchiver</h2>
+            <form id="register-form">
+                <div class="form-group">
+                    <label for="name" class="form-label">Full Name</label>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Enter your full name" required>
+                    <div id="name-error" class="error-message"></div>
+                </div>
+                <div class="form-group">
+                    <label for="email" class="form-label">Email Address</label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required>
+                    <div id="email-error" class="error-message"></div>
+                </div>
+                <div class="form-group">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required>
+                    <div id="password-error" class="error-message"></div>
+                </div>
+                <div class="form-group">
+                    <label for="confirm_password" class="form-label">Confirm Password</label>
+                    <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="Confirm your password" required>
+                    <div id="confirm-password-error" class="error-message"></div>
+                </div>
+                <button type="submit" class="btn btn-primary">Register</button>
+                <div class="register-link">
+                    <a href="#">Already have an account? Log In</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#register-form').submit(function(event) {
+                event.preventDefault();
+
+                let name = $('#name').val().trim();
+                let email = $('#email').val().trim();
+                let password = $('#password').val().trim();
+                let confirmPassword = $('#confirm_password').val().trim();
+                let isValid = true;
+
+                $('#name-error').text('');
+                $('#email-error').text('');
+                $('#password-error').text('');
+                $('#confirm-password-error').text('');
+
+                if (!validateName(name)) {
+                    $('#name-error').text('Please enter your full name.');
+                    isValid = false;
+                }
+                if (!validateEmail(email)) {
+                    $('#email-error').text('Please enter a valid email address.');
+                    isValid = false;
+                }
+                if (!validatePassword(password)) {
+                    $('#password-error').text('Password must be at least 8 characters long.');
+                    isValid = false;
+                }
+                if (password !== confirmPassword) {
+                    $('#confirm-password-error').text('Passwords do not match.');
+                    isValid = false;
+                }
+
+                if (isValid) {
+                    // Simulate a successful registration (replace with your actual registration logic)
+                    console.log('Registering with:', name, email, password);
+                    alert('Registration successful! (Simulated)');
+                    window.location.href = 'index.html';
+                }
+            });
+
+            function validateName(name) {
+                return name.trim() !== '';
+            }
+
+            function validateEmail(email) {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return emailRegex.test(email);
+            }
+
+            function validatePassword(password) {
+                return password.length >= 8;
+            }
+        });
+    </script>
+</body>
+</html>

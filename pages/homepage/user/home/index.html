@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zamchiver - Home</title>
+    <meta name="description" content="Discover the best of Zamboanga City with Zamchiver. Explore top-rated spots, categorized places, and more.">
+    <meta name="keywords" content="Zamboanga City, tourism, establishments, businesses, hospitals, stores, services, Philippines, top spots, categories, home">
+    <meta name="author" content="Your Name/Organization">
+
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <style>
+        /* Custom styles for Zamchiver Home Page */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+            color: #343a40;
+        }
+        h1, h2, h3 {
+            font-weight: 600;
+            color: #008000; /* Green */
+        }
+        h2 {
+            margin-bottom: 1.5rem;
+        }
+        .lead {
+            color: #495057;
+            font-size: 1.1rem;
+            font-weight: 300;
+        }
+        /* Navbar Styles */
+        .navbar {
+            background-color: #008000; /* Green */
+            padding: 0.75rem 1rem;
+        }
+        .navbar-brand {
+            color: #fff;
+            font-weight: 600;
+            font-size: 1.4rem;
+            font-family: 'Poppins', sans-serif;
+        }
+        .navbar-brand:hover {
+            color: #fff;
+        }
+        .navbar-nav .nav-link {
+            color: #fff;
+            margin-left: 1rem;
+            font-weight: 400;
+            transition: color 0.3s ease;
+        }
+        .navbar-nav .nav-link:hover,
+        .navbar-nav .nav-link.active {
+            color: #ffc107; /* Yellow */
+            font-weight: 500;
+        }
+        .navbar-toggler {
+            border-color: #fff;
+        }
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255,255,255,1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'%3e%3c/path%3e%3c/svg%3e");
+        }
+        .navbar-nav .nav-item.auth {
+            margin-left: 0.5rem;
+        }
+        .navbar-nav .nav-item.auth .nav-link {
+            color: #fff;
+            border: 2px solid #fff;
+            border-radius: 0.5rem;
+            padding: 0.5rem 1rem;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .navbar-nav .nav-item.auth .nav-link:hover {
+            background-color: #fff;
+            color: #008000; /* Green */
+            border-color: #fff;
+        }
+        /* Home Page Styles */
+        .hero-section {
+            background-image: url('https://placehold.co/1200x600/008000/FFFFFF/png?text=Welcome+to+Zamboanga+City&font=poppins'); /* Green */
+            background-size: cover;
+            background-position: center;
+            padding: 8rem 0;
+            text-align: center;
+            color: #fff;
+            position: relative;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .hero-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+            border-radius: 0.5rem;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+            font-family: 'Poppins', sans-serif;
+            letter-spacing: 0.1rem;
+            color: #ffc107; /* Yellow */
+        }
+        .hero-tagline {
+            font-size: 1.6rem;
+            font-weight: 400;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            font-style: italic;
+            color: #fff;
+        }
+        .top-spots-section {
+            padding: 5rem 0;
+            text-align: center;
+        }
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #008000; /* Green */
+            font-family: 'Poppins', sans-serif;
+            letter-spacing: 0.1rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+        .top-spot-card {
+            background-color: #fff;
+            border-radius: 0.75rem;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #ddd;
+            overflow: hidden; /* Added to contain image */
+        }
+        .top-spot-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+        }
+        .top-spot-image {
+            height: 300px;
+            object-fit: cover;
+            border-top-left-radius: 0.75rem;
+            border-top-right-radius: 0.75rem;
+            transition: transform 0.3s ease;
+            width: 100%; /* Added to ensure image fits container */
+        }
+        .top-spot-image:hover {
+            transform: scale(1.05);
+        }
+        .top-spot-content {
+            padding: 2rem;
+            text-align: left;
+        }
+        .top-spot-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #008000; /* Green */
+            font-family: 'Poppins', sans-serif;
+        }
+        .top-spot-location {
+            font-size: 1.1rem;
+            color: #6c757d;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        .top-spot-location i {
+            margin-right: 0.75rem;
+            color: #008000; /* Green */
+        }
+        .top-spot-description {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: #495057;
+        }
+        .categories-section {
+            padding: 5rem 0;
+            background-color: #fff8e1; /* Light Yellow - Vinta Accent */
+            text-align: center;
+        }
+        .category-card {
+            background-color: #fff;
+            border-radius: 0.75rem;
+            margin-bottom: 2.5rem;
+            padding: 2rem;
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #ddd;
+            display: flex; /* Make category cards flex containers */
+            flex-direction: column;
+            justify-content: space-between; /* Distribute space evenly */
+            height: 100%;
+            cursor: pointer; /* Add cursor style to indicate clickable */
+        }
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+        }
+        .category-icon {
+            font-size: 4rem;
+            color: #ffc107; /* Yellow */
+            margin-bottom: 1.5rem;
+            transition: color 0.3s ease;
+        }
+        .category-icon:hover {
+            color: #e65100;
+        }
+        .category-title {
+            font-size: 1.5rem;
+            color: #008000; /* Green */
+            font-family: 'Poppins', sans-serif;
+            margin-bottom: 1rem;
+        }
+        .category-description {
+            font-size: 1rem;
+            color: #008000; /* Green */
+            line-height: 1.7;
+        }
+        .footer {
+            background-color: #343a40;
+            color: #fff;
+            padding: 1.5rem 0;
+            text-align: center;
+            border-top: 1px solid #495057;
+        }
+        .footer-text {
+            font-size: 1.1rem;
+        }
+        .footer-link {
+            color: #fff;
+            font-weight: 500;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .footer-link:hover {
+            color: #ffb74d;
+        }
+        .load-more-button {
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 992px) {
+            .navbar-nav .nav-link {
+                margin-left: 0;
+                margin-top: 0.5rem;
+            }
+            .hero-title {
+                font-size: 3rem;
+            }
+            .hero-tagline {
+                font-size: 1.4rem;
+            }
+            .top-spot-image {
+                height: 250px;
+            }
+        }
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 6rem 0;
+            }
+            .hero-content {
+                padding: 0 1rem;
+            }
+        }
+        @media (max-width: 576px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            .hero-tagline {
+                font-size: 1.2rem;
+            }
+            .categories-section {
+                padding: 3rem 0;
+            }
+            .category-icon {
+                font-size: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">Zamchiver</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../add/">Add Post</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../myacc/">My Account</a>
+                    </li>
+                    <li class="nav-item auth">
+                        <a class="nav-link" href="../../../login/" style="background-color: #ffc107; color: #008000; border-color: #ffc107;">Log Out</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section id="top-spots" class="top-spots-section">
+        <div class="container">
+            <h2 class="section-title">Top Rated Spots</h2>
+            <div class="row" id="top-spots-list">
+                <div class="col-md-6 col-lg-4">
+                    <div class="top-spot-card">
+                        <img src="../../../../img/fortpilar.webp" alt="Fort Pilar" class="top-spot-image">
+                        <div class="top-spot-content">
+                            <h3 class="top-spot-title">Fort Pilar</h3>
+                            <div class="top-spot-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                Zamboanga City
+                            </div>
+                            <p class="top-spot-description">A 17th-century Spanish fortress, now a museum and historical landmark.</p>
+                            <a href="../../viewpost/Fort/" class="btn btn-success mt-3">View More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="top-spot-card">
+                        <img src="../../../../img/paseo.webp" alt="Paseo del Mar" class="top-spot-image">
+                        <div class="top-spot-content">
+                            <h3 class="top-spot-title">Paseo del Mar</h3>
+                            <div class="top-spot-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                Zamboanga City
+                            </div>
+                            <p class="top-spot-description">A scenic esplanade perfect for strolling and enjoying the ocean view.</p>
+                            <a href="../../viewpost/Paseo/" class="btn btn-success mt-3">View More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="top-spot-card">
+                        <img src="../../../../img/cruzz.webp" alt="Great Santa Cruz Island" class="top-spot-image">
+                        <div class="top-spot-content">
+                            <h3 class="top-spot-title">Great Santa Cruz Island</h3>
+                            <div class="top-spot-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                Zamboanga City
+                            </div>
+                            <p class="top-spot-description">Famous for its pink sand beach and rich marine biodiversity.</p>
+                            <a href="../../viewpost/Cruz/" class="btn btn-success mt-3">View More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="top-spot-card">
+                        <img src="../../../../img/mel.webp" alt="Merloquet Falls" class="top-spot-image">
+                        <div class="top-spot-content">
+                            <h3 class="top-spot-title">Merloquet Falls</h3>
+                            <div class="top-spot-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                Zamboanga City
+                            </div>
+                            <p class="top-spot-description">A multi-tiered waterfall with stunning natural beauty.</p>
+                            <a href="../../viewpost/falls/" class="btn btn-success mt-3">View More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="top-spot-card">
+                        <img src="../../../../img/pasona.webp" alt="Pasonanca Park" class="top-spot-image">
+                        <div class="top-spot-content">
+                            <h3 class="top-spot-title">Pasonanca Park</h3>
+                            <div class="top-spot-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                Zamboanga City
+                            </div>
+                            <p class="top-spot-description">A sprawling park with gardens, a butterfly sanctuary, and a swimming pool.</p>
+                            <a href="fortpilar.html" class="btn btn-success mt-3">View More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <a href="../spots/">
+                        <div class="top-spot-card" id="load-more-top-spots">
+                            <img src="https://placehold.co/400x300/008000/FFFFFF/png?text=More+Spots&font=poppins" alt="More Spots" class="top-spot-image">
+                            <div class="top-spot-content">
+                                <h3 class="top-spot-title">Show More Spots</h3>
+                                <div class="top-spot-location">
+                                    <i class="fas fa-plus-circle"></i>
+                                    Zamboanga City
+                                </div>
+                                <p class="top-spot-description">Click to discover more amazing places in Zamboanga City!</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="row d-none" id="hidden-top-spots-list">
+            </div>
+        </div>
+    </section>
+
+    <section id="categories" class="categories-section">
+        <div class="container">
+            <h2 class="section-title">Categories</h2>
+            <div class="row">
+                <div class="col-md-6 col-lg-3 mb-4">
+                    
+                    <a href="../categories/atractions/">
+                        <div class="category-card">
+                            <i class="fas fa-map-marked-alt category-icon"></i>
+                            <h3 class="category-title">Attractions</h3>
+                            <p class="category-description">Explore popular attractions.</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <a href="../categories/restaurants/">
+                        <div class="category-card">
+                            <i class="fas fa-utensils category-icon"></i>
+                            <h3 class="category-title">Restaurants</h3>
+                            <p class="category-description">Discover top-rated restaurants.</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <a href="../categories/hotels/">
+                        <div class="category-card">
+                            <i class="fas fa-hotel category-icon"></i>
+                            <h3 class="category-title">Hotels</h3>
+                            <p class="category-description">Find the best hotels in Zamboanga City.</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <a href="../categories/shops/">
+                        <div class="category-card">
+                            <i class="fas fa-shopping-cart category-icon"></i>
+                            <h3 class="category-title">Shopping</h3>
+                            <p class="category-description">Shop the best souvenirs.</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <a href="../categories/hospital/">
+                        <div class="category-card">
+                            <i class="fas fa-hospital category-icon"></i>
+                            <h3 class="category-title">Hospitals</h3>
+                            <p class="category-description">Find hospitals in Zamboanga City.</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <a href="../categories/store/">
+                        <div class="category-card">
+                            <i class="fas fa-store category-icon"></i>
+                            <h3 class="category-title">Stores</h3>
+                            <p class="category-description">Discover various stores.</p>
+                        </div>
+                    </a>
+                </div>
+                 <div class="col-md-6 col-lg-3 mb-4">
+                    <a href="../categories/schools/">
+                        <div class="category-card">
+                            <i class="fas fa-graduation-cap category-icon"></i>
+                            <h3 class="category-title">Schools</h3>
+                            <p class="category-description">Explore schools in the city.</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <a href="../categories/all/">
+                        <div class="category-card">
+                            <i class="fas fa-arrow-right category-icon"></i>
+                            <h3 class="category-title">See All Categories</h3>
+                            <p class="category-description">Explore more categories</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-text">&copy; <?php echo date("Y"); ?> Zamchiver. All rights reserved. | Developed by <a href="#" class="footer-link">Your Name/Organization</a></p>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Add smooth scrolling for anchor links
+            $('a[href^="#"]').on('click', function(event) {
+                var target = $(this.getAttribute('href'));
+                if (target.length) {
+                    event.preventDefault();
+                    $('html, body').animate({
+                        scrollTop: target.offset().top - 70
+                    }, 1000);
+                }
+            });
+
+            // Highlight active nav link on scroll
+            $(window).scroll(function() {
+                var scrollDistance = $(window).scrollTop();
+                $('.navbar-nav .nav-item .nav-link').each(function() {
+                    var sectionId = $(this).attr('href');
+                    var section = $(sectionId);
+                    if (section.length && section.offset().top - 80 <= scrollDistance && section.offset().top + section.height() - 80 > scrollDistance) {
+                        $(this).addClass('active');
+                    } else {
+                        $(this).removeClass('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
