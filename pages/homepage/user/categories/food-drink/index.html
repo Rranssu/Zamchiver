@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zamchiver - Food & Drink</title>
+    <meta name="description" content="Explore restaurants, cafes, fast food, street food, and bars in Zamboanga City.">
+    <meta name="keywords" content="Zamboanga City, food, restaurants, cafe, drinks, dining, street food, bars, Zamchiver">
+    <meta name="author" content="Your Name/Organization">
+    <link rel="icon" href="../../../favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="../../../favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="../../../css/your-main-styles.css"> <!-- Adjust path if needed -->
+    <style>
+        /* Styles for Item Listing Cards - MOVE TO your-main-styles.css ideally */
+        body { font-family: 'Poppins', sans-serif; background-color: #f8f9fa; }
+        .navbar { background-color: #008000; } .navbar-brand, .navbar-nav .nav-link { color: #fff; }
+        .category-title { color: #008000; margin-bottom: 2rem; font-weight: 600; text-align: center; padding-top: 2rem; }
+        .category-item-card { background-color: #fff; border-radius: 0.75rem; box-shadow: 0 6px 10px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; border: 1px solid #ddd; overflow: hidden; height: 100%; display: flex; flex-direction: column; }
+        .category-item-card:hover { transform: translateY(-5px); box-shadow: 0 8px 12px rgba(0,0,0,0.15); }
+        .category-item-image { height: 250px; object-fit: cover; width: 100%; background-color: #eee; }
+        .category-item-content { padding: 1.5rem; text-align: left; flex-grow: 1; display: flex; flex-direction: column; }
+        .category-item-title { font-size: 1.25rem; margin-bottom: 0.75rem; color: #008000; font-weight: 500; }
+        .category-item-location { font-size: 0.95rem; color: #6c757d; margin-bottom: 1rem; display: flex; align-items: flex-start; }
+        .category-item-location i { margin-right: 0.5rem; color: #008000; margin-top: 0.2em; }
+        .category-item-description { font-size: 0.9rem; line-height: 1.6; color: #495057; flex-grow: 1; margin-bottom: 1rem; }
+        .location-link { color: inherit; text-decoration: none; } .location-link:hover { color: #0056b3; text-decoration: underline; }
+        .btn-success { background-color: #008000; border-color: #008000; } .btn-success:hover { background-color: #006400; border-color: #006400; }
+        .footer { background-color: #343a40; color: #fff; padding: 1.5rem 0; text-align: center; border-top: 1px solid #495057; margin-top: 3rem; }
+        .footer-text { font-size: 1.1rem; margin-bottom: 0; } .footer-link { color: #fff; font-weight: 500; text-decoration: none; transition: color 0.3s ease; } .footer-link:hover { color: #ffc107; }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+         <div class="container">
+            <a class="navbar-brand" href="../../../index.html">Zamchiver</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                 <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link" href="../../home/">Home</a></li>
+                    <li class="nav-item active"><a class="nav-link" href="../all/">Explore Categories <span class="sr-only">(current)</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="../../search/">Search</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../../add/">Add Post</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../../myacc/">My Account</a></li>
+                    <li class="nav-item auth"><a class="nav-link" href="../../../login/" style="background-color: #ffc107; color: #008000; border-color: #ffc107;">Log Out</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Category Content -->
+    <section id="category-content" class="py-5">
+        <div class="container">
+            <h1 class="category-title">Food & Drink in Zamboanga City</h1>
+
+            <!-- List of Items -->
+            <div id="category-list" class="row">
+
+                <!-- Food Item 1: Alavar Seafood Restaurant -->
+                <div class="col-md-6 col-lg-4 mb-4 category-item">
+                    <div class="category-item-card">
+                        <img src="../../../../../img/alavara.jpg" alt="Alavar Seafood Restaurant" class="category-item-image"> <!-- Replace -->
+                        <div class="category-item-content">
+                            <h3 class="category-item-title">Alavar Seafood Restaurant</h3>
+                            <div class="category-item-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <a href="https://maps.google.com/?q=Alavar+Seafood+Restaurant+Zamboanga" target="_blank" class="location-link">
+                                   Don Alfaro St, Tetuan, Zamboanga City 
+                                </a>
+                            </div>
+                            <p class="category-item-description">Famous for its Curacha crabs served with signature Alavar sauce. Offers a variety of Filipino and seafood dishes.</p>
+                            <a href="../../viewpost/AlavarRestaurant/" class="btn btn-success mt-auto">View More</a> <!-- Replace -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Food Item 2: Hacienda de Palmeras -->
+                <div class="col-md-6 col-lg-4 mb-4 category-item">
+                    <div class="category-item-card">
+                        <img src="../../../../../img/hacid.jpg" alt="Hacienda de Palmeras Hotel & Restaurant" class="category-item-image"> <!-- Replace -->
+                        <div class="category-item-content">
+                            <h3 class="category-item-title">Hacienda de Palmeras Restaurant</h3>
+                            <div class="category-item-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <a href="https://maps.google.com/?q=Hacienda+de+Palmeras+Zamboanga" target="_blank" class="location-link">
+                                   Pasonanca Road, Zamboanga City 
+                                </a>
+                            </div>
+                            <p class="category-item-description">Hotel restaurant known for its Knickerbocker dessert, also serves Filipino and continental cuisine in a pleasant ambiance.</p>
+                            <a href="../../viewpost/HaciendaDePalmeras/" class="btn btn-success mt-auto">View More</a> <!-- Replace -->
+                        </div>
+                    </div>
+                </div>
+
+                 <!-- Food Item 3: Jollibee -->
+                <div class="col-md-6 col-lg-4 mb-4 category-item">
+                    <div class="category-item-card">
+                        <img src="../../../../../img/joli.jpg" alt="Jollibee Zamboanga" class="category-item-image"> <!-- Replace -->
+                        <div class="category-item-content">
+                            <h3 class="category-item-title">Jollibee</h3>
+                            <div class="category-item-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <a href="https://maps.app.goo.gl/DJjz3LzsaeJNDxMu5" target="_blank" class="location-link">
+                                    La Purisima St, Zamboanga, Zamboanga del Sur
+                                </a>
+                            </div>
+                            <p class="category-item-description">Popular Filipino fast-food chain serving favorites like Chickenjoy, Jolly Spaghetti, burgers, and peach mango pie.</p>
+                            <a href="../../viewpost/JollibeeLaPurisima/" class="btn btn-success mt-auto">View More</a> <!-- Replace -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ADD MORE FOOD & DRINK PLACES HERE -->
+
+            </div> <!-- End #category-list -->
+
+            <!-- "No Content" Message -->
+            <div id="no-content-message" class="alert alert-info d-none text-center" role="alert">
+                <i class="fas fa-info-circle mr-2"></i>No food or drink places have been added to this category yet.
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer"> <div class="container"> <p class="footer-text">© 2024 Zamchiver. All rights reserved. | Developed by <a href="#" class="footer-link">Group 6 HCI</a></p> </div> </footer>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-LtrjvnR4Twt/qOuYxE721u19sVFLVSA4hf/rRt6PrZTmiPltdZcI7q7PXQBYTKyf" crossorigin="anonymous"></script>
+    <script> $(document).ready(function() { const cL = $('#category-list'), nCM = $('#no-content-message'); if(cL.children('.category-item').length === 0) { cL.hide(); nCM.removeClass('d-none'); } else { nCM.addClass('d-none'); } }); </script>
+</body>
+</html>

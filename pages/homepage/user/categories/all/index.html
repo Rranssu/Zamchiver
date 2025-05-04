@@ -4,287 +4,85 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>All Categories in Zamboanga City</title>
-    <meta name="description" content="Explore all categories in Zamboanga City.  Find listings for restaurants, attractions, shopping, hospitals, stores, and schools.">
-    <meta name="keywords" content="Zamboanga City, categories, restaurants, attractions, shopping, hospitals, stores, schools, listings, directory, Philippines">
+    <meta name="description" content="Explore all categories in Zamboanga City. Find listings for government services, education, food, attractions, shopping, emergencies, and more.">
+    <meta name="keywords" content="Zamboanga City, categories, government, education, food, drink, attractions, shopping, hospitals, stores, schools, services, directory, Philippines">
     <meta name="author" content="Your Name/Organization">
 
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon"> <!-- Adjusted path -->
+    <link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon"> <!-- Adjusted path -->
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
     <style>
-        /* Custom styles for All Categories Page */
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #f8f9fa;
-            color: #343a40;
-        }
-        h1, h2, h3 {
-            font-weight: 600;
-            color: #008000; /* Green */
-        }
-        h2 {
-            margin-bottom: 1.5rem;
-        }
-        .lead {
-            color: #495057;
-            font-size: 1.1rem;
-            font-weight: 300;
-        }
-        /* Navbar Styles */
-        .navbar {
-            background-color: #008000; /* Green */
-            padding: 0.75rem 1rem;
-        }
-        .navbar-brand {
-            color: #fff;
-            font-weight: 600;
-            font-size: 1.4rem;
-            font-family: 'Poppins', sans-serif;
-        }
-        .navbar-brand:hover {
-            color: #fff;
-        }
-        .navbar-nav .nav-link {
-            color: #fff;
-            margin-left: 1rem;
-            font-weight: 400;
-            transition: color 0.3s ease;
-        }
+        /* --- Your existing CSS from the previous version --- */
+        body { font-family: 'Poppins', sans-serif; background-color: #f8f9fa; color: #343a40; }
+        h1, h2, h3 { font-weight: 600; color: #008000; }
+        h2 { margin-bottom: 1.5rem; }
+        .lead { color: #495057; font-size: 1.1rem; font-weight: 300; }
+        .navbar { background-color: #008000; padding: 0.75rem 1rem; }
+        .navbar-brand { color: #fff; font-weight: 600; font-size: 1.4rem; font-family: 'Poppins', sans-serif; }
+        .navbar-brand:hover { color: #fff; }
+        .navbar-nav .nav-link { color: #fff; margin-left: 1rem; font-weight: 400; transition: color 0.3s ease; }
         .navbar-nav .nav-link:hover,
-        .navbar-nav .nav-link.active {
-            color: #ffc107; /* Yellow */
-            font-weight: 500;
-        }
-        .navbar-toggler {
-            border-color: #fff;
-        }
-        .navbar-toggler-icon {
-            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255,255,255,1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'%3e%3c/path%3e%3c/svg%3e");
-        }
-        .navbar-nav .nav-item.auth {
-            margin-left: 0.5rem;
-        }
-        .navbar-nav .nav-item.auth .nav-link {
-            color: #fff;
-            border: 2px solid #fff;
-            border-radius: 0.5rem;
-            padding: 0.5rem 1rem;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-        .navbar-nav .nav-item.auth .nav-link:hover {
-            background-color: #fff;
-            color: #008000; /* Green */
-            border-color: #fff;
-        }
-        /* Categories Page Styles */
-        .hero-section {
-            background-image: url('https://placehold.co/1200x600/008000/FFFFFF/png?text=All+Categories&font=poppins'); /* Green */
-            background-size: cover;
-            background-position: center;
-            padding: 8rem 0;
-            text-align: center;
-            color: #fff;
-            position: relative;
-            border-radius: 0.5rem;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-        .hero-section::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.4);
-            border-radius: 0.5rem;
-        }
-        .hero-content {
-            position: relative;
-            z-index: 1;
-        }
-        .hero-title {
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
-            font-family: 'Poppins', sans-serif;
-            letter-spacing: 0.1rem;
-            color: #ffc107; /* Yellow */
-        }
-        .hero-tagline {
-            font-size: 1.6rem;
-            font-weight: 400;
-            margin-bottom: 2rem;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-            font-style: italic;
-            color: #fff;
-        }
-        .categories-section {
-            padding: 5rem 0;
-            text-align: center;
-        }
-        .section-title {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            color: #008000; /* Green */
-            font-family: 'Poppins', sans-serif;
-            letter-spacing: 0.1rem;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-        }
-        .category-card {
-            background-color: #fff;
-            border-radius: 0.75rem;
-            margin-bottom: 2.5rem;
-            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid #ddd;
-            overflow: hidden; /* Added to contain image */
-        }
-        .category-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
-        }
-        .category-image {
-            height: 300px;
-            object-fit: cover;
-            border-top-left-radius: 0.75rem;
-            border-top-right-radius: 0.75rem;
-            transition: transform 0.3s ease;
-            width: 100%; /* Added to ensure image fits container */
-        }
-        .category-image:hover {
-            transform: scale(1.05);
-        }
-        .category-content {
-            padding: 2rem;
-            text-align: left;
-        }
-        .category-title {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: #008000; /* Green */
-            font-family: 'Poppins', sans-serif;
-        }
-        .category-description {
-            font-size: 1rem;
-            line-height: 1.7;
-            color: #495057;
-            margin-bottom: 1.5rem;
-        }
-        .category-link {
-            display: inline-flex;
-            align-items: center;
-            color: #008000; /* Green */
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-        .category-link i {
-            margin-left: 0.5rem;
-            transition: transform 0.3s ease;
-        }
-        .category-link:hover {
-            color: #ffc107; /* Yellow */
-        }
-        .category-link:hover i {
-            transform: translateX(5px);
-        }
-        .disclaimer-section {
-            padding: 3rem 0;
-            background-color: #f8f9fa;
-            text-align: center;
-            border-top: 1px solid #ddd;
-        }
-        .disclaimer-title {
-            font-size: 1.2rem;
-            color: #e65100; /* Orange */
-            font-weight: 600;
-            margin-bottom: 1.rem;
-        }
-        .disclaimer-text {
-            font-size: 0.9rem;
-            color: #6c757d;
-            line-height: 1.5;
-            max-width: 80%;
-            margin: 0 auto;
-        }
-        .footer {
-            background-color: #343a40;
-            color: #fff;
-            padding: 1.5rem 0;
-            text-align: center;
-            border-top: 1px solid #495057;
-        }
-        .footer-text {
-            font-size: 1.1rem;
-        }
-        .footer-link {
-            color: #fff;
-            font-weight: 500;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-        .footer-link:hover {
-            color: #ffb74d;
-        }
-
-        @media (max-width: 992px) {
-            .navbar-nav .nav-link {
-                margin-left: 0;
-                margin-top: 0.5rem;
-            }
-            .hero-title {
-                font-size: 3rem;
-            }
-            .hero-tagline {
-                font-size: 1.4rem;
-            }
-            .category-image {
-                height: 250px;
-            }
-        }
-        @media (max-width: 768px) {
-            .hero-section {
-                padding: 6rem 0;
-            }
-            .hero-content {
-                padding: 0 1rem;
-            }
-        }
-        @media (max-width: 576px) {
-            .hero-title {
-                font-size: 2.5rem;
-            }
-            .hero-tagline {
-                font-size: 1.2rem;
-            }
-            .categories-section {
-                padding: 3rem 0;
-            }
-        }
+        .navbar-nav .nav-link.active { color: #ffc107; font-weight: 500; }
+        .navbar-toggler { border-color: #fff; }
+        .navbar-toggler-icon { background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255,255,255,1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'%3e%3c/path%3e%3c/svg%3e"); }
+        .navbar-nav .nav-item.auth { margin-left: 0.5rem; }
+        .navbar-nav .nav-item.auth .nav-link { color: #fff; border: 2px solid #fff; border-radius: 0.5rem; padding: 0.5rem 1rem; transition: background-color 0.3s ease, color 0.3s ease; }
+        .navbar-nav .nav-item.auth .nav-link:hover { background-color: #fff; color: #008000; border-color: #fff; }
+        /* Removed Hero Section CSS as it's not used here */
+        .categories-section { padding: 5rem 0; text-align: center; }
+        .section-title { font-size: 2.5rem; margin-bottom: 2rem; color: #008000; font-family: 'Poppins', sans-serif; letter-spacing: 0.1rem; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); }
+        .category-card { background-color: #fff; border-radius: 0.75rem; margin-bottom: 2.5rem; box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); transition: transform 0.3s ease, box-shadow 0.3s ease; border: 1px solid #ddd; overflow: hidden; height: 100%; /* Ensure cards in a row have same height */ display: flex; flex-direction: column; }
+        .category-card:hover { transform: translateY(-10px); box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); }
+        .category-image { height: 250px; /* Adjusted height */ object-fit: cover; transition: transform 0.3s ease; width: 100%; }
+        .category-image:hover { transform: scale(1.05); }
+        .category-content { padding: 1.5rem; /* Adjusted padding */ text-align: left; flex-grow: 1; /* Allows button to stick to bottom */ display: flex; flex-direction: column; }
+        .category-title { font-size: 1.3rem; /* Adjusted size */ margin-bottom: 0.75rem; color: #008000; font-family: 'Poppins', sans-serif; }
+        .category-description { font-size: 0.95rem; /* Adjusted size */ line-height: 1.6; color: #495057; margin-bottom: 1rem; flex-grow: 1; }
+        .category-link { display: inline-flex; align-items: center; color: #008000; text-decoration: none; font-weight: 500; transition: color 0.3s ease; margin-top: auto; /* Pushes button to bottom */ align-self: flex-start; /* Align button left */ }
+        .category-link i { margin-left: 0.5rem; transition: transform 0.3s ease; }
+        .category-link:hover { color: #ffc107; }
+        .category-link:hover i { transform: translateX(5px); }
+        .disclaimer-section { padding: 3rem 0; background-color: #f8f9fa; text-align: center; border-top: 1px solid #ddd; }
+        .disclaimer-title { font-size: 1.2rem; color: #e65100; font-weight: 600; margin-bottom: 1rem; }
+        .disclaimer-text { font-size: 0.9rem; color: #6c757d; line-height: 1.5; max-width: 80%; margin: 0 auto; }
+        .footer { background-color: #343a40; color: #fff; padding: 1.5rem 0; text-align: center; border-top: 1px solid #495057; }
+        .footer-text { font-size: 1.1rem; }
+        .footer-link { color: #fff; font-weight: 500; text-decoration: none; transition: color 0.3s ease; }
+        .footer-link:hover { color: #ffb74d; }
+        @media (max-width: 992px) { .navbar-nav .nav-link { margin-left: 0; margin-top: 0.5rem; } .category-image { height: 200px; } }
+        @media (max-width: 768px) { /* No hero section here */ }
+        @media (max-width: 576px) { .categories-section { padding: 3rem 1rem; } }
     </style>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
-            <a class="navbar-brand" href="#">Zamchiver</a>
+             <!-- Ensure brand links to homepage -->
+            <a class="navbar-brand" href="../../home/">Zamchiver</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Home</a>
+                        <a class="nav-link" href="../../home/">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../add/">Add Post</a>
+                         <!-- Set this page as active -->
+                        <a class="nav-link active" href="#">Explore Categories</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../myacc/">My Account</a>
+                        <a class="nav-link" href="../../search/">Search</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../add/">Add Post</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../myacc/">My Account</a>
                     </li>
                     <li class="nav-item auth">
                         <a class="nav-link" href="../../../login/" style="background-color: #ffc107; color: #008000; border-color: #ffc107;">Log Out</a>
@@ -297,127 +95,200 @@
     <section id="categories" class="categories-section">
         <div class="container">
             <h1 class="section-title">Explore All Categories</h1>
-            <p class="lead">Discover the best places and services in Zamboanga City.</p>
+            <p class="lead mb-5">Discover the best places and services in Zamboanga City.</p>
             <div class="row">
+
+                <!-- Card for Government & Public Services -->
                 <div class="col-md-6 col-lg-4">
                     <div class="category-card">
-                        <img src="https://placehold.co/400x300/F44336/FFFFFF/png?text=Restaurants&font=poppins" alt="Restaurants" class="category-image">
+                        <img src="https://placehold.co/400x250/3498db/FFFFFF/png?text=Government+%26+Public&font=poppins" alt="Government & Public Services" class="category-image">
                         <div class="category-content">
-                            <h3 class="category-title">Restaurants</h3>
-                            <p class="category-description">Explore the best dining options in Zamboanga City.</p>
-                            <a href="../rest/" class="category-link">
-                                View Restaurants <i class="fas fa-arrow-right"></i>
+                            <h3 class="category-title">Government & Public Services</h3>
+                            <p class="category-description">Find barangay halls, post offices, national agencies, and city hall.</p>
+                            <a href="../government-offices/" class="category-link"> <!-- Link to first sub-cat -->
+                                View Services <i class="fas fa-arrow-right"></i>
                             </a>
                         </div>
                     </div>
                 </div>
+
+                <!-- Card for Education -->
+                 <div class="col-md-6 col-lg-4">
+                    <div class="category-card">
+                        <img src="https://placehold.co/400x250/03A9F4/FFFFFF/png?text=Education&font=poppins" alt="Education" class="category-image">
+                        <div class="category-content">
+                            <h3 class="category-title">Education</h3>
+                            <p class="category-description">Find colleges, schools, and day care centers.</p>
+                            <a href="../schools/" class="category-link"> <!-- Link to first sub-cat -->
+                                View Education <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card for Personal & Professional Service -->
                 <div class="col-md-6 col-lg-4">
                     <div class="category-card">
-                        <img src="https://placehold.co/400x300/2196F3/FFFFFF/png?text=Attractions&font=poppins" alt="Attractions" class="category-image">
+                        <img src="https://placehold.co/400x250/9b59b6/FFFFFF/png?text=Personal+%26+Pro+Service&font=poppins" alt="Personal & Professional Service" class="category-image">
                         <div class="category-content">
-                            <h3 class="category-title">Attractions</h3>
-                            <p class="category-description">Discover Zamboanga City's top attractions and landmarks.</p>
-                            <a href="../attr/" class="category-link">
+                            <h3 class="category-title">Personal & Professional Service</h3>
+                            <p class="category-description">Locate barbershops, salons, laundry, legal services, and more.</p>
+                             <a href="../personal-professional-servic/" class="category-link"> <!-- Link to first sub-cat -->
+                                View Services <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card for Attraction & Recreation -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="category-card">
+                        <img src="https://placehold.co/400x250/2196F3/FFFFFF/png?text=Attractions+%26+Recreation&font=poppins" alt="Attraction & Recreation" class="category-image">
+                        <div class="category-content">
+                            <h3 class="category-title">Attraction & Recreation</h3>
+                            <p class="category-description">Discover parks, historical sites, beaches, tourist spots, and nightlife.</p>
+                             <a href="../tourist-spots/" class="category-link"> <!-- Link to first sub-cat -->
                                 View Attractions <i class="fas fa-arrow-right"></i>
                             </a>
                         </div>
                     </div>
                 </div>
+
+                 <!-- Card for Religious Places -->
                 <div class="col-md-6 col-lg-4">
                     <div class="category-card">
-                        <img src="https://placehold.co/400x300/4CAF50/FFFFFF/png?text=Shopping&font=poppins" alt="Shopping" class="category-image">
+                        <img src="https://placehold.co/400x250/795548/FFFFFF/png?text=Religious+Places&font=poppins" alt="Religious Places" class="category-image">
                         <div class="category-content">
-                            <h3 class="category-title">Shopping</h3>
-                            <p class="category-description">Find the best places to shop in Zamboanga City.</p>
-                            <a href="../shop/" class="category-link">
+                            <h3 class="category-title">Religious Places</h3>
+                            <p class="category-description">Find churches, mosques, and temples in the city.</p>
+                            <a href="../places-of-worship/" class="category-link"> <!-- Link to first sub-cat -->
+                                View Places <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                 <!-- Card for Transportation -->
+                 <div class="col-md-6 col-lg-4">
+                    <div class="category-card">
+                        <img src="https://placehold.co/400x250/607D8B/FFFFFF/png?text=Transportation&font=poppins" alt="Transportation" class="category-image">
+                        <div class="category-content">
+                            <h3 class="category-title">Transportation</h3>
+                            <p class="category-description">Locate terminals, gas stations, parking, and car rentals.</p>
+                             <a href="../transportation-hubs/" class="category-link"> <!-- Link to first sub-cat -->
+                                View Transportation <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                 <!-- Card for Financial Service -->
+                 <div class="col-md-6 col-lg-4">
+                    <div class="category-card">
+                        <img src="https://placehold.co/400x250/8BC34A/FFFFFF/png?text=Financial+Service&font=poppins" alt="Financial Service" class="category-image">
+                        <div class="category-content">
+                            <h3 class="category-title">Financial Service</h3>
+                            <p class="category-description">Find banks, ATMs, money transfer services, and pawnshops.</p>
+                             <a href="../financial-service/" class="category-link"> <!-- Link to first sub-cat -->
+                                View Financial <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card for Health & Wellness -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="category-card">
+                        <img src="https://placehold.co/400x250/f06292/FFFFFF/png?text=Health+%26+Wellness&font=poppins" alt="Health & Wellness" class="category-image">
+                        <div class="category-content">
+                            <h3 class="category-title">Health & Wellness</h3>
+                            <p class="category-description">Explore clinics, dental offices, pharmacies, gyms, and spas.</p>
+                             <a href="../health-wellness/" class="category-link"> <!-- Link to first sub-cat -->
+                                View Health <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card for Shopping & Retail -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="category-card">
+                        <img src="https://placehold.co/400x250/4CAF50/FFFFFF/png?text=Shopping+%26+Retail&font=poppins" alt="Shopping & Retail" class="category-image">
+                        <div class="category-content">
+                            <h3 class="category-title">Shopping & Retail</h3>
+                            <p class="category-description">Find malls, clothing stores, electronics, markets, and hardware.</p>
+                            <a href="../shopping-retail/" class="category-link"> <!-- Link to first sub-cat -->
                                 View Shopping <i class="fas fa-arrow-right"></i>
                             </a>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-4">
+
+                 <!-- Card for Accommodations -->
+                 <div class="col-md-6 col-lg-4">
                     <div class="category-card">
-                        <img src="https://placehold.co/400x300/9C27B0/FFFFFF/png?text=Hospitals&font=poppins" alt="Hospitals" class="category-image">
+                        <img src="https://placehold.co/400x250/FF9800/FFFFFF/png?text=Accommodations&font=poppins" alt="Accommodations" class="category-image">
                         <div class="category-content">
-                            <h3 class="category-title">Hospitals</h3>
-                            <p class="category-description">Explore hospitals and medical centers in Zamboanga City.</p>
-                            <a href="../hosp/" class="category-link">
-                                View Hospitals <i class="fas fa-arrow-right"></i>
+                            <h3 class="category-title">Accommodations</h3>
+                            <p class="category-description">Discover hotels, motels, apartments, resorts, and campgrounds.</p>
+                             <a href="../accommodations/" class="category-link"> <!-- Link to first sub-cat -->
+                                View Accommodations <i class="fas fa-arrow-right"></i>
                             </a>
                         </div>
                     </div>
                 </div>
+
+                <!-- Card for Emergencies -->
                 <div class="col-md-6 col-lg-4">
                     <div class="category-card">
-                        <img src="https://placehold.co/400x300/FFC107/000000/png?text=Stores&font=poppins" alt="Stores" class="category-image">
+                        <img src="https://placehold.co/400x250/dc3545/FFFFFF/png?text=Emergencies&font=poppins" alt="Emergencies" class="category-image">
                         <div class="category-content">
-                            <h3 class="category-title">Stores</h3>
-                            <p class="category-description">Discover various stores and shops in Zamboanga City.</p>
-                            <a href="../stor/" class="category-link">
-                                View Stores <i class="fas fa-arrow-right"></i>
+                            <h3 class="category-title">Emergencies</h3>
+                            <p class="category-description">Locate hospitals, police stations, and fire stations quickly.</p>
+                            <a href="../emergencies/" class="category-link"> <!-- Link to first sub-cat -->
+                                View Emergency <i class="fas fa-arrow-right"></i>
                             </a>
                         </div>
                     </div>
                 </div>
+
+                 <!-- Card for Food & Drink -->
                 <div class="col-md-6 col-lg-4">
                     <div class="category-card">
-                        <img src="https://placehold.co/400x300/03A9F4/FFFFFF/png?text=Schools&font=poppins" alt="Schools" class="category-image">
+                        <img src="https://placehold.co/400x250/F44336/FFFFFF/png?text=Food+%26+Drink&font=poppins" alt="Food & Drink" class="category-image">
                         <div class="category-content">
-                            <h3 class="category-title">Schools</h3>
-                            <p class="category-description">Find schools and educational institutions in Zamboanga City.</p>
-                            <a href="../schl/" class="category-link">
-                                View Schools <i class="fas fa-arrow-right"></i>
+                            <h3 class="category-title">Food & Drink</h3>
+                            <p class="category-description">Explore restaurants, cafes, bakeries, bars, and street food.</p>
+                            <a href="../food-drink/" class="category-link"> <!-- Link to first sub-cat -->
+                                View Food & Drink <i class="fas fa-arrow-right"></i>
                             </a>
                         </div>
                     </div>
                 </div>
-            </div>
+
+            </div> <!-- End row -->
         </div>
     </section>
 
+    <!-- Disclaimer Section (kept identical) -->
     <section class="disclaimer-section">
-        <div class="container">
-            <h2 class="disclaimer-title">Disclaimer</h2>
-            <p class="disclaimer-text">
-                This page is for informational purposes only.  Listings are not endorsements and we are not responsible for the quality of service or products offered by the establishments listed.
-            </p>
-        </div>
+        <div class="container"> <h2 class="disclaimer-title">Disclaimer</h2> <p class="disclaimer-text"> This page is for informational purposes only. Listings are not endorsements and we are not responsible for the quality of service or products offered by the establishments listed. </p> </div>
     </section>
 
-    <footer class="footer">
+    <!-- Footer (kept identical) -->
+     <footer class="footer">
         <div class="container">
-            <p class="footer-text">&copy; <?php echo date("Y"); ?> Zamchiver. All rights reserved. | Developed by <a href="#" class="footer-link">Your Name/Organization</a></p>
+             <p class="footer-text">© 2024 Zamchiver. All rights reserved. | Developed by <a href="#" class="footer-link">Group 6 HCI</a></p>
         </div>
     </footer>
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Use Bootstrap Bundle JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
     <script>
         $(document).ready(function() {
-            // Add smooth scrolling for anchor links
-            $('a[href^="#"]').on('click', function(event) {
-                var target = $(this.getAttribute('href'));
-                if (target.length) {
-                    event.preventDefault();
-                    $('html, body').animate({
-                        scrollTop: target.offset().top - 70
-                    }, 1000);
-                }
-            });
-
-            // Highlight active nav link on scroll
-            $(window).scroll(function() {
-                var scrollDistance = $(window).scrollTop();
-                $('.navbar-nav .nav-item .nav-link').each(function() {
-                    var sectionId = $(this).attr('href');
-                    var section = $(sectionId);
-                    if (section.length && section.offset().top - 80 <= scrollDistance && section.offset().top + section.height() - 80 > scrollDistance) {
-                        $(this).addClass('active');
-                    } else {
-                        $(this).removeClass('active');
-                    }
-                });
-            });
+            console.log("All Categories page ready.");
+            // No specific JS needed for just displaying cards currently
         });
     </script>
 </body>
