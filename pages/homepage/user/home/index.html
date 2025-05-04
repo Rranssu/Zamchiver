@@ -1042,70 +1042,159 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-LtrjvnR4Twt/qOuYxE721u19sVFLVSA4hf/rRt6PrZTmiPltdZcI7q7PXQBYTKyf" crossorigin="anonymous"></script>
     <!-- Custom Script -->
-    <script>
-        $(document).ready(function() {
-            // Smooth scrolling (excluding collapse triggers)
-            $('a[href^="#"]:not([data-toggle="collapse"])').on('click', function(event) {
-                var target = $(this.getAttribute('href'));
-                if (target.length) {
-                    event.preventDefault();
-                    $('html, body').animate({
-                        scrollTop: target.offset().top - 70 // Adjust for fixed navbar
-                    }, 1000);
+        <!-- jQuery and Bootstrap Bundle -->
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-LtrjvnR4Twt/qOuYxE721u19sVFLVSA4hf/rRt6PrZTmiPltdZcI7q7PXQBYTKyf" crossorigin="anonymous"></script>
+        <!-- Custom Script -->
+        <script>
+            $(document).ready(function() {
+                const scrollPosKey = 'zamchiverHomeScrollPos'; // Unique key for session storage
+                const spotsVisibleKey = 'zamchiverHomeSpotsVisible'; // Key to store how many spots were visible
+        
+                // --- State Restoration Logic ---
+                try {
+                    const storedScroll = sessionStorage.getItem(scrollPosKey);
+                    const storedVisibleCount = sessionStorage.getItem(spotsVisibleKey);
+        
+                    // Restore scroll position if it exists
+                    if (storedScroll !== null) {
+                        // Use a minimal timeout to allow initial DOM rendering/potential bfcache restore
+                        setTimeout(() => {
+                            const scrollValue = parseInt(storedScroll, 10);
+                            if (!isNaN(scrollValue) && scrollValue >= 0 && scrollValue <= document.body.scrollHeight) {
+                                console.log("Restoring scroll to:", scrollValue);
+                                window.scrollTo(0, scrollValue);
+                            } else {
+                                console.log("Stored scroll position seems invalid. Not restoring.");
+                            }
+                            // **IMPORTANT**: Remove immediately after attempting restore
+                            sessionStorage.removeItem(scrollPosKey);
+                        }, 10); // Short delay (10ms)
+                    }
+        
+                    // Restore visible spots if count exists (handles cases where bfcache might fail)
+                     // This part runs *before* the default hiding logic below
+                    if (storedVisibleCount !== null) {
+                        const count = parseInt(storedVisibleCount, 10);
+                        if (!isNaN(count) && count > 0) {
+                            console.log("Restoring visibility for", count, "spots.");
+                            var postItems = $('.post-item');
+                            postItems.slice(0, count).removeClass('d-none'); // Ensure the correct number are visible
+                            postItems.slice(count).addClass('d-none');    // Ensure the rest are hidden
+        
+                            // Update button visibility based on restored count
+                            if (count >= postItems.length) {
+                                 $('#view-more-btn').hide();
+                            } else {
+                                 $('#view-more-btn').show();
+                            }
+                        }
+                         // **IMPORTANT**: Remove immediately after attempting restore
+                         sessionStorage.removeItem(spotsVisibleKey);
+                    } else {
+                         // --- Default Hiding Logic (Runs ONLY if storedVisibleCount is null) ---
+                         var initialPosts = 6;
+                         var postItems = $('.post-item');
+                         var totalPosts = postItems.length;
+                         postItems.slice(initialPosts).addClass('d-none'); // Hide posts beyond initial count
+                         if (initialPosts >= totalPosts) {
+                             $('#view-more-btn').hide();
+                         } else {
+                             $('#view-more-btn').show();
+                         }
+                    }
+        
+        
+                } catch (e) {
+                    console.error("Error during state restoration:", e);
+                    // Clear storage in case of error
+                    sessionStorage.removeItem(scrollPosKey);
+                    sessionStorage.removeItem(spotsVisibleKey);
                 }
-            });
-
-            // Prevent dropdown close on collapse click
-             $('.dropdown-menu a[data-toggle="collapse"]').on('click', function (e) {
-                 e.stopPropagation();
-                 e.preventDefault();
-                 var target = $(this).attr('href');
-                 if($(target).length) {
-                    // Hide other open collapses in the same menu
-                    $(this).closest('.dropdown-menu').find('.collapse.show').not(target).collapse('hide');
-                    // Toggle current collapse
-                    $(target).collapse('toggle');
-                 } else {
-                    console.error("Collapse target not found:", target);
-                 }
-             });
-
-             // Prevent dropdown close on click inside collapse area
-             $('.dropdown-menu').on('click', '.collapse', function(e){
-                  e.stopPropagation();
-             });
-
-             // Load More Posts Functionality
-             var initialPosts = 6;
-             var postsToShow = 6;
-             var totalPosts = $('.post-item').length; // Recalculate total posts
-             var currentlyShown = initialPosts;
-
-             // Hide extra posts initially
-             $('.post-item:gt(' + (initialPosts - 1) + ')').addClass('d-none');
-
-             // Hide 'View More' button if not needed
-             if (currentlyShown >= totalPosts) {
-                $('#view-more-btn').hide();
-             } else {
-                 $('#view-more-btn').show(); // Make sure it's shown if needed
-             }
-
-
-             // 'View More' button click handler
-             $('#view-more-btn').on('click', function(e) {
-                e.preventDefault();
-                var nextPosts = $('.post-item.d-none').slice(0, postsToShow);
-                nextPosts.removeClass('d-none').hide().fadeIn(800); // Show next batch
-                currentlyShown += nextPosts.length;
-
-                // Hide button if all posts are shown
-                if (currentlyShown >= totalPosts) {
-                    $(this).fadeOut();
-                }
-             });
-
-        });
-    </script>
+        
+                // --- State Saving Logic ---
+                // Save state ONLY when clicking a link that navigates away from the home page
+                document.body.addEventListener('click', function(event) {
+                    let targetElement = event.target.closest('a');
+                    if (targetElement) {
+                        const href = targetElement.getAttribute('href');
+                        const targetAttr = targetElement.getAttribute('target');
+                        const dataToggle = targetElement.getAttribute('data-toggle');
+                        const elementId = targetElement.id;
+        
+                        // Check if it's a likely navigation link (modify conditions as needed)
+                        // Excludes internal links, JS calls, toggles, new tabs, view more button
+                         if (href && href !== '#' && !href.startsWith('#') && !href.startsWith('javascript:') && !dataToggle && targetAttr !== '_blank' && elementId !== 'view-more-btn') {
+                            const currentScroll = window.scrollY || document.documentElement.scrollTop;
+                            const visibleSpots = $('.post-item:not(.d-none)').length; // Count currently visible spots
+        
+                            console.log("Navigation link clicked. Saving scroll:", currentScroll, "Visible spots:", visibleSpots);
+                            sessionStorage.setItem(scrollPosKey, currentScroll);
+                            sessionStorage.setItem(spotsVisibleKey, visibleSpots); // Save the count
+                        }
+                    }
+                }, true); // Use capture phase
+        
+        
+                // --- Smooth scrolling for internal links ---
+                $('a[href^="#"]:not([data-toggle="collapse"])').on('click', function(event) {
+                    var target = $(this.getAttribute('href'));
+                    if (target.length) {
+                        event.preventDefault();
+                        $('html, body').stop().animate({
+                            scrollTop: target.offset().top - 70 // Adjust for fixed navbar
+                        }, 800);
+                    }
+                });
+        
+                // --- Dropdown Toggling Logic ---
+                 $('.dropdown-menu a[data-toggle="collapse"]').on('click', function (e) {
+                     e.stopPropagation();
+                     e.preventDefault();
+                     var target = $(this).attr('href');
+                     var $targetCollapse = $(target);
+                     if($targetCollapse.length) {
+                        $(this).closest('.dropdown-menu').find('.collapse.show').not(target).collapse('hide');
+                        $targetCollapse.collapse('toggle');
+                     }
+                 });
+                 $('.dropdown-menu').on('click', '.collapse', function(e){
+                      e.stopPropagation();
+                 });
+        
+                // --- Load More Posts Functionality ---
+                $('#view-more-btn').on('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+        
+                    var $button = $(this);
+                    var postItems = $('.post-item'); // Re-select in case DOM changed
+                    var totalPosts = postItems.length;
+                    var postsToShow = 6; // Or your desired increment
+        
+                    var hiddenPosts = postItems.filter('.d-none');
+                    var nextPosts = hiddenPosts.slice(0, postsToShow);
+        
+                    if (nextPosts.length > 0) {
+                        var fadePromises = [];
+                        nextPosts.each(function() {
+                            var dfd = $.Deferred();
+                            $(this).removeClass('d-none').hide().fadeIn(600, function() { dfd.resolve(); });
+                            fadePromises.push(dfd.promise());
+                        });
+        
+                        $.when.apply($, fadePromises).done(function() {
+                             var currentlyShownCount = postItems.filter(':not(.d-none)').length;
+                             if (currentlyShownCount >= totalPosts) {
+                                 $button.fadeOut();
+                             }
+                        });
+                    } else {
+                        $button.fadeOut();
+                    }
+                });
+        
+            }); // End of $(document).ready()
+        </script>
 </body>
 </html>
