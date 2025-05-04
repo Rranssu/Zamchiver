@@ -3,13 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- ### TEMPLATE: Update Title Dynamically ### -->
     <title>Zamchiver - Fort Pillar</title>
-    <meta name="description" content="View details for [Post Title] in Zamboanga City.">
-    <meta name="keywords" content="Zamboanga City, [Category], [Keywords for Post]">
+    <!-- ### TEMPLATE: Update Description/Keywords Dynamically ### -->
+    <meta name="description" content="View details for Fort Pillar in Zamboanga City.">
+    <meta name="keywords" content="Zamboanga City, Attraction & Recreation, Historical Sites, Fort Pilar, Spanish Fort">
     <meta name="author" content="Your Name/Organization">
 
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../../../../favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="../../../../favicon.ico" type="image/x-icon">
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -121,32 +123,72 @@
             color: #6c757d;
             font-size: 0.9rem;
             margin-bottom: 1rem;
+            display: flex; /* Use flexbox for alignment */
+            flex-wrap: wrap; /* Allow items to wrap on smaller screens */
+            align-items: center; /* Vertically align items */
+        }
+        .post-meta span, .post-meta a {
+            display: inline-flex; /* Align icon and text */
+            align-items: center;
+            margin-right: 0.5rem; /* Spacing between meta items */
+            margin-bottom: 0.3rem; /* Spacing if wrapped */
         }
         .post-meta i {
             margin-right: 0.3rem;
+            width: 1em; /* Give icons a consistent width */
+            text-align: center;
         }
+        .post-meta .separator {
+             margin: 0 0.5rem; /* Spacing around separator */
+        }
+        .post-meta a.location-link { /* Specific style for location link */
+            color: #6c757d; /* Match meta text color */
+            text-decoration: none;
+        }
+        .post-meta a.location-link:hover {
+            color: #0056b3; /* Darker blue on hover */
+            text-decoration: underline;
+        }
+
         .post-content {
             line-height: 1.8;
             margin-bottom: 1.5rem;
         }
         .post-category {
             display: inline-block;
-            background-color: #e9ecef;
-            color: #495057;
-            padding: 0.3rem 0.6rem;
-            border-radius: 0.3rem;
-            font-size: 0.85rem;
+            background-color: #e9fce9; /* Lighter green background */
+            color: #006400; /* Darker green text */
+            border: 1px solid #a3d8a3; /* Subtle green border */
+            padding: 0.3rem 0.8rem;
+            border-radius: 1rem; /* Pill shape */
+            font-size: 0.8rem;
+            margin-right: 0.5rem;
             margin-bottom: 1rem;
+            font-weight: 500;
+        }
+        .post-actions {
+            margin-top: 1.5rem;
+            display: flex; /* Align items horizontally */
+            align-items: center; /* Vertically align items */
+            flex-wrap: wrap; /* Allow wrapping */
         }
         .back-link {
             display: inline-flex;
             align-items: center;
             font-weight: 500;
             text-decoration: none;
-            margin-top: 1rem;
+            margin-right: 1rem; /* Space between back link and bookmark button */
+            margin-bottom: 0.5rem; /* Space if wrapped */
         }
         .back-link i {
             margin-right: 0.5rem;
+        }
+        #saveBookmarkBtn {
+            margin-bottom: 0.5rem; /* Space if wrapped */
+        }
+        #bookmarkMessage {
+             width: 100%; /* Make message take full width below actions */
+             margin-top: 1rem;
         }
 
         /* Footer Styles (Inherited) */
@@ -156,23 +198,39 @@
             padding: 1.5rem 0;
             text-align: center;
             border-top: 1px solid #495057;
+            margin-top: auto; /* Push footer down */
+        }
+        html, body {
+             height: 100%; /* Ensure body takes full height */
+        }
+        body {
+             display: flex;
+             flex-direction: column; /* Stack content and footer */
+        }
+        section {
+             flex: 1 0 auto; /* Allow section to grow */
         }
         .footer-text {
-            font-size: 1.1rem;
+            font-size: 0.95rem; /* Slightly smaller footer text */
+            margin-bottom: 0;
         }
         .footer-link {
-            color: #fff;
+            color: #ffc107; /* Yellow */
             font-weight: 500;
             text-decoration: none;
             transition: color 0.3s ease;
         }
         .footer-link:hover {
-            color: #ffb74d;
+            color: #fff;
+            text-decoration: underline;
         }
 
         @media (max-width: 768px) {
             .post-title {
                 font-size: 1.75rem;
+            }
+            .post-meta {
+                 font-size: 0.85rem;
             }
         }
     </style>
@@ -180,11 +238,13 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
-            <a class="navbar-brand" href="#">Zamchiver</a>
+             <!-- ### TEMPLATE: Ensure correct relative path ### -->
+            <a class="navbar-brand" href="../../home/">Zamchiver</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
+                 <!-- ### TEMPLATE: Ensure correct relative paths ### -->
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="../../user/home/">Home</a>
@@ -202,6 +262,7 @@
                         <a class="nav-link" href="../../user/myacc/">My Account</a>
                     </li>
                     <li class="nav-item auth">
+                        <!-- ### TEMPLATE: Ensure correct relative path ### -->
                         <a class="nav-link" href="../../../login/" style="background-color: #ffc107; color: #008000; border-color: #ffc107;">Log Out</a>
                     </li>
                 </ul>
@@ -212,41 +273,126 @@
     <section class="view-post-section">
         <div class="container">
             <div class="post-container">
+                <!-- ### TEMPLATE: Update Image Sources Dynamically ### -->
                 <div class="post-image-container">
-                    <img src="../../../../img/fortpilar.webp" alt="Post Image 1" class="post-image">
-                    <img src="../../../../img/pilar2.webp" alt="Post Image 2" class="post-image">
+                    <img src="../../../../img/fortpilar.webp" alt="Fort Pilar Main View" class="post-image">
+                    <img src="../../../../img/pilar2.webp" alt="Fort Pilar Shrine" class="post-image">
                 </div>
-                <h1 class="post-title">Fort Pillar</h1>
+
+                 <!-- ### TEMPLATE: Update Title Dynamically ### -->
+                <h1 class="post-title">Fort Pilar</h1>
+
+                <!-- ### TEMPLATE: Update Meta Info Dynamically ### -->
                 <p class="post-meta">
-                    <i class="far fa-calendar-alt"></i> Posted on April 10, 2025
-                    <span class="mx-2">|</span>
-                    <i class="far fa-user"></i> By Rranssu
-                    <span class="mx-2">|</span>
-                    <i class="fas fa-map-marker-alt"></i>    <a href="https://maps.app.goo.gl/BiMvLk5w7JNjdHP39" class="location-link">
-                        W32M+F2R, Street, Zamboanga, Zamboanga del Sur
-                    </a>
+                    <span><i class="far fa-calendar-alt"></i> Posted on April 10, 2025</span>
+                    <span class="separator">|</span>
+                    <span><i class="far fa-user"></i> By Rranssu</span>
+                    <span class="separator">|</span>
+                    <span>
+                        <i class="fas fa-map-marker-alt"></i>
+                        <a href="https://maps.app.goo.gl/BiMvLk5w7JNjdHP39" target="_blank" class="location-link">
+                            W32M+F2R, Street, Zamboanga, Zamboanga del Sur
+                        </a>
+                    </span>
                 </p>
-                <span class="post-category">Attraction & Recreation</span>
-                <span class="post-category">Historical Sites</span>
+
+                <!-- ### TEMPLATE: Update Categories Dynamically ### -->
+                <div class="post-categories mb-3">
+                    <span class="post-category">Attraction & Recreation</span>
+                    <span class="post-category">Historical Sites</span>
+                </div>
+
+                <!-- ### TEMPLATE: Update Content Dynamically ### -->
                 <div class="post-content">
                     <p>This Place makes me feel like a old Spaniard like the old times hehehehe</p>
+                    <!-- Add more paragraphs, lists, etc., here as needed -->
                 </div>
-                <a href="../../user/home/index.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Listings</a>
+
+                <!-- Actions Section -->
+                <div class="post-actions">
+                    <!-- ### TEMPLATE: Ensure correct relative path ### -->
+                    <a href="javascript:window.history.back();" class="back-link">
+                        <i class="fas fa-arrow-left"></i> Back to Listing
+                    </a>
+                    <button id="saveBookmarkBtn" class="btn btn-outline-success btn-sm">
+                        <i class="far fa-bookmark"></i> Save to Bookmarks
+                    </button>
+                     <!-- Bookmark Success Message Area -->
+                     <div id="bookmarkMessage" class="alert alert-success d-none w-100" role="alert">
+                        <!-- Message will be inserted here by JS -->
+                    </div>
+                </div>
+
+
             </div>
         </div>
     </section>
 
     <footer class="footer">
         <div class="container">
-            <p class="footer-text">&copy; <?php echo date("Y"); ?> Zamchiver. All rights reserved. | Developed by <a href="#" class="footer-link">Your Name/Organization</a></p>
+             <!-- ### TEMPLATE: Update Year/Org Name Dynamically if needed ### -->
+            <p class="footer-text">© 2024 Zamchiver. All rights reserved. | Developed by <a href="#" class="footer-link">Group 6 HCI</a></p>
         </div>
     </footer>
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Use Bootstrap Bundle which includes Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-LtrjvnR4Twt/qOuYxE721u19sVFLVSA4hf/rRt6PrZTmiPltdZcI7q7PXQBYTKyf" crossorigin="anonymous"></script>
     <script>
         $(document).ready(function() {
-        });
+
+            // --- Bookmark Button Click Logic ---
+            $('#saveBookmarkBtn').on('click', function() {
+                var $button = $(this);
+                var $messageDiv = $('#bookmarkMessage');
+                const bookmarkStorageKey = 'zamchiverBookmarks'; // Key for storage
+
+                // --- Logic to perform when the button is clicked ---
+
+                // 1. Get post details (you might still want to save to localStorage
+                //    if your "My Account" page relies on it, but it won't affect
+                //    this button's state on reload anymore).
+                var postTitle = $('.post-title').text().trim(); // Get title and trim spaces
+                var postUrl = window.location.href;
+                console.log('Save button clicked for post:', postTitle);
+
+                 // 2. (Optional) Save to Local Storage if needed elsewhere
+                 try {
+                     let bookmarks = JSON.parse(localStorage.getItem(bookmarkStorageKey) || '[]');
+                     // Avoid duplicates if saving
+                     if (!bookmarks.some(b => b.title === postTitle)) {
+                          bookmarks.push({ title: postTitle, url: postUrl });
+                          localStorage.setItem(bookmarkStorageKey, JSON.stringify(bookmarks));
+                          console.log('Saved to Local Storage (will not persist button state on reload)');
+                     } else {
+                         console.log('Already bookmarked in Local Storage');
+                     }
+                 } catch (e) {
+                    console.error("Could not save bookmark to Local Storage:", e);
+                 }
+
+                // 3. Update button state *immediately* to show "Saved" for this session
+                $button.prop('disabled', true) // Disable button
+                       .removeClass('btn-outline-success')
+                       .addClass('btn-success')
+                       .html('<i class="fas fa-bookmark"></i> Saved'); // Change icon and text
+
+                // 4. Show success message
+                $messageDiv.html('<strong>Success!</strong> Post saved to bookmarks. Check <a href="../../user/myacc/" class="alert-link">My Account</a>.')
+                           .removeClass('d-none');
+
+                // 5. Optional: Hide message after a few seconds
+                setTimeout(function() {
+                    $messageDiv.addClass('d-none');
+                }, 6000);
+            });
+
+            // --- NO CODE HERE TO CHECK LOCALSTORAGE ON PAGE LOAD ---
+            // By removing the check, the button will always start
+            // in the state defined in the initial HTML, which is
+            // "Save to Bookmarks".
+
+        }); // End of $(document).ready()
     </script>
 </body>
 </html>

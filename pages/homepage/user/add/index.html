@@ -80,7 +80,7 @@
         /* Add Post Page Styles */
         .add-post-section {
             padding: 5rem 0;
-            background-color: #ffffff; /* Light Yellow - Vinta Accent */
+            background-color: #ffffff;
         }
         .add-post-form-container {
             background-color: #fff;
@@ -105,14 +105,17 @@
             resize: vertical;
             min-height: 120px;
         }
+        .btn { /* Common button styles */
+             padding: 0.75rem 1.5rem;
+            font-weight: 500;
+            transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+            border-radius: 0.5rem;
+            margin-top: 0.5rem; /* Add margin for smaller screens */
+        }
         .btn-primary {
             background-color: #008000; /* Green */
             border-color: #008000;
             color: #fff;
-            padding: 0.75rem 1.5rem;
-            font-weight: 500;
-            transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
-            border-radius: 0.5rem;
         }
         .btn-primary:hover {
             background-color: #006400; /* Darker Green */
@@ -122,14 +125,20 @@
             background-color: #e0e0e0; /* Light Gray */
             border-color: #e0e0e0;
             color: #343a40;
-            padding: 0.75rem 1.5rem;
-            font-weight: 500;
-            transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
-            border-radius: 0.5rem;
         }
         .btn-secondary:hover {
             background-color: #c0c0c0; /* Darker Gray */
             border-color: #c0c0c0;
+        }
+        /* Style for Save Draft button */
+        .btn-info {
+            background-color: #17a2b8; /* Bootstrap Info Blue */
+            border-color: #17a2b8;
+            color: #fff;
+        }
+        .btn-info:hover {
+            background-color: #138496; /* Darker Info Blue */
+            border-color: #117a8b;
         }
 
         .form-group small {
@@ -142,9 +151,10 @@
             padding: 1.5rem 0;
             text-align: center;
             border-top: 1px solid #495057;
+            margin-top: auto; /* Push footer down */
         }
         .footer-text {
-            font-size: 1.1rem;
+            font-size: 1rem; /* Adjusted size */
         }
         .footer-link {
             color: #fff;
@@ -185,6 +195,47 @@
             font-size: 3rem;
         }
 
+        /* Custom File Input Label */
+        .custom-file-label::after {
+            content: "Browse"; /* Replace default text */
+        }
+
+        /* Ensure body takes full height for footer push */
+        html, body {
+           height: 100%;
+        }
+        body {
+           display: flex;
+           flex-direction: column;
+        }
+        .add-post-section {
+           flex: 1 0 auto; /* Allow section to grow */
+        }
+        /* Modal styling */
+        .modal-header.modal-header-success {
+             background-color: #28a745; /* Green */
+             color: white;
+        }
+        .modal-header.modal-header-info {
+             background-color: #17a2b8; /* Blue */
+             color: white;
+        }
+        .modal-header.modal-header-warning {
+             background-color: #ffc107; /* Yellow */
+             color: #343a40;
+        }
+        .modal-header.modal-header-danger {
+             background-color: #dc3545; /* Red */
+             color: white;
+        }
+        .modal-title {
+             font-weight: 500;
+        }
+        .modal-footer .btn {
+            margin-top: 0; /* Override general btn margin-top inside modal footer */
+        }
+
+
         @media (max-width: 992px) {
             .navbar-nav .nav-link {
                 margin-left: 0;
@@ -198,14 +249,19 @@
             .add-post-form-container {
                 padding: 1.5rem;
             }
+            .form-buttons .btn { /* Target buttons inside the wrapper */
+                display: block; /* Stack buttons vertically */
+                width: 100%; /* Make buttons full width */
+                margin-right: 0 !important; /* Remove right margin */
+            }
+            .form-buttons .btn + .btn { /* Add margin between stacked buttons */
+                 margin-top: 0.75rem;
+            }
         }
         @media (max-width: 576px) {
-            .hero-title {
-                font-size: 2.5rem;
-            }
-            .hero-tagline {
-                font-size: 1.2rem;
-            }
+             h1 {
+                 font-size: 2rem;
+             }
         }
     </style>
 </head>
@@ -228,7 +284,7 @@
                         <a class="nav-link" href="../search/">Search</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="">Add Post</a>
+                        <a class="nav-link" href="#">Add Post</a> <!-- Link to current page -->
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="../myacc/">My Account</a>
@@ -247,7 +303,7 @@
             <div class="row justify-content-center">
                 <div class="col-lg-8">
                     <div class="add-post-form-container">
-                        <form id="add-post-form" enctype="multipart/form-data">
+                        <form id="add-post-form" enctype="multipart/form-data" novalidate> <!-- novalidate prevents browser default validation -->
                             <div class="form-group">
                                 <label for="title">Title <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control" id="title" name="title" placeholder="Enter post title" required>
@@ -268,10 +324,12 @@
                                 <small class="form-text text-muted">Choose the most relevant category.</small>
                             </div>
                             <div class="form-group">
-                                <label for="location">Street <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="location" name="location" placeholder="Enter Street" required>
-                                <label for="location" class="mt-2">Barangay <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="location" name="location" placeholder="Enter Barangay" required>
+                                <label for="street">Street <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="street" name="street" placeholder="Enter Street" required>
+                            </div>
+                             <div class="form-group">
+                                <label for="barangay">Barangay <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="barangay" name="barangay" placeholder="Enter Barangay" required>
                             </div>
                             <div class="form-group">
                                 <label for="description">Description <span class="text-danger">*</span></label>
@@ -293,8 +351,13 @@
                                 </div>
                                 <img id="image-preview" class="image-preview d-none" src="#" alt="Image Preview">
                             </div>
-                            <button type="submit" class="btn btn-primary mr-2">Submit Post</button>
-                            <button type="reset" class="btn btn-secondary">Reset Form</button>
+
+                            <!-- Buttons -->
+                            <div class="form-buttons d-flex flex-wrap justify-content-start mt-3"> <!-- Added wrapper for better responsive control -->
+                                <button type="submit" class="btn btn-primary mr-2 mb-2" name="action" value="submit">Submit Post</button>
+                                <button type="button" id="save-draft-button" class="btn btn-info mr-2 mb-2">Save to Draft</button> <!-- Added Save Draft button -->
+                                <button type="reset" class="btn btn-secondary mb-2">Reset Form</button>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -304,15 +367,57 @@
 
     <footer class="footer">
         <div class="container">
-            <p class="footer-text">&copy; <?php echo date("Y"); ?> Zamchiver. All rights reserved. | Developed by <a href="#" class="footer-link">Group 6 HCI</a></p>
+            <p class="footer-text">© <?php echo date("Y"); ?> Zamchiver. All rights reserved. | Developed by <a href="#" class="footer-link">Group 6 HCI</a></p>
         </div>
     </footer>
+
+    <!-- Generic Bootstrap Modal -->
+    <div class="modal fade" id="responseModal" tabindex="-1" role="dialog" aria-labelledby="responseModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header" id="responseModalHeader">
+                    <h5 class="modal-title" id="responseModalLabel">Notification</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="responseModalBody">
+                    <!-- Content will be injected here -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                     <!-- Optional: Add extra buttons if needed -->
+                     <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.min.js"></script>
     <script>
         $(document).ready(function() {
+
+             // Helper function to show the Bootstrap modal
+             function showModal(title, body, type = 'info') { // type can be 'success', 'info', 'warning', 'danger'
+                 const $modal = $('#responseModal');
+                 const $header = $('#responseModalHeader');
+                 const $title = $('#responseModalLabel');
+                 const $body = $('#responseModalBody');
+
+                 $title.text(title);
+                 $body.html(body); // Use .html() if body might contain HTML
+
+                 // Remove existing header classes and add the new one
+                 $header.removeClass('modal-header-success modal-header-info modal-header-warning modal-header-danger');
+                 $header.addClass(`modal-header-${type}`);
+
+                 $modal.modal('show');
+             }
+
+
             // Function to display image preview
             function readURL(input) {
                 if (input.files && input.files[0]) {
@@ -328,117 +433,177 @@
                     $('#image-preview').addClass('d-none');
                     $('#image-preview-placeholder').removeClass('d-none');
                     $('#image-preview-container').addClass('d-none');
+                    $('.custom-file-label').html('Choose file');
                 }
             }
 
-            // Event listener for file input change
-            $("#image").change(function() {
-                readURL(this);
+            // Update custom file input label with filename
+            $("#image").on('change', function() {
+                var fileName = $(this).val().split('\\').pop();
+                $(this).next('.custom-file-label').html(fileName ? fileName : 'Choose file');
+                readURL(this); // Call preview function
             });
 
-            // Form validation using jQuery Validation plugin
-            $("#add-post-form").validate({
-                rules: {
-                    title: {
-                        required: true,
-                        minlength: 2
-                    },
-                    category: {
-                        required: true
-                    },
-                    location: {
-                        required: true,
-                        minlength: 3
-                    },
-                    description: {
-                        required: true,
-                        minlength: 10
-                    },
-                    image: {
-                        required: true,
-                        accept: "image/*"
-                    }
-                },
-                messages: {
-                    title: {
-                        required: "Please enter a title",
-                        minlength: "Title must be at least 2 characters long"
-                    },
-                    category: {
-                        required: "Please select a category"
-                    },
-                    location: {
-                        required: "Please enter a location",
-                        minlength: "Location must be at least 3 characters long"
-                    },
-                    description: {
-                        required: "Please enter a description",
-                        minlength: "Description must be at least 10 characters long"
-                    },
-                    image: {
-                        required: "Please upload an image",
-                        accept: "Please upload a valid image file"
-                    }
-                },
-                errorElement: "small",
-                errorPlacement: function(error, element) {
-                    error.addClass("text-danger");
-                    error.insertAfter(element.parent());
-                },
-                submitHandler: function(form) {
-                    // Handle form submission here (e.g., using AJAX)
-                    // You can access form data using $(form).serialize()
-                    var formData = new FormData(form);
+            // Reset form handler
+             $('#add-post-form').on('reset', function() {
+                setTimeout(function() {
+                    $('#image-preview').addClass('d-none');
+                    $('#image-preview-placeholder').removeClass('d-none');
+                    $('#image-preview-container').addClass('d-none');
+                    $('.custom-file-label').html('Choose file');
+                    validator.resetForm(); // Use validator's resetForm method
+                    $('#add-post-form .is-invalid').removeClass('is-invalid');
+                    $('#add-post-form .is-valid').removeClass('is-valid'); // Also remove valid classes if applied
+                }, 0);
+            });
 
-                    $.ajax({
-                        url: 'your-upload-endpoint.php', // Replace with your server-side script
-                        type: 'POST',
-                        data: formData,
-                        processData: false,
-                        contentType: false,
-                        success: function(response) {
-                            // Handle success response
-                            console.log(response);
-                            alert("Post added successfully!"); // Replace with a better UI notification
-                            form.reset();
-                            $('#image-preview').addClass('d-none');
-                            $('#image-preview-placeholder').removeClass('d-none');
-                            $('#image-preview-container').addClass('d-none');
+            // --- FORM VALIDATION ---
+            var validator = $("#add-post-form").validate({
+                 // Rules remain the same
+                 rules: {
+                     title: { required: true, minlength: 2 },
+                     category: { required: true },
+                     street: { required: true, minlength: 3 },
+                     barangay: { required: true, minlength: 3 },
+                     description: { required: true, minlength: 10 },
+                     image: { required: true, accept: "image/*" }
+                 },
+                 messages: { // Messages remain the same
+                     title: { required: "Please enter a title", minlength: "Title must be at least 2 characters long" },
+                     category: { required: "Please select a category" },
+                     street: { required: "Please enter a street name", minlength: "Street must be at least 3 characters long" },
+                     barangay: { required: "Please enter a barangay name", minlength: "Barangay must be at least 3 characters long" },
+                     description: { required: "Please enter a description", minlength: "Description must be at least 10 characters long" },
+                     image: { required: "Please upload an image", accept: "Please upload a valid image file (jpg, png, gif, etc.)" }
+                 },
+                 errorElement: "small",
+                 errorClass: "text-danger", // Use class for errors
+                 validClass: "text-success", // Optional: Use class for valid inputs
+                 highlight: function(element, errorClass, validClass) {
+                    $(element).addClass('is-invalid').removeClass('is-valid');
+                 },
+                 unhighlight: function(element, errorClass, validClass) {
+                    $(element).removeClass('is-invalid').addClass('is-valid');
+                 },
+                 errorPlacement: function(error, element) {
+                     // Handle custom file input placement
+                     if (element.hasClass('custom-file-input')) {
+                          error.insertAfter(element.closest('.custom-file'));
+                     } else if (element.is('select')) {
+                          error.insertAfter(element);
+                     }
+                      else {
+                         error.insertAfter(element); // Default placement
+                     }
+                 },
+                 // IMPORTANT: submitHandler is only called if the form IS valid according to the rules
+                 submitHandler: function(form) {
+                     console.log("Submit Post (Validation Passed)");
+                     handleFormSubmission(form, 'submit'); // 'submit' is the default action on valid form submission
+                 }
+            });
 
-                        },
-                        error: function(xhr, status, error) {
-                            // Handle error response
-                            console.error(xhr.responseText);
-                            alert("Error adding post. Please try again."); // Replace with a better UI notification
-                        }
-                    });
+             // --- SAVE DRAFT BUTTON ---
+            $('#save-draft-button').on('click', function() {
+                console.log("Save Draft clicked");
+                const form = $('#add-post-form')[0];
+                const title = $('#title').val().trim();
+                //const category = $('#category').val(); // Basic check only needs title for draft
+
+                // **Draft Validation:** Check if at least a title exists before attempting submission simulation
+                if (!title) {
+                     showModal('Missing Information', 'Please enter at least a title before saving a draft.', 'warning');
+                     $('#title').addClass('is-invalid'); // Highlight the title field
+                     return; // Stop the function here
+                 }
+                 // Optional: you could add more checks here if needed for a draft
+
+                 // If basic draft validation passes, proceed to submission simulation
+                 handleFormSubmission(form, 'draft');
+            });
+
+            // --- FORM SUBMISSION HANDLER (MODIFIED FOR FRONTEND ONLY) ---
+            function handleFormSubmission(form, actionType) {
+                // Check full form validity if submitting, skip if drafting (handled above)
+                if (actionType === 'submit' && !$(form).valid()) {
+                     console.log("Submit blocked by validation.");
+                     showModal('Validation Error', 'Please fix the errors indicated on the form before submitting.', 'warning');
+                     return; // Stop if submitting an invalid form
                 }
-            });
 
-             // Add smooth scrolling for anchor links
+                // --- UI Feedback: Disable buttons temporarily ---
+                var $submitButton = $(form).find('button[type="submit"]');
+                var $draftButton = $('#save-draft-button');
+                var $resetButton = $(form).find('button[type="reset"]');
+                const originalSubmitText = $submitButton.html();
+                const originalDraftText = $draftButton.html();
+
+                $submitButton.prop('disabled', true); // Just disable, no need for spinner without AJAX
+                $draftButton.prop('disabled', true);
+                $resetButton.prop('disabled', true);
+
+                console.log(`Simulating ${actionType} success (Frontend Only).`);
+
+                // --- REMOVED AJAX CALL ---
+                /*
+                $.ajax({
+                    url: 'your-backend-endpoint.php', // NO BACKEND - This line is the problem
+                    type: 'POST',
+                    data: formData, // formData is not needed without AJAX
+                    processData: false,
+                    contentType: false,
+                    dataType: 'json',
+                    success: function(response) {
+                         // ... original success code ...
+                    },
+                    error: function(xhr, status, error) {
+                        // ... original error code (which was being triggered) ...
+                        // showModal('Network Error', errorMsg, 'danger');
+                    },
+                    complete: function() {
+                         // ... original complete code ...
+                     }
+                });
+                */
+
+                // --- SIMULATE SUCCESS ---
+                // Use a short delay to mimic network time slightly (optional)
+                setTimeout(function() {
+                    let title, message, modalType;
+
+                    if (actionType === 'draft') {
+                        title = 'Draft Saved (Simulation)';
+                        message = 'Your post has been saved to draft locally (simulation). It would normally be sent to the server.';
+                        modalType = 'info';
+                    } else { // submit
+                        title = 'Post Submitted (Simulation)';
+                        message = 'Your post submission is simulated. It would normally be sent to the server for review.';
+                        modalType = 'success';
+                    }
+                    showModal(title, message, modalType);
+                    form.reset(); // Reset the form on simulated success
+
+                    // --- UI Feedback: Re-enable buttons ---
+                    $submitButton.prop('disabled', false).html(originalSubmitText);
+                    $draftButton.prop('disabled', false).html(originalDraftText);
+                    $resetButton.prop('disabled', false);
+
+                }, 500); // 500ms delay - adjust or remove as needed
+
+            } // End of handleFormSubmission
+
+
+             // Add smooth scrolling for anchor links (if any are added later)
             $('a[href^="#"]').on('click', function(event) {
                 var target = $(this.getAttribute('href'));
                 if (target.length) {
                     event.preventDefault();
                     $('html, body').animate({
-                        scrollTop: target.offset().top - 70
+                        scrollTop: target.offset().top - 70 // Adjust for fixed navbar height
                     }, 1000);
                 }
             });
 
-            // Highlight active nav link on scroll
-            $(window).scroll(function() {
-                var scrollDistance = $(window).scrollTop();
-                $('.navbar-nav .nav-item .nav-link').each(function() {
-                    var sectionId = $(this).attr('href');
-                    var section = $(sectionId);
-                    if (section.length && section.offset().top - 80 <= scrollDistance && section.offset().top + section.height() - 80 > scrollDistance) {
-                        $(this).addClass('active');
-                    } else {
-                        $(this).removeClass('active');
-                    }
-                });
-            });
         });
     </script>
 </body>
