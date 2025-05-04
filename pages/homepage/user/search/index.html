@@ -21,6 +21,12 @@
             font-family: 'Poppins', sans-serif;
             background-color: #f8f9fa;
             color: #343a40;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .content-wrap {
+            flex: 1 0 auto; /* Push footer down */
         }
         h1, h2, h3 {
             font-weight: 600;
@@ -34,6 +40,7 @@
             font-size: 1.1rem;
             font-weight: 300;
         }
+        /* Navbar Styles */
         .navbar {
             background-color: #008000; /* Green */
             padding: 0.75rem 1rem;
@@ -79,69 +86,27 @@
             color: #008000; /* Green */
             border-color: #fff;
         }
-        .footer {
-            background-color: #343a40;
-            color: #fff;
-            padding: 1.5rem 0;
-            text-align: center;
-            border-top: 1px solid #495057;
-        }
-        .footer-text {
-            font-size: 1.1rem;
-        }
-        .footer-link {
-            color: #fff;
-            font-weight: 500;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-        .footer-link:hover {
-            color: #ffb74d;
-        }
 
         /* Search Page Specific Styles */
         .search-section {
-            padding: 5rem 0;
+            padding: 3rem 0 1rem 0; /* Reduced padding */
             text-align: center;
-        }
-        .search-container {
-            max-width: 700px;
-            margin: 0 auto;
-            padding: 2rem;
-            background-color: #fff;
-            border-radius: 0.75rem;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        .search-input-group {
-            margin-bottom: 2rem;
-        }
-        .search-input {
-            padding: 0.75rem 1rem;
-            border: 1px solid #ced4da;
-            border-radius: 0.5rem 0 0 0.5rem;
-            font-size: 1.1rem;
-            width: 70%;
-        }
-        .search-button {
-            background-color: #008000; /* Green */
-            color: #fff;
-            border: none;
-            padding: 0.75rem 1rem;
-            border-radius: 0 0.5rem 0.5rem 0;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-        .search-button:hover {
-            background-color: #006400; /* Darker Green */
+            background-color: #ffffff; /* White background for search area */
+            border-bottom: 1px solid #e0e0e0;
         }
         .search-results-section {
-            padding: 3rem 0;
+            padding: 3rem 0 5rem; /* Adjust padding */
         }
         .search-results-container {
             max-width: 960px;
             margin: 0 auto;
         }
+         .search-results-container h2 { /* Section header for results */
+            text-align: center;
+            margin-bottom: 2.5rem;
+            font-size: 2rem;
+        }
+
         .search-result-card {
             background-color: #fff;
             border-radius: 0.75rem;
@@ -150,6 +115,10 @@
             border: 1px solid #ddd;
             padding: 1.5rem;
             text-align: left;
+            transition: box-shadow 0.2s ease-in-out;
+        }
+        .search-result-card:hover {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
         .search-result-title {
             font-size: 1.3rem;
@@ -177,127 +146,464 @@
             text-align: center;
             font-size: 1.2rem;
             color: #6c757d;
+            padding: 2rem;
         }
+
+         /* Styles for Search Bar */
+        .search-container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .search-bar-custom {
+            background-color: #fff;
+            border-radius: 0.75rem;
+            padding: 0.3rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .search-bar-custom .input-group-prepend .search-category-btn {
+            border: none;
+            background-color: #f8f9fa;
+            color: #495057;
+            border-top-left-radius: 0.5rem;
+            border-bottom-left-radius: 0.5rem;
+            z-index: 3;
+             font-size: 0.9rem;
+        }
+        .search-bar-custom .input-group-prepend .search-category-btn:hover {
+             background-color: #e9ecef;
+        }
+        .search-category-dropdown {
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border: 1px solid #e0e0e0;
+            font-size: 0.9rem;
+            max-height: 300px; /* Prevent overly long dropdown */
+            overflow-y: auto; /* Add scroll if needed */
+        }
+        .search-category-dropdown .dropdown-item {
+            padding: 0.5rem 1rem;
+        }
+        .search-category-dropdown .dropdown-item i {
+            opacity: 0.8;
+             margin-right: 0.5rem;
+             width: 1.2em; /* Icon alignment */
+             text-align: center;
+        }
+        .search-bar-custom .search-input-custom {
+            border: none;
+            box-shadow: none;
+            font-size: 1.1rem;
+        }
+        .search-bar-custom .search-input-custom:focus {
+             box-shadow: none;
+        }
+        .search-bar-custom .input-group-append .search-button-custom {
+            border: none;
+            background-color: #ffc107; /* Yellow */
+            color: #343a40;
+            border-top-right-radius: 0.5rem;
+            border-bottom-right-radius: 0.5rem;
+            padding: 0 1.5rem;
+            font-size: 1.1rem; /* Match input size */
+            z-index: 3;
+            transition: background-color 0.2s ease;
+        }
+        .search-bar-custom .input-group-append .search-button-custom:hover {
+            background-color: #e0a800; /* Darker yellow */
+        }
+
+        /* Icon Color Palette Matching */
+         .dropdown-item .icon-primary { color: #008000 !important; }
+         .dropdown-item .icon-secondary { color: #ffc107 !important; }
+         .dropdown-item .icon-danger { color: #dc3545 !important; }
+
+         /* Footer Styles */
+        .footer {
+            background-color: #343a40;
+            color: #fff;
+            padding: 1.5rem 0;
+            text-align: center;
+            border-top: 1px solid #495057;
+            flex-shrink: 0; /* Prevent footer from shrinking */
+        }
+        .footer-text {
+            font-size: 1.1rem;
+            margin-bottom: 0;
+        }
+        .footer-link {
+            color: #fff;
+            font-weight: 500;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .footer-link:hover {
+            color: #ffc107;
+        }
+
+         @media (max-width: 768px) {
+             .search-section { padding: 2rem 0 1rem 0; }
+             .search-container { padding: 0 1rem; }
+             /* Stack search bar elements on smaller screens */
+              .search-bar-custom .input-group-prepend,
+              .search-bar-custom .search-input-custom,
+              .search-bar-custom .input-group-append {
+                   display: flex; /* Use flex again */
+                   width: 100%;
+              }
+               .search-bar-custom .input-group-prepend .btn,
+               .search-bar-custom .input-group-append .btn {
+                 border-radius: 0.5rem !important;
+                 flex-grow: 1; /* Make buttons full width */
+                 justify-content: center; /* Center text/icon */
+                 margin-bottom: 0.5rem;
+              }
+              .search-bar-custom .search-input-custom {
+                 border-radius: 0.5rem !important;
+                 margin-bottom: 0.5rem;
+                 text-align: center;
+              }
+               .search-bar-custom .input-group-append {
+                   margin-bottom: 0; /* Remove bottom margin from last element */
+               }
+              .search-category-dropdown {
+                 width: 100%;
+             }
+             .search-bar-custom .input-group-prepend {
+                 margin-bottom: 0; /* Remove margin below dropdown */
+             }
+         }
+
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark">
-        <div class="container">
-            <a class="navbar-brand" href="../">Zamchiver</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="../">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../add/">Add Post</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../myacc/">My Account</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Search</a>
-                    </li>
-                    <li class="nav-item auth">
-                        <a class="nav-link" href="../../login/" style="background-color: #ffc107; color: #008000; border-color: #ffc107;">Log Out</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-    <section class="search-section">
-        <div class="container">
-            <h2>Search Zamboanga City</h2>
-            <div class="search-container">
-                <div class="search-input-group">
-                    <input type="text" class="search-input" placeholder="What are you looking for?">
-                    <button class="search-button">
-                        <i class="fas fa-search"></i> Search
-                    </button>
+    <div class="content-wrap">
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container">
+                <a class="navbar-brand" href="../home/">Zamchiver</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="../home/">Home</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">Search</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../add/">Add Post</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../myacc/">My Account</a>
+                        </li>
+                        <li class="nav-item auth">
+                            <a class="nav-link" href="../../login/" style="background-color: #ffc107; color: #008000; border-color: #ffc107;">Log Out</a>
+                        </li>
+                    </ul>
                 </div>
             </div>
-        </div>
-    </section>
+        </nav>
 
-    <section class="search-results-section">
-        <div class="container search-results-container">
-            <h2>Search Results</h2>
-            <div id="search-results">
-                <div class="search-result-card">
-                    <h3 class="search-result-title">Fort Pilar</h3>
-                    <div class="search-result-location">
-                        <i class="fas fa-map-marker-alt"></i> Zamboanga City
-                    </div>
-                    <p class="search-result-description">Explore the rich history and artifacts within the walls of the iconic Fort Pilar.</p>
-                    <a href="../../viewpost/Fort/" class="btn btn-success btn-sm mt-2">View Details</a>
+        <section class="search-section">
+            <div class="container">
+                <div class="search-container">
+                     <form action="./" method="GET" id="mainSearchForm">
+                        <div class="input-group input-group-lg search-bar-custom">
+                            <div class="input-group-prepend">
+                                <button class="btn btn-light dropdown-toggle search-category-btn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="searchCategoryButton">All Categories</button>
+                                <div class="dropdown-menu search-category-dropdown" aria-labelledby="searchCategoryButton">
+                                    <a class="dropdown-item" href="#" data-value="">All Categories</a>
+                                    <div class="dropdown-divider"></div>
+                                    <h6 class="dropdown-header">Government & Public Services</h6>
+                                    <a class="dropdown-item" href="#" data-value="gov-barangay"><i class="fas fa-building fa-fw icon-primary"></i>Barangay Halls</a>
+                                    <a class="dropdown-item" href="#" data-value="gov-postoffice"><i class="fas fa-envelope fa-fw icon-primary"></i>Post Office</a>
+                                    <a class="dropdown-item" href="#" data-value="gov-bir"><i class="fas fa-dollar-sign fa-fw icon-secondary"></i>BIR</a>
+                                    <a class="dropdown-item" href="#" data-value="gov-dfa"><i class="fas fa-passport fa-fw icon-secondary"></i>DFA</a>
+                                    <a class="dropdown-item" href="#" data-value="gov-gsis"><i class="fas fa-shield-alt fa-fw icon-secondary"></i>GSIS</a>
+                                    <a class="dropdown-item" href="#" data-value="gov-lto"><i class="fas fa-car fa-fw icon-secondary"></i>LTO</a>
+                                    <a class="dropdown-item" href="#" data-value="gov-nbi"><i class="fas fa-user-secret fa-fw icon-secondary"></i>NBI</a>
+                                    <a class="dropdown-item" href="#" data-value="gov-pagibig"><i class="fas fa-home fa-fw icon-secondary"></i>Pag-IBIG</a>
+                                    <a class="dropdown-item" href="#" data-value="gov-philhealth"><i class="fas fa-heartbeat fa-fw icon-secondary"></i>PhilHealth</a>
+                                    <a class="dropdown-item" href="#" data-value="gov-sss"><i class="fas fa-users fa-fw icon-secondary"></i>SSS</a>
+                                    <div class="dropdown-divider"></div>
+                                    <h6 class="dropdown-header">Education</h6>
+                                    <a class="dropdown-item" href="#" data-value="edu-college"><i class="fas fa-university fa-fw icon-primary"></i>College</a>
+                                    <a class="dropdown-item" href="#" data-value="edu-school"><i class="fas fa-school fa-fw icon-primary"></i>Schools</a>
+                                    <a class="dropdown-item" href="#" data-value="edu-daycare"><i class="fas fa-child fa-fw icon-primary"></i>Day Cares</a>
+                                    <div class="dropdown-divider"></div>
+                                    <h6 class="dropdown-header">Personal & Professional Service</h6>
+                                    <a class="dropdown-item" href="#" data-value="pers-barber"><i class="fas fa-cut fa-fw icon-primary"></i>BarberShop</a>
+                                    <a class="dropdown-item" href="#" data-value="pers-salon"><i class="fas fa-spa fa-fw icon-primary"></i>Beauty Salons</a>
+                                    <a class="dropdown-item" href="#" data-value="pers-print"><i class="fas fa-print fa-fw icon-primary"></i>Printing & Copy Services</a>
+                                    <a class="dropdown-item" href="#" data-value="pers-tailor"><i class="fas fa-ruler-combined fa-fw icon-primary"></i>Tailors</a>
+                                    <a class="dropdown-item" href="#" data-value="pers-laundry"><i class="fas fa-tshirt fa-fw icon-primary"></i>Laundry</a>
+                                    <a class="dropdown-item" href="#" data-value="pers-photo"><i class="fas fa-camera-retro fa-fw icon-primary"></i>Photography Studio</a>
+                                    <a class="dropdown-item" href="#" data-value="pers-legal"><i class="fas fa-gavel fa-fw icon-primary"></i>Legal Service</a>
+                                    <div class="dropdown-divider"></div>
+                                    <h6 class="dropdown-header">Attraction & Recreation</h6>
+                                    <a class="dropdown-item" href="#" data-value="attr-cinema"><i class="fas fa-film fa-fw icon-primary"></i>Cinema</a>
+                                    <a class="dropdown-item" href="#" data-value="attr-park"><i class="fas fa-tree fa-fw icon-primary"></i>Parks</a>
+                                    <a class="dropdown-item" href="#" data-value="attr-historical"><i class="fas fa-monument fa-fw icon-primary"></i>Historical Sites</a>
+                                    <a class="dropdown-item" href="#" data-value="attr-sports"><i class="fas fa-volleyball-ball fa-fw icon-primary"></i>Sports Venue</a>
+                                    <a class="dropdown-item" href="#" data-value="attr-theme"><i class="fas fa-map-pin fa-fw icon-primary"></i>Theme Parks</a>
+                                    <a class="dropdown-item" href="#" data-value="attr-beach"><i class="fas fa-umbrella-beach fa-fw icon-primary"></i>Beaches</a>
+                                    <a class="dropdown-item" href="#" data-value="attr-tourist"><i class="fas fa-map-marker-alt fa-fw icon-primary"></i>Tourist Spot</a>
+                                    <a class="dropdown-item" href="#" data-value="attr-nightlife"><i class="fas fa-glass-cheers fa-fw icon-primary"></i>Night Life</a>
+                                    <div class="dropdown-divider"></div>
+                                    <h6 class="dropdown-header">Religious Places</h6>
+                                    <a class="dropdown-item" href="#" data-value="reli-church"><i class="fas fa-church fa-fw icon-primary"></i>Churches</a>
+                                    <a class="dropdown-item" href="#" data-value="reli-mosque"><i class="fas fa-mosque fa-fw icon-primary"></i>Mosque</a>
+                                    <a class="dropdown-item" href="#" data-value="reli-temple"><i class="fas fa-place-of-worship fa-fw icon-primary"></i>Temple</a>
+                                    <div class="dropdown-divider"></div>
+                                    <h6 class="dropdown-header">Transportation</h6>
+                                    <a class="dropdown-item" href="#" data-value="trans-terminal"><i class="fas fa-route fa-fw icon-primary"></i>Airport/Bus/Port</a>
+                                    <a class="dropdown-item" href="#" data-value="trans-jeepney"><i class="fas fa-bus-alt fa-fw icon-primary"></i>Jeepney Terminal</a>
+                                    <a class="dropdown-item" href="#" data-value="trans-rental"><i class="fas fa-car-side fa-fw icon-primary"></i>Car Rental</a>
+                                    <a class="dropdown-item" href="#" data-value="trans-gas"><i class="fas fa-gas-pump fa-fw icon-primary"></i>Gas Station</a>
+                                    <a class="dropdown-item" href="#" data-value="trans-parking"><i class="fas fa-parking fa-fw icon-primary"></i>Parking Areas</a>
+                                    <div class="dropdown-divider"></div>
+                                    <h6 class="dropdown-header">Financial Service</h6>
+                                    <a class="dropdown-item" href="#" data-value="fin-bank"><i class="fas fa-piggy-bank fa-fw icon-primary"></i>Banks</a>
+                                    <a class="dropdown-item" href="#" data-value="fin-atm"><i class="fas fa-credit-card fa-fw icon-primary"></i>ATM</a>
+                                    <a class="dropdown-item" href="#" data-value="fin-transfer"><i class="fas fa-exchange-alt fa-fw icon-primary"></i>Money Transfer</a>
+                                    <a class="dropdown-item" href="#" data-value="fin-pawn"><i class="fas fa-hand-holding-usd fa-fw icon-primary"></i>Pawn Shop</a>
+                                    <a class="dropdown-item" href="#" data-value="fin-exchange"><i class="fas fa-money-bill-wave fa-fw icon-primary"></i>Currency Exchange</a>
+                                    <div class="dropdown-divider"></div>
+                                    <h6 class="dropdown-header">Health & Wellness</h6>
+                                    <a class="dropdown-item" href="#" data-value="health-clinic"><i class="fas fa-clinic-medical fa-fw icon-primary"></i>Clinic</a>
+                                    <a class="dropdown-item" href="#" data-value="health-dental"><i class="fas fa-tooth fa-fw icon-primary"></i>Dental Clinic</a>
+                                    <a class="dropdown-item" href="#" data-value="health-pharmacy"><i class="fas fa-pills fa-fw icon-primary"></i>Pharmacies</a>
+                                    <a class="dropdown-item" href="#" data-value="health-opto"><i class="fas fa-eye fa-fw icon-primary"></i>Optometrist</a>
+                                    <a class="dropdown-item" href="#" data-value="health-gym"><i class="fas fa-dumbbell fa-fw icon-primary"></i>Gym</a>
+                                    <a class="dropdown-item" href="#" data-value="health-spa"><i class="fas fa-spa fa-fw icon-primary"></i>Spa</a>
+                                    <div class="dropdown-divider"></div>
+                                    <h6 class="dropdown-header">Shopping & Retail</h6>
+                                    <a class="dropdown-item" href="#" data-value="shop-mall"><i class="fas fa-shopping-bag fa-fw icon-primary"></i>Malls</a>
+                                    <a class="dropdown-item" href="#" data-value="shop-clothing"><i class="fas fa-shopping-basket fa-fw icon-primary"></i>Clothing</a>
+                                    <a class="dropdown-item" href="#" data-value="shop-electronics"><i class="fas fa-plug fa-fw icon-primary"></i>Electronics</a>
+                                    <a class="dropdown-item" href="#" data-value="shop-flea"><i class="fas fa-store fa-fw icon-primary"></i>Flea Markets</a>
+                                    <a class="dropdown-item" href="#" data-value="shop-hardware"><i class="fas fa-tools fa-fw icon-primary"></i>Hardware Store</a>
+                                    <a class="dropdown-item" href="#" data-value="shop-book"><i class="fas fa-book-open fa-fw icon-primary"></i>Book Store</a>
+                                    <div class="dropdown-divider"></div>
+                                    <h6 class="dropdown-header">Accommodations</h6>
+                                    <a class="dropdown-item" href="#" data-value="accom-hotel"><i class="fas fa-hotel fa-fw icon-primary"></i>Hotels</a>
+                                    <a class="dropdown-item" href="#" data-value="accom-motel"><i class="fas fa-bed fa-fw icon-primary"></i>Motels</a>
+                                    <a class="dropdown-item" href="#" data-value="accom-apt"><i class="fas fa-building fa-fw icon-primary"></i>Apartments</a>
+                                    <a class="dropdown-item" href="#" data-value="accom-resort"><i class="fas fa-swimming-pool fa-fw icon-primary"></i>Resort</a>
+                                    <a class="dropdown-item" href="#" data-value="accom-camp"><i class="fas fa-campground fa-fw icon-primary"></i>Campgrounds</a>
+                                    <div class="dropdown-divider"></div>
+                                    <h6 class="dropdown-header">Emergencies</h6>
+                                    <a class="dropdown-item" href="#" data-value="emerg-hospital"><i class="fas fa-hospital-alt fa-fw icon-danger"></i>Hospital</a>
+                                    <a class="dropdown-item" href="#" data-value="emerg-police"><i class="fas fa-user-shield fa-fw icon-danger"></i>Police Station</a>
+                                    <a class="dropdown-item" href="#" data-value="emerg-fire"><i class="fas fa-fire-extinguisher fa-fw icon-danger"></i>Fire Station</a>
+                                    <div class="dropdown-divider"></div>
+                                    <h6 class="dropdown-header">Food & Drink</h6>
+                                    <a class="dropdown-item" href="#" data-value="food-restaurant"><i class="fas fa-utensils fa-fw icon-primary"></i>Restaurants</a>
+                                    <a class="dropdown-item" href="#" data-value="food-cafe"><i class="fas fa-coffee fa-fw icon-primary"></i>Cafes</a>
+                                    <a class="dropdown-item" href="#" data-value="food-bakery"><i class="fas fa-bread-slice fa-fw icon-primary"></i>Bakeries</a>
+                                    <a class="dropdown-item" href="#" data-value="food-carinderia"><i class="fas fa-drumstick-bite fa-fw icon-primary"></i>Carinderia</a>
+                                    <a class="dropdown-item" href="#" data-value="food-bar"><i class="fas fa-glass-martini-alt fa-fw icon-primary"></i>Bars</a>
+                                    <a class="dropdown-item" href="#" data-value="food-street"><i class="fas fa-hotdog fa-fw icon-primary"></i>Street Food</a>
+                                </div>
+                            </div>
+                            <input type="search" id="mainSearchInput" name="query" class="form-control search-input-custom" placeholder="Search for places, services..." aria-label="Search query">
+                            <input type="hidden" id="searchCategoryValue" name="category" value="">
+                            <div class="input-group-append">
+                                <button class="btn btn-warning search-button-custom" type="submit" aria-label="Submit search">
+                                    <i class="fas fa-search"></i> Search
+                                </button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-
-                <div class="search-result-card">
-                    <h3 class="search-result-title">Paseo del Mar</h3>
-                    <div class="search-result-location">
-                        <i class="fas fa-map-marker-alt"></i> Zamboanga City
-                    </div>
-                    <p class="search-result-description">Enjoy a leisurely walk along the scenic esplanade with beautiful ocean views and evening entertainment.</p>
-                    <a href="../../viewpost/Paseo/" class="btn btn-success btn-sm mt-2">View Details</a>
-                </div>
-                <div class="search-result-card">
-                    <h3 class="search-result-title">Great Santa Cruz Island</h3>
-                    <div class="search-result-location">
-                        <i class="fas fa-map-marker-alt"></i> Zamboanga City
-                    </div>
-                    <p class="search-result-description">Famous for its pink sand beach and rich marine biodiversity.</p>
-                    <a href="../../viewpost/Cruz/" class="btn btn-success btn-sm mt-2">View Details</a>
-                </div>
-
-                <p class="no-results d-none">No results found for your search.</p>
             </div>
-        </div>
-    </section>
+        </section>
+
+        <section class="search-results-section">
+            <div class="container search-results-container">
+                <h2>Search Results</h2>
+                <div id="search-results">
+                    <!-- EXAMPLE RESULTS - Add data-category and data-subcategory -->
+                    <div class="search-result-card" data-category="attr" data-subcategory="historical">
+                        <h3 class="search-result-title">Fort Pilar</h3>
+                        <div class="search-result-location">
+                            <i class="fas fa-map-marker-alt"></i> Zamboanga City
+                        </div>
+                        <p class="search-result-description">Explore the rich history and artifacts within the walls of the iconic Fort Pilar.</p>
+                        <a href="../../viewpost/Fort/" class="btn btn-success btn-sm mt-2">View Details</a>
+                    </div>
+
+                    <div class="search-result-card" data-category="attr" data-subcategory="park">
+                        <h3 class="search-result-title">Paseo del Mar</h3>
+                        <div class="search-result-location">
+                            <i class="fas fa-map-marker-alt"></i> Zamboanga City
+                        </div>
+                        <p class="search-result-description">Enjoy a leisurely walk along the scenic esplanade with beautiful ocean views and evening entertainment.</p>
+                        <a href="../../viewpost/Paseo/" class="btn btn-success btn-sm mt-2">View Details</a>
+                    </div>
+                    <div class="search-result-card" data-category="attr" data-subcategory="beach">
+                        <h3 class="search-result-title">Great Santa Cruz Island</h3>
+                        <div class="search-result-location">
+                            <i class="fas fa-map-marker-alt"></i> Zamboanga City
+                        </div>
+                        <p class="search-result-description">Famous for its pink sand beach and rich marine biodiversity.</p>
+                        <a href="../../viewpost/Cruz/" class="btn btn-success btn-sm mt-2">View Details</a>
+                    </div>
+                     <div class="search-result-card" data-category="accom" data-subcategory="hotel"> <!-- Example other category -->
+                        <h3 class="search-result-title">Garden Orchid Hotel</h3>
+                        <div class="search-result-location">
+                            <i class="fas fa-map-marker-alt"></i> Gov. Camins Avenue, Zamboanga City
+                        </div>
+                        <p class="search-result-description">A well-known hotel offering comfortable rooms, amenities, and event spaces.</p>
+                        <a href="#" class="btn btn-success btn-sm mt-2">View Details</a>
+                    </div>
+                     <div class="search-result-card" data-category="food" data-subcategory="restaurant"> <!-- Example other category -->
+                        <h3 class="search-result-title">Alavar Seafood Restaurant</h3>
+                        <div class="search-result-location">
+                            <i class="fas fa-map-marker-alt"></i> Don Alfaro Street, Tetuan, Zamboanga City
+                        </div>
+                        <p class="search-result-description">Famous for its Curacha crab dish served with the signature Alavar sauce.</p>
+                        <a href="#" class="btn btn-success btn-sm mt-2">View Details</a>
+                    </div>
+                    <!-- END EXAMPLE RESULTS -->
+
+                    <p class="no-results d-none">No results found for your search criteria.</p>
+                </div>
+            </div>
+        </section>
+    </div><!-- /.content-wrap -->
 
     <footer class="footer">
         <div class="container">
-            <p class="footer-text">&copy; <?php echo date("Y"); ?> Zamchiver. All rights reserved. | Developed by <a href="#" class="footer-link">Your Name/Organization</a></p>
+            <p class="footer-text">© 2024 Zamchiver. All rights reserved. | Developed by <a href="#" class="footer-link">Your Name/Organization</a></p>
         </div>
     </footer>
 
+    <!-- Ensure jQuery is loaded FIRST -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- THEN load Bootstrap Bundle (includes Popper.js) with the CORRECT integrity hash -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-LtrjvnR4Twt/qOuYxE721u19sVFLVSA4hf/rRt6PrZTmiPltdZcI7q7PXQBYTKyf" crossorigin="anonymous"></script>
+    <!-- FINALLY load your custom scripts -->
     <script>
         $(document).ready(function() {
-            // You would implement your search functionality here using JavaScript
-            // This is a basic example to show/hide the "no results" message
 
-            $(".search-button").on("click", function() {
-                var searchTerm = $(".search-input").val().toLowerCase();
+            // Function to get URL parameters
+            function getUrlParameter(name) {
+                name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+                var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+                var results = regex.exec(location.search);
+                return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+            };
+
+            // Populate search form from URL parameters
+            var initialQuery = getUrlParameter('query');
+            var initialCategoryFilter = getUrlParameter('category'); // This might be "edu-school"
+
+            $('#mainSearchInput').val(initialQuery);
+            $('#searchCategoryValue').val(initialCategoryFilter);
+
+            if (initialCategoryFilter) {
+                var categoryItem = $('.search-category-dropdown .dropdown-item[data-value="' + initialCategoryFilter + '"]');
+                if (categoryItem.length > 0) {
+                    $('#searchCategoryButton').text(categoryItem.text().trim());
+                } else {
+                     $('#searchCategoryButton').text("All Categories"); // Default if value is invalid
+                     $('#searchCategoryValue').val(''); // Reset hidden input if invalid
+                }
+            } else {
+                $('#searchCategoryButton').text("All Categories");
+            }
+
+
+            // Search Filtering Function
+            function filterResults() {
+                var searchTerm = $("#mainSearchInput").val().toLowerCase();
+                var selectedFilterValue = $("#searchCategoryValue").val(); // e.g., "edu-school", "attr", ""
                 var resultsFound = false;
 
-                $(".search-result-card").each(function() {
-                    var title = $(this).find(".search-result-title").text().toLowerCase();
-                    var description = $(this).find(".search-result-description").text().toLowerCase();
-                    var location = $(this).find(".search-result-location").text().toLowerCase();
+                console.log("Filtering with query:", searchTerm, "and filter:", selectedFilterValue || "all");
 
-                    if (title.includes(searchTerm) || description.includes(searchTerm) || location.includes(searchTerm)) {
-                        $(this).show();
+                $(".search-result-card").each(function() {
+                    var card = $(this);
+                    var title = card.find(".search-result-title").text().toLowerCase();
+                    var description = card.find(".search-result-description").text().toLowerCase();
+                    var location = card.find(".search-result-location").text().toLowerCase();
+                    var cardCategory = card.data('category') || ""; // Get card's main category
+                    var cardSubCategory = card.data('subcategory') || ""; // Get card's subcategory
+
+                    // 1. Check text match
+                    var textMatch = (
+                        !searchTerm ||
+                        title.includes(searchTerm) ||
+                        description.includes(searchTerm) ||
+                        location.includes(searchTerm)
+                    );
+
+                    // 2. Check category/subcategory match
+                    var categoryMatch = false;
+                    if (!selectedFilterValue) { // "All Categories" selected
+                        categoryMatch = true;
+                    } else {
+                        // Check if the filter value contains a subcategory separator (e.g., '-')
+                        if (selectedFilterValue.includes('-')) {
+                             var parts = selectedFilterValue.split('-');
+                             var filterMainCat = parts[0];
+                             var filterSubCat = parts[1];
+                             // Match both main and sub category
+                             if (cardCategory === filterMainCat && cardSubCategory === filterSubCat) {
+                                 categoryMatch = true;
+                             }
+                        } else {
+                            // Filter is only a main category - match if card's main category is the same
+                             if (cardCategory === selectedFilterValue) {
+                                 categoryMatch = true;
+                             }
+                        }
+                    }
+
+                    // 3. Show/Hide based on BOTH matches
+                    if (textMatch && categoryMatch) {
+                        card.show();
                         resultsFound = true;
                     } else {
-                        $(this).hide();
+                        card.hide();
                     }
                 });
 
+                // Update "No Results" message
                 if (resultsFound) {
                     $(".no-results").addClass("d-none");
                 } else {
                     $(".no-results").removeClass("d-none");
                 }
+            }
+
+            // Category selection in the dropdown
+            $('.search-category-dropdown .dropdown-item').on('click', function(e) {
+                e.preventDefault();
+                var selectedText = $(this).text().trim();
+                var selectedValue = $(this).data('value'); // This might be "edu-school" now
+                $('#searchCategoryButton').text(selectedText);
+                $('#searchCategoryValue').val(selectedValue);
+                // Re-filter results immediately when category changes
+                 filterResults();
             });
 
-            // Initially show all result cards
-            $(".search-result-card").show();
-            $(".no-results").addClass("d-none");
+            // Form submission (reloads page with new GET parameters)
+            $('#mainSearchForm').on('submit', function(e) {
+                 // No preventDefault needed, allow GET submission
+                 console.log('Form submitted via GET to update URL');
+            });
+
+             // Optional: Filter as user types in search box
+             $('#mainSearchInput').on('keyup', function() {
+                 filterResults();
+             });
+
+            // Initial Filter on Page Load
+            filterResults();
+
         });
     </script>
 </body>

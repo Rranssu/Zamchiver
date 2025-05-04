@@ -60,6 +60,29 @@
             outline: none;
             box-shadow: 0 0 0 3px rgba(0, 128, 0, 0.1); /* Light Green focus */
         }
+        /* Adjust radius for input groups */
+        .input-group .form-control {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+        .input-group .input-group-append .btn {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+            border-left: none; /* Remove border between input and appended button */
+            border-color: #e0e0e0; /* Match input border */
+        }
+        .input-group .form-control:focus + .input-group-append .btn {
+             border-color: #008000; /* Match focused input border */
+        }
+        .input-group .input-group-append .btn:hover {
+             background-color: #e9ecef; /* Slight hover effect */
+        }
+        .toggle-password i {
+             cursor: pointer; /* Indicate the icon is clickable */
+             width: 1.2em; /* Consistent icon width */
+             text-align: center;
+        }
+
         .btn-primary {
             background-color: #008000; /* Green */
             color: #fff;
@@ -90,6 +113,9 @@
             color: #dc3545;
             font-size: 0.9rem;
             margin-top: 0.5rem;
+            /* Ensure it appears below the input group */
+            display: block;
+            width: 100%;
         }
     </style>
 </head>
@@ -99,8 +125,8 @@
             <h2 class="register-title">Register for Zamchiver</h2>
             <form id="register-form">
                 <div class="form-group">
-                    <label for="name" class="form-label">Full Name</label>
-                    <input type="text" class="form-control" id="name" name="name" placeholder="Enter your full name" required>
+                    <label for="name" class="form-label">Username</label>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Enter your Username" required>
                     <div id="name-error" class="error-message"></div>
                 </div>
                 <div class="form-group">
@@ -108,16 +134,35 @@
                     <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required>
                     <div id="email-error" class="error-message"></div>
                 </div>
+
+                <!-- Updated Password Field -->
                 <div class="form-group">
                     <label for="password" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required>
-                    <div id="password-error" class="error-message"></div>
+                    <div class="input-group">
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required aria-describedby="password-toggle">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary toggle-password" type="button" id="password-toggle" data-target="#password" aria-label="Show password">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                     <div id="password-error" class="error-message"></div>
                 </div>
+
+                <!-- Updated Confirm Password Field -->
                 <div class="form-group">
                     <label for="confirm_password" class="form-label">Confirm Password</label>
-                    <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="Confirm your password" required>
+                     <div class="input-group">
+                        <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="Confirm your password" required aria-describedby="confirm-password-toggle">
+                        <div class="input-group-append">
+                             <button class="btn btn-outline-secondary toggle-password" type="button" id="confirm-password-toggle" data-target="#confirm_password" aria-label="Show confirm password">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
                     <div id="confirm-password-error" class="error-message"></div>
                 </div>
+
                 <button type="submit" class="btn btn-primary">Register</button>
                 <div class="register-link">
                     <a href="../login/">Already have an account? Log In</a>
@@ -131,6 +176,7 @@
     <script>
         $(document).ready(function() {
             $('#register-form').submit(function(event) {
+                // --- Form validation and submission logic ---
                 event.preventDefault();
 
                 let name = $('#name').val().trim();
@@ -139,13 +185,15 @@
                 let confirmPassword = $('#confirm_password').val().trim();
                 let isValid = true;
 
+                // Clear previous errors
                 $('#name-error').text('');
                 $('#email-error').text('');
                 $('#password-error').text('');
                 $('#confirm-password-error').text('');
 
+                // Perform validation
                 if (!validateName(name)) {
-                    $('#name-error').text('Please enter your full name.');
+                    $('#name-error').text('Please enter your Username.');
                     isValid = false;
                 }
                 if (!validateEmail(email)) {
@@ -156,18 +204,44 @@
                     $('#password-error').text('Password must be at least 8 characters long.');
                     isValid = false;
                 }
-                if (password !== confirmPassword) {
+                 // Check confirm password only if password itself is valid syntactically
+                 else if (password !== confirmPassword) {
                     $('#confirm-password-error').text('Passwords do not match.');
                     isValid = false;
                 }
 
+                // Proceed if form is valid
                 if (isValid) {
-                    // Simulate a successful registration (replace with your actual registration logic)
-                    console.log('Registering with:', name, email, password);
+                    console.log('Registering with:', name, email); // Avoid logging password in production
+                    // Replace this alert/redirect with your actual registration AJAX call
                     window.location.href = 'captcha/';
+                    // Example redirect on success:
+                    // window.location.href = '../login/?registered=true';
                 }
+                 // --- End of existing logic ---
             });
 
+             // --- Password Toggle Logic ---
+            $('.toggle-password').on('click', function() {
+                const targetInputId = $(this).data('target'); // Get the target input ID (e.g., "#password")
+                const targetInput = $(targetInputId);      // Select the input field using the ID
+                const icon = $(this).find('i');            // Select the icon inside the clicked button
+
+                // Toggle the input type
+                if (targetInput.attr('type') === 'password') {
+                    targetInput.attr('type', 'text');
+                    icon.removeClass('fa-eye').addClass('fa-eye-slash'); // Change icon to slash-eye
+                    $(this).attr('aria-label', 'Hide password'); // Update accessibility label
+                } else {
+                    targetInput.attr('type', 'password');
+                    icon.removeClass('fa-eye-slash').addClass('fa-eye'); // Change icon back to eye
+                    $(this).attr('aria-label', 'Show password'); // Update accessibility label
+                }
+            });
+             // --- END Password Toggle ---
+
+
+            // --- Validation helper functions ---
             function validateName(name) {
                 return name.trim() !== '';
             }

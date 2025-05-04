@@ -91,6 +91,7 @@
             position: relative;
             border-radius: 0.5rem;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            margin-top: 2rem; /* Add space below navbar */
         }
         .hero-section::before {
             content: "";
@@ -142,7 +143,10 @@
             box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             border: 1px solid #ddd;
-            overflow: hidden; /* Added to contain image */
+            overflow: hidden;
+            height: 100%; /* Make cards equal height */
+            display: flex;
+            flex-direction: column;
         }
         .top-spot-card:hover {
             transform: translateY(-10px);
@@ -151,10 +155,8 @@
         .top-spot-image {
             height: 300px;
             object-fit: cover;
-            border-top-left-radius: 0.75rem;
-            border-top-right-radius: 0.75rem;
             transition: transform 0.3s ease;
-            width: 100%; /* Added to ensure image fits container */
+            width: 100%;
         }
         .top-spot-image:hover {
             transform: scale(1.05);
@@ -162,6 +164,9 @@
         .top-spot-content {
             padding: 2rem;
             text-align: left;
+            flex-grow: 1; /* Allow content to grow */
+            display: flex;
+            flex-direction: column;
         }
         .top-spot-title {
             font-size: 1.5rem;
@@ -184,50 +189,116 @@
             font-size: 1rem;
             line-height: 1.7;
             color: #495057;
+            flex-grow: 1; /* Push button to bottom */
+            margin-bottom: 1rem; /* Space before button */
         }
-        .categories-section {
-            padding: 5rem 0;
-            background-color: #fff8e1; /* Light Yellow - Vinta Accent */
-            text-align: center;
+        .btn-success { /* Customizing success button */
+             background-color: #008000;
+             border-color: #008000;
+             font-weight: 500;
         }
-        .category-card {
+        .btn-success:hover {
+             background-color: #006400;
+             border-color: #006400;
+        }
+
+        /* Styles for Category Dropdowns */
+        .categories-dropdown-section {
+            background-color: #ffffff; /* White background */
+            padding-top: 4rem;
+            padding-bottom: 4rem;
+        }
+        .dropdown .btn.dropdown-toggle {
             background-color: #fff;
-            border-radius: 0.75rem;
-            margin-bottom: 2.5rem;
-            padding: 2rem;
-            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid #ddd;
-            display: flex; /* Make category cards flex containers */
-            flex-direction: column;
-            justify-content: space-between; /* Distribute space evenly */
-            height: 100%;
-            cursor: pointer; /* Add cursor style to indicate clickable */
+            border: 1px solid #e0e0e0; /* Softer border */
+            color: #343a40;
+            font-weight: 500;
+            padding: 0.75rem 1.25rem;
+            text-align: left !important;
+            width: 100%;
+            border-radius: 0.5rem; /* More rounded corners */
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05); /* Subtle shadow */
+            transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
         }
-        .category-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+         .dropdown .btn.dropdown-toggle:hover,
+         .dropdown .btn.dropdown-toggle:focus {
+             background-color: #f8f9fa;
+             border-color: #ced4da;
+             box-shadow: 0 3px 6px rgba(0,0,0,0.07);
+         }
+         .dropdown .dropdown-menu {
+             border-color: #e0e0e0;
+             padding-top: 0;
+             padding-bottom: 0;
+             width: 100%;
+             margin-top: 0.125rem;
+             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+             border-radius: 0.5rem;
+         }
+        .dropdown-item {
+            padding: 0.7rem 1.25rem; /* Increased padding */
+            font-size: 0.95rem;
+            color: #343a40;
+            border-bottom: 1px solid #f1f1f1;
         }
-        .category-icon {
-            font-size: 4rem;
-            color: #ffc107; /* Yellow */
-            margin-bottom: 1.5rem;
-            transition: color 0.3s ease;
+         .dropdown-item:last-child {
+             border-bottom: none;
+             border-bottom-left-radius: 0.5rem; /* Rounded bottom corners */
+             border-bottom-right-radius: 0.5rem;
+         }
+         .dropdown-item:first-child {
+              border-top-left-radius: 0.5rem; /* Rounded top corners */
+              border-top-right-radius: 0.5rem;
+         }
+        .dropdown-item i.fa-fw {
+            text-align: center;
+            width: 1.3em;
+            margin-right: 0.75rem; /* Increased space after icon */
+            opacity: 0.8;
         }
-        .category-icon:hover {
-            color: #e65100;
+        .dropdown-item:hover, .dropdown-item:focus {
+             color: #008000; /* Green text on hover */
+             background-color: #e9f5e9; /* Very light green background */
+             text-decoration: none;
         }
-        .category-title {
-            font-size: 1.5rem;
-            color: #008000; /* Green */
-            font-family: 'Poppins', sans-serif;
-            margin-bottom: 1rem;
+         /* Nested Collapse Styles */
+        .nested-list-group {
+             background-color: #f8f9fa;
+             border-top: 1px solid #dee2e6;
+             margin-left: -1.25rem; /* Align with left padding */
+             margin-right: -1.25rem; /* Align with right padding */
+             padding-bottom: 0.5rem;
         }
-        .category-description {
-            font-size: 1rem;
-            color: #008000; /* Green */
-            line-height: 1.7;
+        .nested-list-group .list-group-item {
+            padding: 0.5rem 1rem 0.5rem 2.75rem; /* More indent */
+            font-size: 0.9rem;
+            color: #495057;
+            border: none;
         }
+        .nested-list-group .list-group-item i.fa-fw {
+             width: 1.1em;
+             margin-right: 0.75rem;
+             opacity: 0.7;
+         }
+         .nested-list-group .list-group-item:hover {
+             background-color: #dde4ec;
+         }
+         /* Chevron rotation */
+         a[data-toggle="collapse"][aria-expanded="true"] > .fa-chevron-down {
+            transform: rotate(180deg);
+         }
+         a[data-toggle="collapse"] > .fa-chevron-down {
+            transition: transform 0.2s ease-in-out;
+            font-size: 0.8em;
+         }
+
+         /* Icon Color Palette Matching */
+         .dropdown-item .icon-primary { color: #008000 !important; /* Main Green */ }
+         .dropdown-item .icon-secondary,
+         .nested-list-group .list-group-item .icon-secondary /* Apply to nested too */
+         { color: #ffc107 !important; /* Yellow / Gold */ }
+         .dropdown-item .icon-danger { color: #dc3545 !important; /* Red for Emergencies */ }
+
         .footer {
             background-color: #343a40;
             color: #fff;
@@ -237,6 +308,7 @@
         }
         .footer-text {
             font-size: 1.1rem;
+            margin-bottom: 0;
         }
         .footer-link {
             color: #fff;
@@ -245,10 +317,7 @@
             transition: color 0.3s ease;
         }
         .footer-link:hover {
-            color: #ffb74d;
-        }
-        .load-more-button {
-            margin-top: 2rem;
+            color: #ffc107; /* Yellow */
         }
 
         @media (max-width: 992px) {
@@ -281,18 +350,15 @@
             .hero-tagline {
                 font-size: 1.2rem;
             }
-            .categories-section {
-                padding: 3rem 0;
-            }
-            .category-icon {
-                font-size: 3rem;
-            }
+             .categories-dropdown-section {
+                 padding: 3rem 0;
+             }
         }
     </style>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark">
-        <div class="container">
+         <div class="container">
             <a class="navbar-brand" href="#">Zamchiver</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -318,12 +384,11 @@
             </div>
         </div>
     </nav>
-
     <section id="top-spots" class="top-spots-section">
         <div class="container">
             <h2 class="section-title">Top Rated Spots</h2>
             <div class="row" id="top-spots-list">
-                <div class="col-md-6 col-lg-4">
+                <div class="col-md-6 col-lg-4 mb-4">
                     <div class="top-spot-card">
                         <img src="../../../../img/fortpilar.webp" alt="Fort Pilar" class="top-spot-image">
                         <div class="top-spot-content">
@@ -333,11 +398,11 @@
                                 Zamboanga City
                             </div>
                             <p class="top-spot-description">A 17th-century Spanish fortress, now a museum and historical landmark.</p>
-                            <a href="../../viewpost/Fort/" class="btn btn-success mt-3">View More</a>
+                            <a href="../../viewpost/Fort/" class="btn btn-success mt-auto">View More</a>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-4">
+                <div class="col-md-6 col-lg-4 mb-4">
                     <div class="top-spot-card">
                         <img src="../../../../img/paseo.webp" alt="Paseo del Mar" class="top-spot-image">
                         <div class="top-spot-content">
@@ -347,11 +412,11 @@
                                 Zamboanga City
                             </div>
                             <p class="top-spot-description">A scenic esplanade perfect for strolling and enjoying the ocean view.</p>
-                            <a href="../../viewpost/Paseo/" class="btn btn-success mt-3">View More</a>
+                            <a href="../../viewpost/Paseo/" class="btn btn-success mt-auto">View More</a>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-4">
+                <div class="col-md-6 col-lg-4 mb-4">
                     <div class="top-spot-card">
                         <img src="../../../../img/cruzz.webp" alt="Great Santa Cruz Island" class="top-spot-image">
                         <div class="top-spot-content">
@@ -361,11 +426,11 @@
                                 Zamboanga City
                             </div>
                             <p class="top-spot-description">Famous for its pink sand beach and rich marine biodiversity.</p>
-                            <a href="../../viewpost/Cruz/" class="btn btn-success mt-3">View More</a>
+                            <a href="../../viewpost/Cruz/" class="btn btn-success mt-auto">View More</a>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-4">
+                <div class="col-md-6 col-lg-4 mb-4">
                     <div class="top-spot-card">
                         <img src="../../../../img/mel.webp" alt="Merloquet Falls" class="top-spot-image">
                         <div class="top-spot-content">
@@ -375,11 +440,11 @@
                                 Zamboanga City
                             </div>
                             <p class="top-spot-description">A multi-tiered waterfall with stunning natural beauty.</p>
-                            <a href="../../viewpost/falls/" class="btn btn-success mt-3">View More</a>
+                            <a href="../../viewpost/falls/" class="btn btn-success mt-auto">View More</a>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-4">
+                <div class="col-md-6 col-lg-4 mb-4">
                     <div class="top-spot-card">
                         <img src="../../../../img/pasona.webp" alt="Pasonanca Park" class="top-spot-image">
                         <div class="top-spot-content">
@@ -389,12 +454,12 @@
                                 Zamboanga City
                             </div>
                             <p class="top-spot-description">A sprawling park with gardens, a butterfly sanctuary, and a swimming pool.</p>
-                            <a href="fortpilar.html" class="btn btn-success mt-3">View More</a>
+                            <a href="fortpilar.html" class="btn btn-success mt-auto">View More</a>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-4">
-                    <a href="../spots/">
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <a href="../spots/" style="text-decoration: none; color: inherit;">
                         <div class="top-spot-card" id="load-more-top-spots">
                             <img src="https://placehold.co/400x300/008000/FFFFFF/png?text=More+Spots&font=poppins" alt="More Spots" class="top-spot-image">
                             <div class="top-spot-content">
@@ -409,100 +474,225 @@
                     </a>
                 </div>
             </div>
-            <div class="row d-none" id="hidden-top-spots-list">
-            </div>
         </div>
     </section>
 
-    <section id="categories" class="categories-section">
+    <section id="categories-dropdown" class="categories-dropdown-section py-5">
         <div class="container">
-            <h2 class="section-title">Categories</h2>
+            <h2 class="section-title text-center">Explore Categories</h2>
             <div class="row">
-                <div class="col-md-6 col-lg-3 mb-4">
-                    
-                    <a href="../categories/atractions/">
-                        <div class="category-card">
-                            <i class="fas fa-map-marked-alt category-icon"></i>
-                            <h3 class="category-title">Attractions</h3>
-                            <p class="category-description">Explore popular attractions.</p>
+
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="dropdown w-100">
+                        <button class="btn btn-light dropdown-toggle w-100 border shadow-sm d-flex justify-content-between align-items-center" type="button" id="govDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Government & Public Services
+                        </button>
+                        <div class="dropdown-menu w-100 shadow-sm" aria-labelledby="govDropdown">
+                            <a class="dropdown-item" href="#"><i class="fas fa-building fa-fw icon-primary"></i>Barangay Halls</a>
+                            <a class="dropdown-item" href="#"><i class="fas fa-envelope fa-fw icon-primary"></i>Post Office</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item d-flex justify-content-between align-items-center" data-toggle="collapse" href="#govAgenciesCollapse" role="button" aria-expanded="false" aria-controls="govAgenciesCollapse">
+                                <span><i class="fas fa-landmark fa-fw icon-primary"></i>National Agencies</span>
+                                <i class="fas fa-chevron-down fa-xs ml-2"></i>
+                            </a>
+                             <div class="collapse" id="govAgenciesCollapse">
+                                <div class="list-group list-group-flush small py-1 nested-list-group">
+                                    <a href="#" class="list-group-item list-group-item-action border-0"><i class="fas fa-dollar-sign fa-fw icon-secondary"></i>Bureau of Internal Revenue</a>
+                                    <a href="#" class="list-group-item list-group-item-action border-0"><i class="fas fa-passport fa-fw icon-secondary"></i>Department of Foreign Affairs</a>
+                                    <a href="#" class="list-group-item list-group-item-action border-0"><i class="fas fa-shield-alt fa-fw icon-secondary"></i>Gov. Service Insurance System</a>
+                                    <a href="#" class="list-group-item list-group-item-action border-0"><i class="fas fa-car fa-fw icon-secondary"></i>Land Transportation Office</a>
+                                    <a href="#" class="list-group-item list-group-item-action border-0"><i class="fas fa-user-secret fa-fw icon-secondary"></i>National Bureau of Investigation</a>
+                                    <a href="#" class="list-group-item list-group-item-action border-0"><i class="fas fa-home fa-fw icon-secondary"></i>Pag-IBIG Fund</a>
+                                    <a href="#" class="list-group-item list-group-item-action border-0"><i class="fas fa-heartbeat fa-fw icon-secondary"></i>PhilHealth</a>
+                                    <a href="#" class="list-group-item list-group-item-action border-0"><i class="fas fa-users fa-fw icon-secondary"></i>Social Security System</a>
+                                </div>
+                            </div>
                         </div>
-                    </a>
+                    </div>
                 </div>
-                <div class="col-md-6 col-lg-3 mb-4">
-                    <a href="../categories/restaurants/">
-                        <div class="category-card">
-                            <i class="fas fa-utensils category-icon"></i>
-                            <h3 class="category-title">Restaurants</h3>
-                            <p class="category-description">Discover top-rated restaurants.</p>
+
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="dropdown w-100">
+                        <button class="btn btn-light dropdown-toggle w-100 border shadow-sm d-flex justify-content-between align-items-center" type="button" id="eduDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Education
+                        </button>
+                        <div class="dropdown-menu w-100 shadow-sm" aria-labelledby="eduDropdown">
+                            <a class="dropdown-item" href="#"><i class="fas fa-university fa-fw icon-primary"></i>College</a>
+                            <a class="dropdown-item" href="#"><i class="fas fa-school fa-fw icon-primary"></i>Schools</a>
+                            <a class="dropdown-item" href="#"><i class="fas fa-child fa-fw icon-primary"></i>Day Cares</a>
                         </div>
-                    </a>
+                    </div>
                 </div>
-                <div class="col-md-6 col-lg-3 mb-4">
-                    <a href="../categories/hotels/">
-                        <div class="category-card">
-                            <i class="fas fa-hotel category-icon"></i>
-                            <h3 class="category-title">Hotels</h3>
-                            <p class="category-description">Find the best hotels in Zamboanga City.</p>
+
+                 <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="dropdown w-100">
+                        <button class="btn btn-light dropdown-toggle w-100 border shadow-sm d-flex justify-content-between align-items-center" type="button" id="persDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Personal & Professional Service
+                        </button>
+                        <div class="dropdown-menu w-100 shadow-sm" aria-labelledby="persDropdown">
+                            <a class="dropdown-item" href="#"><i class="fas fa-cut fa-fw icon-primary"></i>BarberShop</a>
+                            <a class="dropdown-item" href="#"><i class="fas fa-spa fa-fw icon-primary"></i>Beauty Salons</a>
+                            <a class="dropdown-item" href="#"><i class="fas fa-print fa-fw icon-primary"></i>Printing & Copy Services</a>
+                            <a class="dropdown-item" href="#"><i class="fas fa-ruler-combined fa-fw icon-primary"></i>Tailors</a>
+                            <a class="dropdown-item" href="#"><i class="fas fa-tshirt fa-fw icon-primary"></i>Laundry</a>
+                            <a class="dropdown-item" href="#"><i class="fas fa-camera-retro fa-fw icon-primary"></i>Photography Studio</a>
+                            <a class="dropdown-item" href="#"><i class="fas fa-gavel fa-fw icon-primary"></i>Legal Service</a>
                         </div>
-                    </a>
+                    </div>
                 </div>
-                <div class="col-md-6 col-lg-3 mb-4">
-                    <a href="../categories/shops/">
-                        <div class="category-card">
-                            <i class="fas fa-shopping-cart category-icon"></i>
-                            <h3 class="category-title">Shopping</h3>
-                            <p class="category-description">Shop the best souvenirs.</p>
+
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="dropdown w-100">
+                        <button class="btn btn-light dropdown-toggle w-100 border shadow-sm d-flex justify-content-between align-items-center" type="button" id="attrDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Attraction & Recreation
+                        </button>
+                        <div class="dropdown-menu w-100 shadow-sm" aria-labelledby="attrDropdown">
+                            <a class="dropdown-item" href="#"><i class="fas fa-film fa-fw icon-primary"></i>Cinema</a>
+                            <a class="dropdown-item" href="#"><i class="fas fa-tree fa-fw icon-primary"></i>Parks</a>
+                            <a class="dropdown-item" href="#"><i class="fas fa-monument fa-fw icon-primary"></i>Historical Sites</a>
+                            <a class="dropdown-item" href="#"><i class="fas fa-volleyball-ball fa-fw icon-primary"></i>Sports Venue</a>
+                            <a class="dropdown-item" href="#"><i class="fas fa-map-pin fa-fw icon-primary"></i>Theme Parks</a>
+                            <a class="dropdown-item" href="#"><i class="fas fa-umbrella-beach fa-fw icon-primary"></i>Beaches</a>
+                            <a class="dropdown-item" href="#"><i class="fas fa-map-marker-alt fa-fw icon-primary"></i>Tourist Spot</a>
+                            <a class="dropdown-item" href="#"><i class="fas fa-glass-cheers fa-fw icon-primary"></i>Night Life</a>
                         </div>
-                    </a>
+                    </div>
                 </div>
-                <div class="col-md-6 col-lg-3 mb-4">
-                    <a href="../categories/hospital/">
-                        <div class="category-card">
-                            <i class="fas fa-hospital category-icon"></i>
-                            <h3 class="category-title">Hospitals</h3>
-                            <p class="category-description">Find hospitals in Zamboanga City.</p>
+
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="dropdown w-100">
+                        <button class="btn btn-light dropdown-toggle w-100 border shadow-sm d-flex justify-content-between align-items-center" type="button" id="reliDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Religious Places
+                        </button>
+                        <div class="dropdown-menu w-100 shadow-sm" aria-labelledby="reliDropdown">
+                            <a class="dropdown-item" href="#"><i class="fas fa-church fa-fw icon-primary"></i>Churches</a>
+                            <a class="dropdown-item" href="#"><i class="fas fa-mosque fa-fw icon-primary"></i>Mosque</a>
+                            <a class="dropdown-item" href="#"><i class="fas fa-place-of-worship fa-fw icon-primary"></i>Temple</a>
                         </div>
-                    </a>
+                    </div>
                 </div>
-                <div class="col-md-6 col-lg-3 mb-4">
-                    <a href="../categories/store/">
-                        <div class="category-card">
-                            <i class="fas fa-store category-icon"></i>
-                            <h3 class="category-title">Stores</h3>
-                            <p class="category-description">Discover various stores.</p>
+
+                 <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="dropdown w-100">
+                        <button class="btn btn-light dropdown-toggle w-100 border shadow-sm d-flex justify-content-between align-items-center" type="button" id="transDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Transportation
+                        </button>
+                        <div class="dropdown-menu w-100 shadow-sm" aria-labelledby="transDropdown">
+                            <a class="dropdown-item" href="#"><i class="fas fa-route fa-fw icon-primary"></i>Airport/Bus/Port</a>
+                            <a class="dropdown-item" href="#"><i class="fas fa-bus-alt fa-fw icon-primary"></i>Jeepney Terminal</a>
+                            <a class="dropdown-item" href="#"><i class="fas fa-car-side fa-fw icon-primary"></i>Car Rental</a>
+                            <a class="dropdown-item" href="#"><i class="fas fa-gas-pump fa-fw icon-primary"></i>Gas Station</a>
+                            <a class="dropdown-item" href="#"><i class="fas fa-parking fa-fw icon-primary"></i>Parking Areas</a>
                         </div>
-                    </a>
+                    </div>
                 </div>
-                 <div class="col-md-6 col-lg-3 mb-4">
-                    <a href="../categories/schools/">
-                        <div class="category-card">
-                            <i class="fas fa-graduation-cap category-icon"></i>
-                            <h3 class="category-title">Schools</h3>
-                            <p class="category-description">Explore schools in the city.</p>
+
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="dropdown w-100">
+                        <button class="btn btn-light dropdown-toggle w-100 border shadow-sm d-flex justify-content-between align-items-center" type="button" id="finDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Financial Service
+                        </button>
+                        <div class="dropdown-menu w-100 shadow-sm" aria-labelledby="finDropdown">
+                            <a class="dropdown-item" href="#"><i class="fas fa-piggy-bank fa-fw icon-primary"></i>Banks</a>
+                            <a class="dropdown-item" href="#"><i class="fas fa-credit-card fa-fw icon-primary"></i>ATM</a>
+                            <a class="dropdown-item" href="#"><i class="fas fa-exchange-alt fa-fw icon-primary"></i>Money Transfer Service</a>
+                            <a class="dropdown-item" href="#"><i class="fas fa-hand-holding-usd fa-fw icon-primary"></i>Pawn Shop</a>
+                            <a class="dropdown-item" href="#"><i class="fas fa-money-bill-wave fa-fw icon-primary"></i>Currency Exchange</a>
                         </div>
-                    </a>
+                    </div>
                 </div>
-                <div class="col-md-6 col-lg-3 mb-4">
-                    <a href="../categories/all/">
-                        <div class="category-card">
-                            <i class="fas fa-arrow-right category-icon"></i>
-                            <h3 class="category-title">See All Categories</h3>
-                            <p class="category-description">Explore more categories</p>
+
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="dropdown w-100">
+                        <button class="btn btn-light dropdown-toggle w-100 border shadow-sm d-flex justify-content-between align-items-center" type="button" id="healthDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Health & Wellness
+                        </button>
+                        <div class="dropdown-menu w-100 shadow-sm" aria-labelledby="healthDropdown">
+                            <a class="dropdown-item" href="#"><i class="fas fa-clinic-medical fa-fw icon-primary"></i>Clinic</a>
+                            <a class="dropdown-item" href="#"><i class="fas fa-tooth fa-fw icon-primary"></i>Dental Clinic</a>
+                            <a class="dropdown-item" href="#"><i class="fas fa-pills fa-fw icon-primary"></i>Pharmacies</a>
+                            <a class="dropdown-item" href="#"><i class="fas fa-eye fa-fw icon-primary"></i>Optometrist</a>
+                            <a class="dropdown-item" href="#"><i class="fas fa-dumbbell fa-fw icon-primary"></i>Gym</a>
+                            <a class="dropdown-item" href="#"><i class="fas fa-spa fa-fw icon-primary"></i>Spa</a>
                         </div>
-                    </a>
+                    </div>
                 </div>
+
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="dropdown w-100">
+                        <button class="btn btn-light dropdown-toggle w-100 border shadow-sm d-flex justify-content-between align-items-center" type="button" id="shopDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Shopping & Retail
+                        </button>
+                        <div class="dropdown-menu w-100 shadow-sm" aria-labelledby="shopDropdown">
+                            <a class="dropdown-item" href="#"><i class="fas fa-shopping-bag fa-fw icon-primary"></i>Malls</a>
+                            <a class="dropdown-item" href="#"><i class="fas fa-shopping-basket fa-fw icon-primary"></i>Clothing</a>
+                            <a class="dropdown-item" href="#"><i class="fas fa-plug fa-fw icon-primary"></i>Electronics</a>
+                            <a class="dropdown-item" href="#"><i class="fas fa-store fa-fw icon-primary"></i>Flea Markets</a>
+                            <a class="dropdown-item" href="#"><i class="fas fa-tools fa-fw icon-primary"></i>Hardware Store</a>
+                            <a class="dropdown-item" href="#"><i class="fas fa-book-open fa-fw icon-primary"></i>Book Store</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="dropdown w-100">
+                        <button class="btn btn-light dropdown-toggle w-100 border shadow-sm d-flex justify-content-between align-items-center" type="button" id="accomDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Accommodations
+                        </button>
+                        <div class="dropdown-menu w-100 shadow-sm" aria-labelledby="accomDropdown">
+                            <a class="dropdown-item" href="#"><i class="fas fa-hotel fa-fw icon-primary"></i>Hotels</a>
+                            <a class="dropdown-item" href="#"><i class="fas fa-bed fa-fw icon-primary"></i>Motels</a>
+                            <a class="dropdown-item" href="#"><i class="fas fa-building fa-fw icon-primary"></i>Apartments</a>
+                            <a class="dropdown-item" href="#"><i class="fas fa-swimming-pool fa-fw icon-primary"></i>Resort</a>
+                            <a class="dropdown-item" href="#"><i class="fas fa-campground fa-fw icon-primary"></i>Campgrounds</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="dropdown w-100">
+                        <button class="btn btn-light dropdown-toggle w-100 border shadow-sm d-flex justify-content-between align-items-center" type="button" id="emergDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Emergencies
+                        </button>
+                        <div class="dropdown-menu w-100 shadow-sm" aria-labelledby="emergDropdown">
+                             <a class="dropdown-item" href="#"><i class="fas fa-hospital-alt fa-fw icon-danger"></i>Hospital</a>
+                             <a class="dropdown-item" href="#"><i class="fas fa-user-shield fa-fw icon-danger"></i>Police Station</a>
+                             <a class="dropdown-item" href="#"><i class="fas fa-fire-extinguisher fa-fw icon-danger"></i>Fire Station</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="dropdown w-100">
+                        <button class="btn btn-light dropdown-toggle w-100 border shadow-sm d-flex justify-content-between align-items-center" type="button" id="foodDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Food & Drink
+                        </button>
+                        <div class="dropdown-menu w-100 shadow-sm" aria-labelledby="foodDropdown">
+                            <a class="dropdown-item" href="#"><i class="fas fa-utensils fa-fw icon-primary"></i>Restaurants</a>
+                            <a class="dropdown-item" href="#"><i class="fas fa-coffee fa-fw icon-primary"></i>Cafes</a>
+                            <a class="dropdown-item" href="#"><i class="fas fa-bread-slice fa-fw icon-primary"></i>Bakeries</a>
+                            <a class="dropdown-item" href="#"><i class="fas fa-drumstick-bite fa-fw icon-primary"></i>Carinderia</a>
+                            <a class="dropdown-item" href="#"><i class="fas fa-glass-martini-alt fa-fw icon-primary"></i>Bars</a>
+                            <a class="dropdown-item" href="#"><i class="fas fa-hotdog fa-fw icon-primary"></i>Street Food</a>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
 
     <footer class="footer">
         <div class="container">
-            <p class="footer-text">&copy; <?php echo date("Y"); ?> Zamchiver. All rights reserved. | Developed by <a href="#" class="footer-link">Your Name/Organization</a></p>
+            <p class="footer-text">© 2024 Zamchiver. All rights reserved. | Developed by <a href="#" class="footer-link">Your Name/Organization</a></p>
         </div>
     </footer>
 
+    <!-- Ensure jQuery is loaded FIRST -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- THEN load Bootstrap Bundle (includes Popper.js) with the CORRECT integrity hash -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-LtrjvnR4Twt/qOuYxE721u19sVFLVSA4hf/rRt6PrZTmiPltdZcI7q7PXQBYTKyf" crossorigin="anonymous"></script>
+    <!-- FINALLY load your custom scripts -->
     <script>
         $(document).ready(function() {
             // Add smooth scrolling for anchor links
@@ -511,24 +701,32 @@
                 if (target.length) {
                     event.preventDefault();
                     $('html, body').animate({
-                        scrollTop: target.offset().top - 70
+                        scrollTop: target.offset().top - 70 // Adjust offset for fixed navbar
                     }, 1000);
                 }
             });
 
-            // Highlight active nav link on scroll
-            $(window).scroll(function() {
-                var scrollDistance = $(window).scrollTop();
-                $('.navbar-nav .nav-item .nav-link').each(function() {
-                    var sectionId = $(this).attr('href');
-                    var section = $(sectionId);
-                    if (section.length && section.offset().top - 80 <= scrollDistance && section.offset().top + section.height() - 80 > scrollDistance) {
-                        $(this).addClass('active');
-                    } else {
-                        $(this).removeClass('active');
-                    }
-                });
-            });
+            // Prevent dropdown from closing when clicking collapse trigger
+             $('.dropdown-menu a[data-toggle="collapse"]').on('click', function (e) {
+                 e.stopPropagation(); // Stop the click from bubbling up to the dropdown
+                 e.preventDefault(); // Prevent the link default action
+                 var target = $(this).attr('href');
+                 if($(target).length) { // Check if target exists
+                    // Find and hide sibling collapses first
+                    $(this).closest('.dropdown-menu').find('.collapse.show').not(target).collapse('hide');
+                    // Then toggle the current one
+                    $(target).collapse('toggle');
+                 } else {
+                    console.error("Collapse target not found:", target);
+                 }
+             });
+
+             // Ensure clicking inside collapse doesn't close dropdown
+             // Attach to a static parent of the .collapse elements if they are added dynamically
+             $('.dropdown-menu').on('click', '.collapse', function(e){
+                  e.stopPropagation(); // Stop clicks inside collapse area from closing dropdown
+             });
+
         });
     </script>
 </body>

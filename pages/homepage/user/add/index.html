@@ -221,6 +221,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="../home/">Home</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../search/">Search</a>
+                    </li>
                     <li class="nav-item active">
                         <a class="nav-link" href="">Add Post</a>
                     </li>
@@ -262,9 +265,10 @@
                                 <small class="form-text text-muted">Choose the most relevant category.</small>
                             </div>
                             <div class="form-group">
-                                <label for="location">Location <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="location" name="location" placeholder="Enter location" required>
-                                <small class="form-text text-muted">Specify the exact address or area.</small>
+                                <label for="location">Street <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="location" name="location" placeholder="Enter Street" required>
+                                <label for="location" class="mt-2">Barangay <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="location" name="location" placeholder="Enter Barangay" required>
                             </div>
                             <div class="form-group">
                                 <label for="description">Description <span class="text-danger">*</span></label>
@@ -285,24 +289,6 @@
                                     <i class="fas fa-image"></i>
                                 </div>
                                 <img id="image-preview" class="image-preview d-none" src="#" alt="Image Preview">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="contact_person">Contact Person</label>
-                                <input type="text" class="form-control" id="contact_person" name="contact_person" placeholder="Enter contact person name">
-                                 <small class="form-text text-muted">Optional</small>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="contact_number">Contact Number</label>
-                                <input type="tel" class="form-control" id="contact_number" name="contact_number" placeholder="Enter contact number">
-                                <small class="form-text text-muted">Optional</small>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="website">Website</label>
-                                <input type="url" class="form-control" id="website" name="website" placeholder="Enter website URL">
-                                <small class="form-text text-muted">Optional</small>
                             </div>
                             <button type="submit" class="btn btn-primary mr-2">Submit Post</button>
                             <button type="reset" class="btn btn-secondary">Reset Form</button>

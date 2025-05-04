@@ -4,35 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Account Dashboard - Zamchiver</title>
-    <meta name="description" content="Manage your account details, view your posts, and edit your profile on Zamchiver.">
-    <meta name="keywords" content="Zamboanga City, my account, dashboard, profile, posts, edit profile, settings, account management, Philippines">
+    <meta name="description" content="Manage your account details, view your posts, drafts, bookmarks, and notifications on Zamchiver.">
+    <meta name="keywords" content="Zamboanga City, my account, dashboard, profile, posts, drafts, bookmarks, notifications, edit profile, settings, account management, Philippines">
     <meta name="author" content="Your Name/Organization">
 
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
-        /* Custom styles for My Account Dashboard */
         body {
             font-family: 'Poppins', sans-serif;
             background-color: #ffffff;
             color: #343a40;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .content-wrap {
+            flex: 1 0 auto; /* Push footer down */
         }
         h1, h2 {
             font-weight: 600;
-            color: #008000; /* Green */
+            color: #008000;
         }
         .lead {
             color: #495057;
             font-size: 1.1rem;
             font-weight: 300;
         }
-        /* Navbar Styles */
         .navbar {
-            background-color: #008000; /* Green */
+            background-color: #008000;
             padding: 0.75rem 1rem;
         }
         .navbar-brand {
@@ -52,7 +56,7 @@
         }
         .navbar-nav .nav-link:hover,
         .navbar-nav .nav-link.active {
-            color: #ffc107; /* Yellow */
+            color: #ffc107;
             font-weight: 500;
         }
         .navbar-toggler {
@@ -73,18 +77,16 @@
         }
         .navbar-nav .nav-item.auth .nav-link:hover {
             background-color: #fff;
-            color: #008000; /* Green */
+            color: #008000;
             border-color: #fff;
         }
-
-        /* My Account Dashboard Styles */
         .my-account-section {
             padding: 5rem 0;
-            background-color: #ffffff; /* Light Yellow - Vinta Accent */
+            background-color: #ffffff;
         }
         .dashboard-container {
             display: grid;
-            grid-template-columns: 1fr; /* Sidebar and Content */
+            grid-template-columns: 1fr;
             gap: 2rem;
             max-width: 1200px;
             margin: 0 auto;
@@ -105,31 +107,34 @@
             padding-bottom: 1rem;
         }
         .content-header h2 {
-            color: #008000; /* Green */
+            color: #008000;
             margin: 0;
-            font-size: 2rem;
+            font-size: 1.75rem;
         }
         .account-details-container {
             margin-bottom: 2.5rem;
         }
-        .account-details-container h2{
-             font-size: 1.5rem;
+         .account-details-container h2,
+         .my-posts-container h2,
+         .my-notifications-container h2,
+         .my-drafts-container h2,
+         .my-bookmarks-container h2 {
+            font-size: 1.5rem;
         }
-
         .form-group label {
             font-weight: 500;
-            color: #008000; /* Green */
+            color: #008000;
         }
         .form-control {
             border-radius: 0.5rem;
             border-color: #ddd;
         }
         .form-control:focus {
-            border-color: #008000; /* Green */
-            box-shadow: 0 0 0 0.2rem rgba(0, 128, 0, 0.25); /* Green */
+            border-color: #008000;
+            box-shadow: 0 0 0 0.2rem rgba(0, 128, 0, 0.25);
         }
         .btn-primary {
-            background-color: #008000; /* Green */
+            background-color: #008000;
             border-color: #008000;
             color: #fff;
             padding: 0.75rem 1.5rem;
@@ -138,11 +143,11 @@
             border-radius: 0.5rem;
         }
         .btn-primary:hover {
-            background-color: #006400; /* Darker Green */
+            background-color: #006400;
             border-color: #006400;
         }
         .btn-secondary {
-            background-color: #e0e0e0; /* Light Gray */
+            background-color: #e0e0e0;
             border-color: #e0e0e0;
             color: #343a40;
             padding: 0.75rem 1.5rem;
@@ -151,7 +156,7 @@
             border-radius: 0.5rem;
         }
         .btn-secondary:hover {
-            background-color: #c0c0c0; /* Darker Gray */
+            background-color: #c0c0c0;
             border-color: #c0c0c0;
         }
         .post-card {
@@ -178,7 +183,7 @@
         }
         .post-card-title {
             font-size: 1.2rem;
-            color: #008000; /* Green */
+            color: #008000;
             margin-bottom: 0.5rem;
             font-weight: 600;
         }
@@ -189,7 +194,7 @@
         }
         .post-card-actions {
             display: flex;
-            gap: 10px; /* Adjust the gap as needed */
+            gap: 10px;
             margin-top: 1rem;
         }
         .btn-sm {
@@ -198,33 +203,34 @@
             border-radius: 0.3rem;
         }
         .btn-warning {
-            background-color: #ffc107; /* Yellow */
+            background-color: #ffc107;
             border-color: #ffc107;
             color: #343a40;
         }
         .btn-warning:hover {
-            background-color: #e0a800; /* Darker Yellow */
+            background-color: #e0a800;
             border-color: #e0a800;
         }
         .btn-danger {
-            background-color: #dc3545; /* Red */
+            background-color: #dc3545;
             border-color: #dc3545;
             color: #fff;
         }
         .btn-danger:hover {
-            background-color: #c82333; /* Darker Red */
+            background-color: #c82333;
             border-color: #c82333;
         }
-
         .footer {
             background-color: #343a40;
             color: #fff;
             padding: 1.5rem 0;
             text-align: center;
             border-top: 1px solid #495057;
+            flex-shrink: 0; /* Prevent footer shrink */
         }
         .footer-text {
             font-size: 1.1rem;
+            margin-bottom: 0;
         }
         .footer-link {
             color: #fff;
@@ -233,17 +239,72 @@
             transition: color 0.3s ease;
         }
         .footer-link:hover {
-            color: #ffb74d;
+            color: #ffc107;
         }
-
-        /* Responsive adjustments */
+        .list-item {
+            background-color: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 0.5rem;
+            padding: 1rem 1.5rem;
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.2s ease;
+        }
+        .list-item:hover {
+            background-color: #e9ecef;
+        }
+        .list-item-content {
+            flex-grow: 1;
+            margin-right: 1rem;
+        }
+        .list-item-title {
+            font-weight: 500;
+            color: #343a40;
+            margin-bottom: 0.25rem;
+        }
+         .list-item-title a {
+             color: inherit;
+             text-decoration: none;
+         }
+         .list-item-title a:hover {
+             color: #0056b3;
+             text-decoration: underline;
+         }
+        .list-item-meta {
+            font-size: 0.85rem;
+            color: #6c757d;
+        }
+        .list-item-actions .btn {
+            margin-left: 0.5rem;
+        }
+        .notification-item.unread {
+            background-color: #e6faff;
+            border-left: 4px solid #17a2b8;
+        }
+        .bookmark-item img {
+            width: 60px;
+            height: 40px;
+            object-fit: cover;
+            border-radius: 0.25rem;
+            margin-right: 1rem;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .my-posts-container,
+        .my-notifications-container,
+        .my-drafts-container,
+        .my-bookmarks-container {
+            margin-top: 3rem;
+        }
         @media (max-width: 992px) {
             .navbar-nav .nav-link {
                 margin-left: 0;
                 margin-top: 0.5rem;
             }
             .dashboard-container {
-                grid-template-columns: 1fr; /* Stack on smaller screens */
+                grid-template-columns: 1fr;
             }
         }
         @media (max-width: 768px) {
@@ -253,103 +314,160 @@
             .content-area {
                 padding: 1.5rem;
             }
+            .list-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .list-item-actions {
+                 margin-top: 0.75rem;
+                 width: 100%;
+                 display: flex;
+                 justify-content: flex-end;
+            }
+             .list-item-actions .btn {
+                 margin-left: 0.5rem;
+            }
+             .list-item-content {
+                 margin-right: 0;
+                 margin-bottom: 0.5rem;
+             }
+             .bookmark-item img {
+                 margin-bottom: 0.5rem;
+             }
         }
         @media (max-width: 576px) {
-            .hero-title {
-                font-size: 2.5rem;
-            }
-            .hero-tagline {
-                font-size: 1.2rem;
-            }
             .content-header h2 {
                 font-size: 1.5rem;
             }
-             .account-details-container h2{
+             .account-details-container h2,
+             .my-posts-container h2,
+             .my-notifications-container h2,
+             .my-drafts-container h2,
+             .my-bookmarks-container h2 {
                 font-size: 1.25rem;
             }
         }
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark">
-        <div class="container">
-            <a class="navbar-brand" href="#">Zamchiver</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="../home/">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../add/">Add Post</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="">My Account</a>
-                    </li>
-                    <li class="nav-item auth">
-                        <a class="nav-link" href="../../../login/" style="background-color: #ffc107; color: #008000; border-color: #ffc107;">Log Out</a>
-                    </li>
-                </ul>
+    <div class="content-wrap">
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container">
+                <a class="navbar-brand" href="#">Zamchiver</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="../home/">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../search/">Search</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../add/">Add Post</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">My Account</a>
+                        </li>
+                        <li class="nav-item auth">
+                            <a class="nav-link" href="../../../login/" style="background-color: #ffc107; color: #008000; border-color: #ffc107;">Log Out</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-        </div>
-    </nav>
+        </nav>
 
-    <section class="my-account-section">
-        <div class="container">
-            <h1 class="text-center mb-4">My Account</h1>
-            <div class="dashboard-container">
-                <main class="content-area">
-                    <div id="account-details" class="account-details-container">
-                        <div class="content-header">
-                            <h2>Account Details</h2>
-                            <button id="edit-profile-btn" class="btn btn-primary">Edit Profile</button>
+        <section class="my-account-section">
+            <div class="container">
+                <h1 class="text-center mb-4">My Account</h1>
+                <div class="dashboard-container">
+                    <main class="content-area">
+                        <div id="account-details" class="account-details-container">
+                            <div class="content-header">
+                                <h2>Account Details</h2>
+                                <button id="edit-profile-btn" class="btn btn-primary">Edit Profile</button>
+                            </div>
+                            <form id="edit-profile-form" style="display: none;">
+                                 <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="name">Name <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" id="name" name="name" value="John Doe" required>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="email">Email <span class="text-danger">*</span></label>
+                                        <input type="email" class="form-control" id="email" name="email" value="john.doe@example.com" required>
+                                    </div>
+                                 </div>
+                                 <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="new-password">New Password</label>
+                                        <input type="password" class="form-control" id="new-password" name="new-password" placeholder="Enter new password">
+                                        <small class="form-text text-muted">Leave blank to keep current password.</small>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="confirm-password">Confirm New Password</label>
+                                        <input type="password" class="form-control" id="confirm-password" name="confirm-password" placeholder="Confirm new password">
+                                    </div>
+                                 </div>
+                                <div class="form-actions mt-3">
+                                    <button type="submit" class="btn btn-primary mr-2">Update Profile</button>
+                                    <button type="button" class="btn btn-secondary" id="cancel-edit-btn">Cancel</button>
+                                </div>
+                            </form>
+                            <div id="profile-display" class="mt-3">
+                                <p><strong>Name:</strong> <span id="display-name">John Doe</span></p>
+                                <p><strong>Email:</strong> <span id="display-email">john.doe@example.com</span></p>
+                            </div>
                         </div>
-                        <form id="edit-profile-form" style="display: none;">
-                            <div class="form-group">
-                                <label for="name">Name <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="name" name="name" value="John Doe" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="email">Email <span class="text-danger">*</span></label>
-                                <input type="email" class="form-control" id="email" name="email" value="john.doe@example.com" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="new-password">New Password</label>
-                                <input type="password" class="form-control" id="new-password" name="new-password" placeholder="Enter new password">
-                                <small class="form-text text-muted">Leave blank to keep your current password.</small>
-                            </div>
-                            <div class="form-group">
-                                <label for="confirm-password">Confirm New Password</label>
-                                <input type="password" class="form-control" id="confirm-password" name="confirm-password" placeholder="Confirm new password">
-                            </div>
-                            <div class="form-actions">
-                                <button type="submit" class="btn btn-primary mr-2">Update Profile</button>
-                                <button type="button" class="btn btn-secondary" id="cancel-edit-btn">Cancel</button>
-                            </div>
-                        </form>
-                        <div id="profile-display">
-                            <p><strong>Name:</strong> <span id="display-name">John Doe</span></p>
-                            <p><strong>Email:</strong> <span id="display-email">john.doe@example.com</span></p>
-                        </div>
-                    </div>
 
-                    <div id="my-posts" class="my-posts-container">
-                        <div class="content-header">
-                            <h2>My Posts</h2>
-                        </div>
-                        <div id="my-posts-list">
+                        <div id="my-posts" class="my-posts-container">
+                            <div class="content-header">
+                                <h2>My Posts</h2>
                             </div>
-                    </div>
-                </main>
+                            <div id="my-posts-list" class="row">
+                                 <p class="col-12 text-muted">Loading posts...</p>
+                            </div>
+                        </div>
+
+                        <div id="my-notifications" class="my-notifications-container">
+                            <div class="content-header">
+                                <h2>Notifications</h2>
+                                <button class="btn btn-sm btn-outline-secondary" id="mark-all-read-btn">Mark All as Read</button>
+                            </div>
+                            <div id="my-notifications-list">
+                                 <p class="text-muted loading-placeholder">Loading notifications...</p>
+                            </div>
+                        </div>
+
+                        <div id="my-drafts" class="my-drafts-container">
+                            <div class="content-header">
+                                <h2>Drafts</h2>
+                            </div>
+                            <div id="my-drafts-list">
+                                 <p class="text-muted loading-placeholder">Loading drafts...</p>
+                            </div>
+                        </div>
+
+                        <div id="my-bookmarks" class="my-bookmarks-container">
+                            <div class="content-header">
+                                <h2>Bookmarks</h2>
+                            </div>
+                            <div id="my-bookmarks-list">
+                                 <p class="text-muted loading-placeholder">Loading bookmarks...</p>
+                            </div>
+                        </div>
+
+                    </main>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </div> <!-- /.content-wrap -->
 
     <footer class="footer">
         <div class="container">
-            <p class="footer-text">&copy; <?php echo date("Y"); ?> Zamchiver. All rights reserved. | Developed by <a href="#" class="footer-link">Your Name/Organization</a></p>
+            <p class="footer-text">© 2024 Zamchiver. All rights reserved. | Developed by <a href="#" class="footer-link">Your Name/Organization</a></p>
         </div>
     </footer>
 
@@ -358,33 +476,67 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.min.js"></script>
     <script>
         $(document).ready(function() {
-            // Function to fetch and display user's posts (replace with your actual data fetching logic)
-            function fetchUserPosts() {
-                // Simulate fetching posts from a server
-                const mockPosts = [
-                    { id: 1, title: "Fort Pilar", category: "Attractions", image: "../../../../img/fortpilar.webp" },
-                    { id: 2, title: "Paseo del Mar", category: "Attractions", image: "../../../../img/paseo.webp" },
-                    { id: 3, title: "Merloquet Falls", category: "Attractions", image: "../../../../img/mel.webp" },
-                ];
 
+            // --- Mock Data (Replace with actual AJAX calls) ---
+            const mockPosts = [
+                { id: 1, title: "Fort Pilar", category: "Attractions", image: "../../../../img/fortpilar.webp" },
+                { id: 2, title: "Paseo del Mar", category: "Attractions", image: "../../../../img/paseo.webp" },
+                { id: 3, title: "Merloquet Falls", category: "Attractions", image: "../../../../img/mel.webp" },
+            ];
+
+            let mockNotifications = [ // Use let to allow modification
+                { id: 101, text: "Your post 'Fort Pilar' received a new comment.", date: "2024-05-15 10:30", isRead: false, link: "#" },
+                { id: 102, text: "Admin approved your post 'Paseo del Mar'.", date: "2024-05-14 15:00", isRead: false, link: "#" },
+                { id: 103, text: "Admin rejected your post 'KCC Ipil' for misleading information", date: "2024-05-14 15:00", isRead: false, link: "#" },
+                { id: 104, text: "Welcome to Zamchiver!", date: "2024-05-12 09:00", isRead: true, link: "#" },
+            ];
+
+            let mockDrafts = [ // Use let to allow modification
+                { id: 201, title: "Exploring Santa Cruz Island", lastSaved: "2024-05-13 11:00" },
+                { id: 202, title: "Review: Lantaka Hotel", lastSaved: "2024-05-10 16:45" },
+            ];
+
+            const mockBookmarks = [
+                { id: 301, title: "Yakan Weaving Village", url: "#", image: "../../../../img/yakan.webp" },
+                { id: 302, title: "Budget Friendly Restaurants", url: "#", image: "../../../../img/restaurant_placeholder.jpg" },
+            ];
+            // --- End Mock Data ---
+
+            // --- Utility function to get current date/time string ---
+             function getCurrentDateTimeString() {
+                const now = new Date();
+                const year = now.getFullYear();
+                const month = String(now.getMonth() + 1).padStart(2, '0'); // Months are 0-indexed
+                const day = String(now.getDate()).padStart(2, '0');
+                const hours = String(now.getHours()).padStart(2, '0');
+                const minutes = String(now.getMinutes()).padStart(2, '0');
+                return `${year}-${month}-${day} ${hours}:${minutes}`;
+            }
+
+            // --- Function to display User Posts ---
+            function fetchUserPosts() {
                 const postsContainer = $('#my-posts-list');
-                postsContainer.empty(); // Clear previous posts
+                postsContainer.empty();
 
                 if (mockPosts.length === 0) {
-                    postsContainer.append('<p class="text-muted">No posts found.</p>');
+                    postsContainer.append('<p class="col-12 text-muted">No posts found.</p>');
                     return;
                 }
 
                 mockPosts.forEach(post => {
                     const postCard = `
-                        <div class="post-card">
-                            <img src="${post.image}" alt="${post.title}" class="post-card-image">
-                            <div class="post-card-content">
-                                <h3 class="post-card-title">${post.title}</h3>
-                                <p class="post-card-category">${post.category}</p>
-                                 <div class="post-card-actions">
-                                    <button class="btn btn-sm btn-warning">Edit</button>
-                                    <button class="btn btn-sm btn-danger">Delete</button>
+                        <div class="col-md-6 col-lg-4 mb-4">
+                            <div class="post-card h-100">
+                                <img src="${post.image}" alt="${post.title}" class="post-card-image">
+                                <div class="post-card-content d-flex flex-column">
+                                    <div>
+                                        <h3 class="post-card-title">${post.title}</h3>
+                                        <p class="post-card-category">${post.category}</p>
+                                    </div>
+                                    <div class="post-card-actions mt-auto">
+                                        <button class="btn btn-sm btn-warning edit-post-btn" data-post-id="${post.id}"><i class="fas fa-edit"></i> Edit</button>
+                                        <button class="btn btn-sm btn-danger delete-post-btn" data-post-id="${post.id}"><i class="fas fa-trash-alt"></i> Delete</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -393,10 +545,268 @@
                 });
             }
 
-            fetchUserPosts(); // Call the function to display posts
+            // --- Function to display Notifications ---
+            function renderNotificationItem(noti) {
+                 const readClass = noti.isRead ? '' : 'unread';
+                 return `
+                    <div class="list-item notification-item ${readClass}" data-notification-id="${noti.id}">
+                        <div class="list-item-content">
+                            <p class="list-item-title mb-1">${noti.text}</p>
+                            <small class="list-item-meta">${noti.date}</small>
+                        </div>
+                        <div class="list-item-actions">
+                            ${!noti.isRead ? '<button class="btn btn-sm btn-outline-success mark-read-btn" title="Mark as Read"><i class="fas fa-check"></i></button>' : ''}
+                            <button class="btn btn-sm btn-outline-danger delete-notification-btn" title="Delete Notification"><i class="fas fa-times"></i></button>
+                        </div>
+                    </div>`;
+            }
 
-            // Add smooth scrolling for anchor links
-            $('a[href^="#"]').on('click', function(event) {
+            function fetchUserNotifications() {
+                const container = $('#my-notifications-list');
+                container.empty(); // Clear previous items including loading message
+
+                if (mockNotifications.length === 0) {
+                    container.append('<p class="text-muted no-items-message">No notifications.</p>'); // Add specific class
+                    return;
+                }
+
+                // Sort notifications to show unread first, then by date descending
+                mockNotifications.sort((a, b) => {
+                    if (a.isRead !== b.isRead) {
+                        return a.isRead ? 1 : -1; // Unread first
+                    }
+                    return new Date(b.date) - new Date(a.date); // Then newest first
+                });
+
+
+                mockNotifications.forEach(noti => {
+                    container.append(renderNotificationItem(noti));
+                });
+            }
+
+            // --- Function to display Drafts ---
+            function fetchUserDrafts() {
+                const container = $('#my-drafts-list');
+                container.empty(); // Clear previous items
+
+                if (mockDrafts.length === 0) {
+                    container.append('<p class="text-muted no-items-message">No drafts found.</p>'); // Add specific class
+                    return;
+                }
+
+                 // Sort drafts by date descending
+                mockDrafts.sort((a, b) => new Date(b.lastSaved) - new Date(a.lastSaved));
+
+                mockDrafts.forEach(draft => {
+                    // Include draft title in data attribute for the add post button
+                    const itemHTML = `
+                        <div class="list-item draft-item" data-draft-id="${draft.id}">
+                            <div class="list-item-content">
+                                <p class="list-item-title mb-1">${draft.title}</p>
+                                <small class="list-item-meta">Last saved: ${draft.lastSaved}</small>
+                            </div>
+                            <div class="list-item-actions">
+                                <button class="btn btn-sm btn-primary add-post-from-draft-btn" data-draft-title="${draft.title}"><i class="fas fa-plus"></i> Add Post</button>
+                                <button class="btn btn-sm btn-danger delete-draft-btn"><i class="fas fa-trash-alt"></i> Delete</button>
+                            </div>
+                        </div>`;
+                    container.append(itemHTML);
+                });
+            }
+
+            // --- Function to display Bookmarks ---
+            function fetchUserBookmarks() {
+                const container = $('#my-bookmarks-list');
+                container.empty(); // Clear previous items
+
+                if (mockBookmarks.length === 0) {
+                    container.append('<p class="text-muted no-items-message">No bookmarks found.</p>'); // Add specific class
+                    return;
+                }
+
+                mockBookmarks.forEach(bookmark => {
+                    const itemHTML = `
+                        <div class="list-item bookmark-item" data-bookmark-id="${bookmark.id}">
+                            ${bookmark.image ? `<img src="${bookmark.image}" alt="">` : '<div class="bookmark-placeholder-img" style="width:60px; height:40px; background-color:#e0e0e0; display:inline-block; vertical-align:middle; margin-right:1rem; border-radius:0.25rem;"></div>'}
+                            <div class="list-item-content">
+                                <a href="${bookmark.url}" target="_blank" class="list-item-title mb-1">${bookmark.title}</a>
+                            </div>
+                            <div class="list-item-actions">
+                                <button class="btn btn-sm btn-danger remove-bookmark-btn"><i class="fas fa-trash-alt"></i> Remove</button>
+                            </div>
+                        </div>`;
+                    container.append(itemHTML);
+                });
+            }
+
+            // --- Initial Data Loading ---
+            fetchUserPosts();
+            fetchUserNotifications();
+            fetchUserDrafts();
+            fetchUserBookmarks();
+
+
+            // --- Edit profile functionality ---
+            $("#edit-profile-btn").click(function() {
+                 $("#profile-display").slideUp();
+                 $("#edit-profile-form").slideDown();
+                 $(this).hide();
+            });
+
+            $("#cancel-edit-btn").click(function() {
+                 $("#edit-profile-form").slideUp();
+                 $("#profile-display").slideDown();
+                 $("#edit-profile-btn").show();
+            });
+
+            $("#edit-profile-form").validate({
+                rules: {
+                    name: { required: true, minlength: 2 },
+                    email: { required: true, email: true },
+                    "new-password": { minlength: 8 },
+                    "confirm-password": { equalTo: "#new-password" }
+                },
+                messages: {
+                    name: { required: "Please enter your name", minlength: "Name must be at least 2 characters long" },
+                    email: { required: "Please enter your email address", email: "Please enter a valid email address" },
+                    "new-password": { minlength: "Password must be at least 8 characters long" },
+                    "confirm-password": { equalTo: "Passwords do not match" }
+                },
+                 errorElement: "div",
+                 errorPlacement: function(error, element) {
+                    error.addClass("text-danger small mt-1 w-100");
+                    if (element.closest('.input-group').length) {
+                        error.insertAfter(element.closest('.input-group'));
+                    } else {
+                        error.insertAfter(element);
+                    }
+                 },
+                submitHandler: function(form) {
+                    console.log("Form submitted (implement AJAX)");
+                    setTimeout(function() {
+                         $("#display-name").text($("#name").val());
+                         $("#display-email").text($("#email").val());
+                         $("#edit-profile-form").slideUp();
+                         $("#profile-display").slideDown();
+                         $("#edit-profile-btn").show();
+                         $('#new-password').val('');
+                         $('#confirm-password').val('');
+                    }, 1000);
+
+                }
+            });
+
+            // --- Event Handlers for Dynamic Content ---
+
+            // My Posts Actions
+             $('#my-posts-list').on('click', '.edit-post-btn', function() {
+                 const postId = $(this).data('post-id');
+             });
+             $('#my-posts-list').on('click', '.delete-post-btn', function() {
+                 const postId = $(this).data('post-id');
+                 const card = $(this).closest('.col-md-6');
+                 if(`Are you sure you want to delete post ID: ${postId}?`){
+                    // Simulate API call
+                    card.fadeOut(400, function() { $(this).remove(); });
+                    // Check if posts list becomes empty (optional)
+                 }
+             });
+
+            // Notification Actions
+            $('#my-notifications-list').on('click', '.mark-read-btn', function() {
+                const listItem = $(this).closest('.notification-item');
+                const notificationId = listItem.data('notification-id');
+                // Simulate API call
+                listItem.removeClass('unread');
+                $(this).remove();
+            });
+             $('#my-notifications-list').on('click', '.delete-notification-btn', function() {
+                const listItem = $(this).closest('.notification-item');
+                const notificationId = listItem.data('notification-id');
+                 if((`Delete notification ID: ${notificationId}?`)){
+                     listItem.fadeOut(400, function() {
+                         $(this).remove();
+                         // Check if notifications list becomes empty
+                         if ($('#my-notifications-list .list-item').length === 0) {
+                            $('#my-notifications-list').append('<p class="text-muted no-items-message">No notifications.</p>');
+                         }
+                     });
+                 }
+            });
+             $('#mark-all-read-btn').on('click', function() {
+                 // Simulate API call
+                 $('#my-notifications-list .notification-item').removeClass('unread');
+                 $('#my-notifications-list .mark-read-btn').remove();
+             });
+
+            // Draft Actions
+            $('#my-drafts-list').on('click', '.add-post-from-draft-btn', function() {
+                 const listItem = $(this).closest('.draft-item');
+                 const draftId = listItem.data('draft-id');
+                 const draftTitle = $(this).data('draft-title'); // Get title from data attribute
+
+                 // 1. Simulate adding the post (your logic here)
+
+                 // 2. Add a new notification
+                 const newNotification = {
+                     id: Date.now(), // Simple unique ID for demo
+                     text: `Your draft '${draftTitle}' has been successfully posted.`,
+                     date: getCurrentDateTimeString(),
+                     isRead: false,
+                     link: "#" // Link to the new post eventually
+                 };
+                 mockNotifications.push(newNotification); // Add to our mock data
+                 const notificationContainer = $('#my-notifications-list');
+                 notificationContainer.find('.no-items-message').remove(); // Remove 'no notifications' message if present
+                 notificationContainer.prepend(renderNotificationItem(newNotification)); // Add to top of list
+
+                 // 3. Remove the draft item
+                 listItem.fadeOut(400, function() {
+                     $(this).remove();
+                     // Remove from mock data array
+                     mockDrafts = mockDrafts.filter(draft => draft.id !== draftId);
+                      // Check if drafts list becomes empty
+                     if (mockDrafts.length === 0) {
+                         $('#my-drafts-list').append('<p class="text-muted no-items-message">No drafts found.</p>');
+                     }
+                 });
+
+            });
+            $('#my-drafts-list').on('click', '.delete-draft-btn', function() {
+                 const listItem = $(this).closest('.draft-item');
+                 const draftId = listItem.data('draft-id');
+                  if(`Delete draft ID: ${draftId}?`){
+                     // Simulate API call
+                     listItem.fadeOut(400, function() {
+                         $(this).remove();
+                          // Remove from mock data array
+                         mockDrafts = mockDrafts.filter(draft => draft.id !== draftId);
+                         // Check if drafts list becomes empty
+                         if (mockDrafts.length === 0) {
+                            $('#my-drafts-list').append('<p class="text-muted no-items-message">No drafts found.</p>');
+                         }
+                     });
+                 }
+            });
+
+            // Bookmark Actions
+            $('#my-bookmarks-list').on('click', '.remove-bookmark-btn', function() {
+                 const listItem = $(this).closest('.bookmark-item');
+                 const bookmarkId = listItem.data('bookmark-id');
+                 if(`Remove bookmark ID: ${bookmarkId}?`){
+                     // Simulate API call
+                     listItem.fadeOut(400, function() {
+                         $(this).remove();
+                         // Check if bookmarks list becomes empty
+                         if ($('#my-bookmarks-list .list-item').length === 0) {
+                            $('#my-bookmarks-list').append('<p class="text-muted no-items-message">No bookmarks found.</p>');
+                         }
+                     });
+                 }
+            });
+
+            // Smooth scrolling for anchor links (if any)
+             $('a[href^="#"]').on('click', function(event) {
                 var target = $(this.getAttribute('href'));
                 if (target.length) {
                     event.preventDefault();
@@ -406,104 +816,6 @@
                 }
             });
 
-            // Highlight active nav link on scroll
-            $(window).scroll(function() {
-                var scrollDistance = $(window).scrollTop();
-                $('.navbar-nav .nav-item .nav-link').each(function() {
-                    var sectionId = $(this).attr('href');
-                    var section = $(sectionId);
-                    if (section.length && section.offset().top - 80 <= scrollDistance && section.offset().top + section.height() - 80 > scrollDistance) {
-                        $(this).addClass('active');
-                    } else {
-                        $(this).removeClass('active');
-                    }
-                });
-            });
-
-            // Edit profile functionality
-            $("#edit-profile-btn").click(function() {
-                $("#profile-display").hide();
-                $("#edit-profile-form").show();
-                $(this).hide();
-            });
-
-            $("#cancel-edit-btn").click(function() {
-                $("#profile-display").show();
-                $("#edit-profile-form").hide();
-                $("#edit-profile-btn").show();
-            });
-
-            // Form validation for Edit Profile
-            $("#edit-profile-form").validate({
-                rules: {
-                    name: {
-                        required: true,
-                        minlength: 2
-                    },
-                    email: {
-                        required: true,
-                        email: true
-                    },
-                    "new-password": {
-                        minlength: 6
-                    },
-                    "confirm-password": {
-                        equalTo: "#new-password"
-                    }
-                },
-                messages: {
-                    name: {
-                        required: "Please enter your name",
-                        minlength: "Name must be at least 2 characters long"
-                    },
-                    email: {
-                        required: "Please enter your email address",
-                        email: "Please enter a valid email address"
-                    },
-                    "new-password": {
-                        minlength: "Password must be at least 6 characters long"
-                    },
-                    "confirm-password": {
-                        equalTo: "Please enter the same password as above"
-                    }
-                },
-                errorElement: "small",
-                errorPlacement: function(error, element) {
-                    error.addClass("text-danger");
-                    error.insertAfter(element.parent());
-                },
-                submitHandler: function(form) {
-                    // Handle form submission here (e.g., using AJAX)
-                    // You can access form data using $(form).serialize()
-                    $.ajax({
-                        url: 'your-update-profile-endpoint.php', // Replace with your server-side script
-                        type: 'POST',
-                        data: $(form).serialize(),
-                        success: function(response) {
-                            // Handle success response
-                            console.log(response);
-                            alert("Profile updated successfully!"); // Replace with a better UI notification
-
-                            // Update displayed profile information
-                            $("#display-name").text($("#name").val());
-                            $("#display-email").text($("#email").val());
-
-                            // Hide form and show display
-                            $("#profile-display").show();
-                            $("#edit-profile-form").hide();
-                            $("#edit-profile-btn").show();
-
-                            form.reset();
-
-                        },
-                        error: function(xhr, status, error) {
-                            // Handle error response
-                            console.error(xhr.responseText);
-                            alert("Error updating profile. Please try again."); // Replace with a better UI notification
-                        }
-                    });
-                }
-            });
         });
     </script>
 </body>
